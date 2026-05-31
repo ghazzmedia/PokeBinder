@@ -1,192 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>PokéBinder — Gen I & II Tracker</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>PokéBinder — Gen I & II</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e63946' stroke='%23111' stroke-width='4'/%3E%3Crect x='2' y='46' width='96' height='8' fill='%23111'/%3E%3Ccircle cx='50' cy='50' r='14' fill='white' stroke='%23111' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23e63946'/%3E%3Crect x='2' y='74' width='96' height='24' rx='48' fill='%23eee' stroke='%23111' stroke-width='0'/%3E%3C/svg%3E"/>
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --bg: #0c0b13; --sidebar: #0f0e18; --card: #13121a; --border: #1e1b2e;
-    --border2: #2a2040; --red: #e63946; --blue: #4cc9f0; --text: #f0eeff;
-    --muted: #555; --muted2: #888;
-  }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; display: flex; }
-  ::-webkit-scrollbar { width: 5px; }
-  ::-webkit-scrollbar-track { background: var(--bg); }
-  ::-webkit-scrollbar-thumb { background: #2a1f45; border-radius: 3px; }
+:root {
+  --bg:#0c0b13; --bg2:#0f0e18; --bg3:#13121a; --bg4:#1a1826;
+  --border:#1e1b2e; --border2:#2a2040;
+  --text:#f0eeff; --text2:#aaa; --text3:#666; --text4:#444;
+  --red:#e63946; --blue:#4cc9f0; --green:#52b788; --gold:#f4a261;
+  --shadow:rgba(0,0,0,.6);
+  --card-radius:14px; --trans:.18s;
+}
+.light {
+  --bg:#f4f4f8; --bg2:#eaeaf0; --bg3:#ffffff; --bg4:#e0e0ea;
+  --border:#d0d0e0; --border2:#c0c0d8;
+  --text:#111122; --text2:#444; --text3:#888; --text4:#bbb;
+  --shadow:rgba(0,0,0,.15);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;transition:background var(--trans),color var(--trans)}
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
-  /* LAYOUT */
-  #sidebar {
-    width: 210px; min-width: 210px; background: var(--sidebar);
-    border-right: 1px solid #1a1626; display: flex; flex-direction: column;
-    position: sticky; top: 0; height: 100vh; overflow-y: auto;
-  }
-  #main { flex: 1; overflow-y: auto; padding: 24px; }
+/* LAYOUT */
+#sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;transition:background var(--trans)}
+#main{flex:1;overflow-y:auto;padding:24px;min-width:0}
 
-  /* LOGO */
-  .logo-wrap { padding: 18px 18px 16px; border-bottom: 1px solid #1a1626; }
-  .logo { font-size: 21px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
-  .logo span { color: var(--red); }
-  .logo-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+/* LOGO */
+.logo-wrap{padding:16px 18px 14px;border-bottom:1px solid var(--border)}
+.logo{font-size:20px;font-weight:900;color:var(--text);letter-spacing:-.5px}
+.logo span{color:var(--red)}
+.logo-sub{font-size:10px;color:var(--text3);margin-top:2px}
 
-  /* STATS */
-  .stats-wrap { padding: 14px 18px; border-bottom: 1px solid #1a1626; }
-  .ring-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-  .ring-box { position: relative; flex-shrink: 0; }
-  .ring-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: var(--red); }
-  .mini-bar-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; }
-  .mini-bar-track { height: 3px; background: #1a1626; border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
-  .mini-bar-fill { height: 100%; border-radius: 2px; transition: width .5s; }
+/* STATS */
+.stats-wrap{padding:14px 16px;border-bottom:1px solid var(--border)}
+.ring-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.ring-box{position:relative;flex-shrink:0}
+.ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:var(--red)}
+.mini-bar-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
+.mini-bar-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px}
+.mini-bar-fill{height:100%;border-radius:2px;transition:width .5s}
 
-  /* NAV */
-  nav { padding: 10px 10px; flex: 1; }
-  .nav-btn {
-    display: flex; align-items: center; gap: 10px; width: 100%;
-    padding: 10px 12px; border-radius: 10px; border: none; cursor: pointer;
-    margin-bottom: 3px; text-align: left; font-size: 14px; background: transparent;
-    color: #666; font-weight: 400; transition: all .15s; border-left: 3px solid transparent;
-  }
-  .nav-btn:hover { color: #aaa; background: #13121a; }
-  .nav-btn.active {
-    background: linear-gradient(135deg,#2a1f45,#1e1540);
-    color: #fff; font-weight: 700; border-left-color: var(--red);
-  }
-  .footer-note { padding: 14px 18px; font-size: 10px; color: #333; line-height: 1.7; }
+/* NAV */
+nav{padding:8px 8px;flex:1}
+.nav-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;border-radius:10px;border:none;cursor:pointer;margin-bottom:3px;text-align:left;font-size:13px;background:transparent;color:var(--text3);font-weight:400;transition:all var(--trans);border-left:3px solid transparent}
+.nav-btn:hover{color:var(--text2);background:var(--bg3)}
+.nav-btn.active{background:var(--bg4);color:var(--text);font-weight:700;border-left-color:var(--red)}
 
-  /* TOOLBAR */
-  .toolbar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
-  .toolbar input {
-    flex: 1; min-width: 180px; background: var(--card); border: 1px solid var(--border2);
-    color: #fff; padding: 9px 14px; border-radius: 10px; font-size: 14px; outline: none;
-    transition: border-color .15s;
-  }
-  .toolbar input:focus { border-color: #5a3fa0; }
-  .filter-group { display: flex; gap: 4px; flex-wrap: wrap; }
-  .fbtn {
-    background: var(--card); border: 1px solid var(--border2); color: var(--muted2);
-    padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 600;
-    transition: all .15s; white-space: nowrap;
-  }
-  .fbtn:hover { color: #ccc; }
-  .fbtn.active { background: var(--red); border-color: var(--red); color: #fff; }
-  .fbtn.series-active { color: #fff; }
+/* THEME + SYNC buttons */
+.sidebar-actions{padding:10px 12px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border)}
+.action-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;transition:all var(--trans);font-weight:600;width:100%}
+.action-btn:hover{border-color:var(--red);color:var(--text)}
+.sync-status{font-size:10px;padding:4px 10px;border-radius:6px;text-align:center}
+.sync-ok{background:#0d2a1a;color:#52b788}
+.sync-err{background:#2a0d0d;color:#e63946}
+.sync-busy{background:#1a1a0d;color:#f4a261}
+.footer-note{padding:10px 16px;font-size:10px;color:var(--text4);line-height:1.7;border-top:1px solid var(--border)}
 
-  /* POKEMON GRID */
-  #poke-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 8px;
-  }
-  .pcard {
-    background: var(--card); border: 2px solid var(--border);
-    border-radius: 14px; padding: 10px 8px 8px; text-align: center; cursor: pointer;
-    position: relative; transition: transform .18s, box-shadow .18s, border-color .18s, background .18s;
-    user-select: none;
-  }
-  .pcard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
-  .pcard.owned-g1 { border-color: var(--red); background: #1e0d20; box-shadow: 0 0 14px #e6394633; }
-  .pcard.owned-g2 { border-color: var(--blue); background: #0d1a22; box-shadow: 0 0 14px #4cc9f033; }
-  .pcard-num { font-size: 9px; color: #444; font-weight: 800; margin-bottom: 2px; letter-spacing: 1px; }
-  .pcard img { width: 60px; height: 60px; image-rendering: pixelated; display: block; margin: 0 auto; transition: filter .2s; }
-  .pcard.unowned img { filter: grayscale(1) brightness(0.3); }
-  .pcard-name { font-size: 10px; color: #ccc; font-weight: 700; margin-top: 4px; line-height: 1.2; }
-  .pcard-gen { font-size: 8px; font-weight: 800; padding: 1px 5px; border-radius: 8px; display: inline-block; margin-top: 3px; }
-  .gen1-badge { color: var(--red); background: #e6394622; }
-  .gen2-badge { color: var(--blue); background: #4cc9f022; }
-  .owned-check {
-    position: absolute; top: 5px; right: 5px; width: 16px; height: 16px;
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    font-size: 9px; color: #fff; font-weight: 900;
-  }
-  .lookup-icon {
-    position: absolute; bottom: 5px; right: 5px; background: transparent;
-    border: none; cursor: pointer; font-size: 13px; opacity: 0.4; padding: 0;
-    line-height: 1; transition: opacity .15s;
-  }
-  .lookup-icon:hover { opacity: 1; }
+/* TOOLBAR */
+.toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.toolbar input{flex:1;min-width:160px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:8px 13px;border-radius:9px;font-size:13px;outline:none;transition:border-color var(--trans)}
+.toolbar input:focus{border-color:var(--red)}
+.filter-group{display:flex;gap:4px;flex-wrap:wrap}
+.fbtn{background:var(--bg3);border:1px solid var(--border2);color:var(--text3);padding:7px 11px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:600;transition:all var(--trans);white-space:nowrap}
+.fbtn:hover{color:var(--text2)}
+.fbtn.active{background:var(--red);border-color:var(--red);color:#fff}
+.sort-select{background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:7px 10px;border-radius:9px;font-size:12px;cursor:pointer;outline:none}
 
-  /* SETS */
-  .series-group { margin-bottom: 26px; }
-  .series-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .series-bar { width: 4px; height: 20px; border-radius: 2px; }
-  .series-title { font-size: 14px; font-weight: 800; color: #fff; }
-  .series-count { font-size: 11px; color: var(--muted); }
-  .series-divider { flex: 1; height: 1px; background: #1a1626; }
-  .sets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 7px; }
-  .set-row {
-    background: var(--card); border: 2px solid var(--border);
-    border-radius: 10px; padding: 11px 14px; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between;
-    transition: all .15s;
-  }
-  .set-row:hover { background: #1a1826; }
-  .set-row.owned { }
-  .set-name { font-size: 13px; font-weight: 700; color: #fff; }
-  .set-year { font-size: 11px; color: var(--muted); margin-top: 2px; }
-  .set-check {
-    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 11px; color: #fff; font-weight: 900;
-    border: 2px solid var(--border2); transition: all .15s;
-  }
-  .set-check.done { border: none; }
+/* PAGE */
+.page{display:none;animation:fadeIn .25s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.page-title{font-size:24px;font-weight:900;color:var(--text);letter-spacing:-.5px;margin-bottom:3px}
+.page-sub{font-size:12px;color:var(--text3);margin-bottom:16px}
 
-  /* LOOKUP */
-  #lookup-browse { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 8px; }
-  .lp-card {
-    background: var(--card); border: 2px solid var(--border); border-radius: 14px;
-    padding: 10px 8px 8px; text-align: center; cursor: pointer;
-    transition: transform .18s, box-shadow .18s;
-  }
-  .lp-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
-  .lp-card img { width: 60px; height: 60px; image-rendering: pixelated; }
-  .lp-card-name { font-size: 10px; color: #888; font-weight: 600; margin-top: 4px; }
-  .lp-card-num { font-size: 9px; color: #444; font-weight: 800; margin-bottom: 2px; }
+/* POKEMON BINDER GRID */
+#poke-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}
+.pcard{background:var(--bg3);border:2px solid var(--border);border-radius:var(--card-radius);padding:10px 7px 8px;text-align:center;cursor:pointer;position:relative;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans),background var(--trans);user-select:none}
+.pcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px var(--shadow)}
+.pcard.owned-g1{border-color:var(--red);background:var(--bg4);box-shadow:0 0 12px #e6394628}
+.pcard.owned-g2{border-color:var(--blue);background:var(--bg4);box-shadow:0 0 12px #4cc9f028}
+.pcard-num{font-size:9px;color:var(--text4);font-weight:800;margin-bottom:2px;letter-spacing:1px}
+.pcard img{width:58px;height:58px;image-rendering:pixelated;display:block;margin:0 auto;transition:filter .25s}
+.pcard.unowned img{filter:grayscale(1) brightness(.3)}
+.pcard-name{font-size:10px;color:var(--text2);font-weight:700;margin-top:3px;line-height:1.2}
+.pcard-count{font-size:9px;font-weight:800;padding:1px 5px;border-radius:8px;display:inline-block;margin-top:3px}
+.g1c{color:var(--red);background:#e6394618}
+.g2c{color:var(--blue);background:#4cc9f018}
+.owned-dot{position:absolute;top:5px;right:5px;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:900}
+.browse-icon{position:absolute;bottom:5px;right:5px;background:transparent;border:none;cursor:pointer;font-size:12px;opacity:.4;padding:0;line-height:1;transition:opacity var(--trans);color:var(--text)}
+.browse-icon:hover{opacity:1}
 
-  .lookup-header {
-    display: flex; align-items: center; gap: 16px; margin-bottom: 22px;
-    background: var(--card); border: 1px solid var(--border2); border-radius: 12px; padding: 14px 18px;
-  }
-  .lookup-header h1 { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
-  .lookup-header p { font-size: 12px; color: var(--muted); margin-top: 3px; }
-  .back-btn {
-    background: var(--card); border: 1px solid var(--border2); color: var(--muted2);
-    padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;
-  }
-  .own-toggle {
-    margin-left: auto; padding: 8px 16px; border-radius: 10px; cursor: pointer;
-    font-size: 13px; font-weight: 700; border: 1px solid var(--border2);
-    background: var(--card); color: #fff; transition: all .15s;
-  }
-  .own-toggle.owned { background: var(--red); border-color: var(--red); }
+/* CARD LOOKUP PANEL */
+.lookup-header-bar{display:flex;align-items:center;gap:14px;margin-bottom:18px;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:12px 16px;flex-wrap:wrap}
+.lookup-header-bar h1{font-size:20px;font-weight:900;color:var(--text);letter-spacing:-.5px}
+.lookup-header-bar p{font-size:11px;color:var(--text3);margin-top:2px}
+.back-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;transition:all var(--trans)}
+.back-btn:hover{border-color:var(--red);color:var(--text)}
+.own-toggle{padding:7px 14px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:700;border:1px solid var(--border2);background:var(--bg3);color:var(--text);transition:all var(--trans)}
+.own-toggle.active{background:var(--red);border-color:var(--red);color:#fff}
+.color-toggle{padding:7px 12px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);transition:all var(--trans)}
+.color-toggle.active{background:#2a1f45;border-color:#5a3fa0;color:#c9b8ff}
 
-  .tcg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 11px; }
-  .tcg-card {
-    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
-    overflow: hidden; transition: transform .18s ease;
-  }
-  .tcg-card:hover { transform: scale(1.04); }
-  .tcg-card img { width: 100%; display: block; }
-  .tcg-card-info { padding: 8px 10px; }
-  .tcg-card-name { font-size: 11px; font-weight: 700; color: #ddd; margin-bottom: 2px; }
-  .tcg-card-set { font-size: 10px; color: #666; margin-bottom: 3px; }
-  .tcg-card-bot { display: flex; justify-content: space-between; align-items: center; }
-  .tcg-card-num { font-size: 10px; color: #555; }
-  .tcg-rarity { font-size: 9px; color: var(--red); background: #2a0e0e; padding: 1px 5px; border-radius: 6px; font-weight: 700; }
-  .tcg-noimg { height: 180px; display: flex; align-items: center; justify-content: center; color: #333; font-size: 12px; }
+/* TCG CARDS GRID */
+.tcg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+.tcg-card{background:var(--bg3);border:2px solid var(--border);border-radius:12px;overflow:hidden;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans);cursor:pointer;position:relative}
+.tcg-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px var(--shadow)}
+.tcg-card.collected{border-color:var(--green);box-shadow:0 0 12px #52b78828}
+.tcg-card img{width:100%;display:block;transition:filter .3s}
+.tcg-card.bw-mode img{filter:grayscale(1) brightness(.55)}
+.tcg-card.bw-mode.collected img{filter:none}
+.tcg-noimg{height:190px;display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:12px}
+.tcg-info{padding:8px 10px}
+.tcg-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
+.tcg-set{font-size:10px;color:var(--text3);margin-bottom:3px}
+.tcg-bot{display:flex;justify-content:space-between;align-items:center;gap:4px;flex-wrap:wrap}
+.tcg-num{font-size:10px;color:var(--text4)}
+.tcg-rarity{font-size:9px;color:var(--red);background:#2a0e0e;padding:1px 5px;border-radius:5px;font-weight:700}
+.tcg-price{font-size:10px;font-weight:700;color:var(--green)}
+.tcg-collected-badge{position:absolute;top:6px;left:6px;background:var(--green);color:#fff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:6px}
+.tcg-zoom-btn{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.55);border:none;color:#fff;font-size:12px;border-radius:6px;padding:3px 5px;cursor:pointer;opacity:0;transition:opacity var(--trans)}
+.tcg-card:hover .tcg-zoom-btn{opacity:1}
 
-  .skel { background: linear-gradient(90deg,#1a1826 25%,#221f30 50%,#1a1826 75%); background-size: 400px 100%; animation: shimmer 1.4s infinite; border-radius: 12px; }
-  @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
-  .skel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 11px; }
+/* SETS BREAKDOWN */
+.sets-table{width:100%;border-collapse:collapse}
+.sets-table th{text-align:left;font-size:11px;color:var(--text3);font-weight:700;padding:6px 10px;border-bottom:1px solid var(--border)}
+.sets-table td{padding:7px 10px;font-size:12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.sets-table tr:hover td{background:var(--bg4)}
+.sets-table .set-bar-cell{width:160px}
+.set-mini-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:3px}
+.set-mini-fill{height:100%;background:var(--red);border-radius:3px}
+.set-series-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;flex-shrink:0}
 
-  .page { display: none; animation: fadeIn .25s ease; }
-  .page.active { display: block; }
-  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+/* GITHUB SYNC MODAL */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px;width:460px;max-width:94vw;box-shadow:0 24px 64px rgba(0,0,0,.6)}
+.modal h2{font-size:18px;font-weight:900;color:var(--text);margin-bottom:6px}
+.modal p{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:14px}
+.modal input,.modal select{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:9px 12px;border-radius:9px;font-size:13px;outline:none;margin-bottom:10px}
+.modal input:focus,.modal select:focus{border-color:var(--red)}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
+.btn-primary{background:var(--red);border:none;color:#fff;padding:9px 20px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:700;transition:opacity var(--trans)}
+.btn-primary:hover{opacity:.85}
+.btn-secondary{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:9px 16px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600}
+.modal-label{font-size:11px;color:var(--text3);margin-bottom:4px;display:block;margin-top:2px}
 
-  .empty-state { text-align: center; color: #444; padding: 60px 20px; font-size: 14px; }
-  .empty-state div:first-child { font-size: 40px; margin-bottom: 10px; }
-  .error-box { background: #2a0e0e; border: 1px solid #5a1e1e; color: #ff6b6b; padding: 14px 16px; border-radius: 10px; margin-bottom: 16px; font-size: 13px; }
-  .page-title { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: -0.5px; margin-bottom: 4px; }
-  .page-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+/* ZOOM MODAL */
+.zoom-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);cursor:pointer}
+.zoom-inner{max-width:380px;width:90vw;animation:zoomIn .2s ease}
+@keyframes zoomIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
+.zoom-inner img{width:100%;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.8);display:block}
+.zoom-info{background:var(--bg2);border-radius:0 0 16px 16px;padding:14px 16px}
+.zoom-info h3{font-size:15px;font-weight:800;color:var(--text)}
+.zoom-info p{font-size:12px;color:var(--text3);margin-top:3px}
+.zoom-price{font-size:14px;font-weight:800;color:var(--green);margin-top:4px}
+.zoom-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:20px;border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* MISC */
+.skel{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:12px}
+@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.skel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
+.empty-state{text-align:center;color:var(--text4);padding:50px 20px;font-size:13px}
+.empty-state div:first-child{font-size:38px;margin-bottom:8px}
+.error-box{background:#2a0d0d;border:1px solid #5a1e1e;color:#ff6b6b;padding:12px 16px;border-radius:10px;margin-bottom:14px;font-size:12px}
+.badge{display:inline-block;font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px}
+.price-loading{color:var(--text4);font-size:10px;font-style:italic}
+
+/* BROWSE GRID (lookup intro) */
+#lookup-browse{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px}
+.lp-card{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:9px 7px 7px;text-align:center;cursor:pointer;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans)}
+.lp-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px var(--shadow);border-color:var(--border2)}
+.lp-card img{width:55px;height:55px;image-rendering:pixelated}
+.lp-card-num{font-size:9px;color:var(--text4);font-weight:800;margin-bottom:1px}
+.lp-card-name{font-size:10px;color:var(--text2);font-weight:600;margin-top:3px}
+.lp-card-count{font-size:9px;color:var(--green);font-weight:700;margin-top:1px}
 </style>
 </head>
 <body>
@@ -195,35 +186,48 @@
 <div id="sidebar">
   <div class="logo-wrap">
     <div class="logo">Poké<span>Binder</span></div>
-    <div class="logo-sub">Gen I & II Tracker</div>
+    <div class="logo-sub">Gen I & II · Card Tracker</div>
   </div>
   <div class="stats-wrap">
     <div class="ring-row">
       <div class="ring-box">
-        <svg id="ring-svg" width="64" height="64" style="transform:rotate(-90deg)">
-          <circle cx="32" cy="32" r="27" fill="none" stroke="#1e1b2e" stroke-width="5"/>
-          <circle id="ring-fill" cx="32" cy="32" r="27" fill="none" stroke="#e63946" stroke-width="5"
-            stroke-dasharray="0 169.6" stroke-linecap="round" style="transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)"/>
+        <svg width="60" height="60" style="transform:rotate(-90deg)">
+          <circle cx="30" cy="30" r="25" fill="none" stroke="var(--border)" stroke-width="5"/>
+          <circle id="ring-fill" cx="30" cy="30" r="25" fill="none" stroke="var(--red)" stroke-width="5"
+            stroke-dasharray="0 157" stroke-linecap="round" style="transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)"/>
         </svg>
         <div class="ring-pct"><span id="ring-pct-text">0%</span></div>
       </div>
       <div>
-        <div style="font-size:18px;font-weight:800;color:#fff"><span id="stat-owned">0</span><span style="font-size:12px;color:#555;font-weight:400">/251</span></div>
-        <div style="font-size:11px;color:#555">Pokémon</div>
+        <div style="font-size:16px;font-weight:800;color:var(--text)"><span id="stat-owned">0</span><span style="font-size:11px;color:var(--text3);font-weight:400">/251</span></div>
+        <div style="font-size:10px;color:var(--text3)">Pokémon collected</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:2px"><span id="stat-cards">0</span> cards owned</div>
       </div>
     </div>
-    <div class="mini-bar-row"><span style="color:#e63946">● Gen I</span><span id="g1-stat" style="color:#888">0/151</span></div>
-    <div class="mini-bar-track"><div id="g1-bar" class="mini-bar-fill" style="width:0%;background:#e63946"></div></div>
-    <div class="mini-bar-row"><span style="color:#4cc9f0">● Gen II</span><span id="g2-stat" style="color:#888">0/100</span></div>
-    <div class="mini-bar-track"><div id="g2-bar" class="mini-bar-fill" style="width:0%;background:#4cc9f0"></div></div>
-    <div class="mini-bar-row"><span style="color:#52b788">● Sets</span><span id="sets-stat" style="color:#888">0/95</span></div>
+    <div class="mini-bar-row"><span style="color:var(--red)">● Gen I</span><span id="g1-stat" style="color:var(--text3)">0/151</span></div>
+    <div class="mini-bar-track"><div id="g1-bar" class="mini-bar-fill" style="width:0%;background:var(--red)"></div></div>
+    <div class="mini-bar-row"><span style="color:var(--blue)">● Gen II</span><span id="g2-stat" style="color:var(--text3)">0/100</span></div>
+    <div class="mini-bar-track"><div id="g2-bar" class="mini-bar-fill" style="width:0%;background:var(--blue)"></div></div>
+    <div class="mini-bar-row" style="margin-top:2px">
+      <span style="color:var(--green)">● Collection value</span>
+    </div>
+    <div style="font-size:13px;font-weight:800;color:var(--green)" id="stat-value">€0.00</div>
   </div>
   <nav>
     <button class="nav-btn active" onclick="showTab('binder',this)">📖 &nbsp;Binder</button>
-    <button class="nav-btn" onclick="showTab('sets',this)">📦 &nbsp;Sets</button>
-    <button class="nav-btn" onclick="showTab('lookup',this)">🔍 &nbsp;Card Lookup</button>
+    <button class="nav-btn" onclick="showTab('lookup',this)">🃏 &nbsp;Card Lookup</button>
+    <button class="nav-btn" onclick="showTab('sets',this)">📦 &nbsp;Sets Breakdown</button>
   </nav>
-  <div class="footer-note">Click cards to mark owned<br>🃏 to browse TCG cards<br>Data saved in browser</div>
+  <div class="sidebar-actions">
+    <button class="action-btn" onclick="toggleTheme()">
+      <span id="theme-icon">☀️</span><span id="theme-label">Light Mode</span>
+    </button>
+    <button class="action-btn" onclick="openGithubModal()">
+      <span>⚙️</span><span>GitHub Sync</span>
+    </button>
+    <div id="sync-status-bar" class="sync-status" style="display:none"></div>
+  </div>
+  <div class="footer-note">Click 🃏 to browse cards<br>Click a card to collect it<br>🔍 to zoom in</div>
 </div>
 
 <!-- MAIN -->
@@ -232,12 +236,12 @@
   <!-- BINDER -->
   <div id="page-binder" class="page active">
     <div class="page-title">My Binder</div>
-    <div class="page-sub">All 251 Pokémon — click a card to mark as owned</div>
+    <div class="page-sub">All 251 Pokémon — browse and collect individual cards</div>
     <div class="toolbar">
-      <input id="binder-search" placeholder="Search by name or #…" oninput="renderBinder()" />
+      <input id="binder-search" placeholder="Search Pokémon by name or #…" oninput="renderBinder()"/>
       <div class="filter-group" id="binder-filters">
         <button class="fbtn active" onclick="setBFilter('all',this)">All</button>
-        <button class="fbtn" onclick="setBFilter('owned',this)">✓ Owned</button>
+        <button class="fbtn" onclick="setBFilter('owned',this)">✓ Collected</button>
         <button class="fbtn" onclick="setBFilter('missing',this)">✗ Missing</button>
         <button class="fbtn" onclick="setBFilter('gen1',this)">Gen I</button>
         <button class="fbtn" onclick="setBFilter('gen2',this)">Gen II</button>
@@ -246,33 +250,39 @@
     <div id="poke-grid"></div>
   </div>
 
-  <!-- SETS -->
-  <div id="page-sets" class="page">
-    <div class="page-title">TCG Sets</div>
-    <div class="page-sub" id="sets-sub">95 sets across all eras — mark the ones you own</div>
-    <div class="toolbar">
-      <input id="sets-search" placeholder="Search sets…" oninput="renderSets()" />
-      <div class="filter-group" id="series-filters"></div>
-    </div>
-    <div id="sets-container"></div>
-  </div>
-
   <!-- LOOKUP -->
   <div id="page-lookup" class="page">
     <div id="lookup-intro">
       <div class="page-title">Card Lookup</div>
-      <div class="page-sub">Pick a Pokémon to see every TCG card ever printed for it</div>
+      <div class="page-sub">Choose a Pokémon to browse and collect individual TCG cards</div>
+      <div class="toolbar">
+        <input id="browse-search" placeholder="Search Pokémon…" oninput="renderBrowse()"/>
+        <div class="filter-group">
+          <button class="fbtn active" onclick="setBrowseFilter('all',this)">All</button>
+          <button class="fbtn" onclick="setBrowseFilter('gen1',this)">Gen I</button>
+          <button class="fbtn" onclick="setBrowseFilter('gen2',this)">Gen II</button>
+        </div>
+      </div>
       <div id="lookup-browse"></div>
     </div>
     <div id="lookup-detail" style="display:none">
-      <div class="lookup-header">
+      <div class="lookup-header-bar">
         <button class="back-btn" onclick="closeLookup()">← Back</button>
-        <img id="lk-sprite" src="" style="width:54px;height:54px;image-rendering:pixelated" alt="">
-        <div>
-          <h1 id="lk-name" class="lookup-header" style="border:none;padding:0;background:none;font-size:22px;font-weight:900;color:#fff"></h1>
-          <p id="lk-sub"></p>
+        <img id="lk-sprite" src="" style="width:50px;height:50px;image-rendering:pixelated" alt="">
+        <div style="flex:1;min-width:0">
+          <h1 id="lk-name">—</h1>
+          <p id="lk-sub">Loading…</p>
         </div>
-        <button id="lk-own-btn" class="own-toggle" onclick="toggleLookupOwned()">+ Mark Owned</button>
+        <button id="lk-color-btn" class="color-toggle" onclick="toggleBWMode()">🎨 Full Colour</button>
+        <div class="filter-group">
+          <label style="font-size:11px;color:var(--text3);align-self:center">Sort:</label>
+          <select id="sort-select" class="sort-select" onchange="applySortFilter()">
+            <option value="date-asc">Release ↑</option>
+            <option value="date-desc">Release ↓</option>
+            <option value="price-asc">Price ↑</option>
+            <option value="price-desc">Price ↓</option>
+          </select>
+        </div>
       </div>
       <div id="lk-error" style="display:none" class="error-box"></div>
       <div id="lk-skels" style="display:none" class="skel-grid"></div>
@@ -281,10 +291,56 @@
     </div>
   </div>
 
+  <!-- SETS BREAKDOWN -->
+  <div id="page-sets" class="page">
+    <div class="page-title">Sets Breakdown</div>
+    <div class="page-sub">How many cards you own from each set</div>
+    <div class="toolbar">
+      <input id="sets-search" placeholder="Search sets…" oninput="renderSets()"/>
+    </div>
+    <div id="sets-container"></div>
+  </div>
+
+</div>
+
+<!-- GITHUB MODAL -->
+<div id="github-modal" class="modal-backdrop" style="display:none" onclick="closeGithubModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <h2>⚙️ GitHub Sync</h2>
+    <p>Your collection will be saved as a JSON file in your GitHub repository. Changes sync automatically whenever you collect or remove a card.<br><br>You need a Personal Access Token with <strong>repo</strong> scope.</p>
+    <span class="modal-label">GitHub Username</span>
+    <input id="gh-user" placeholder="e.g. gonçalo123" />
+    <span class="modal-label">Repository Name</span>
+    <input id="gh-repo" placeholder="e.g. pokebinder" />
+    <span class="modal-label">File path in repo</span>
+    <input id="gh-file" placeholder="collection.json" />
+    <span class="modal-label">Personal Access Token</span>
+    <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxx" />
+    <div id="gh-modal-status" style="font-size:11px;color:var(--text3);min-height:16px;margin-bottom:6px"></div>
+    <div class="modal-btns">
+      <button class="btn-secondary" onclick="closeGithubModal(null)">Cancel</button>
+      <button class="btn-secondary" onclick="testGithubSync()">Test</button>
+      <button class="btn-primary" onclick="saveGithubConfig()">Save & Sync</button>
+    </div>
+  </div>
+</div>
+
+<!-- ZOOM MODAL -->
+<div id="zoom-modal" class="zoom-backdrop" style="display:none" onclick="closeZoom()">
+  <button class="zoom-close" onclick="closeZoom()">✕</button>
+  <div class="zoom-inner" onclick="event.stopPropagation()">
+    <img id="zoom-img" src="" alt="">
+    <div class="zoom-info">
+      <h3 id="zoom-name"></h3>
+      <p id="zoom-set"></p>
+      <p id="zoom-rarity"></p>
+      <div id="zoom-price" class="zoom-price"></div>
+    </div>
+  </div>
 </div>
 
 <script>
-// ── DATA ─────────────────────────────────────────────────────────────────────
+// ── POKEMON DATA ──────────────────────────────────────────────────────────────
 const POKEMON = [
   {id:1,name:"Bulbasaur"},{id:2,name:"Ivysaur"},{id:3,name:"Venusaur"},
   {id:4,name:"Charmander"},{id:5,name:"Charmeleon"},{id:6,name:"Charizard"},
@@ -373,157 +429,193 @@ const POKEMON = [
   {id:251,name:"Celebi"},
 ];
 
-const TCG_SETS = [
-  {id:"base1",name:"Base Set",year:1999,series:"Original"},
-  {id:"jungle",name:"Jungle",year:1999,series:"Original"},
-  {id:"fossil",name:"Fossil",year:1999,series:"Original"},
-  {id:"base2",name:"Base Set 2",year:2000,series:"Original"},
-  {id:"teamrocket",name:"Team Rocket",year:2000,series:"Original"},
-  {id:"lc",name:"Legendary Collection",year:2002,series:"Original"},
-  {id:"gym1",name:"Gym Heroes",year:2000,series:"Gym"},
-  {id:"gym2",name:"Gym Challenge",year:2000,series:"Gym"},
-  {id:"neo1",name:"Neo Genesis",year:2000,series:"Neo"},
-  {id:"neo2",name:"Neo Discovery",year:2001,series:"Neo"},
-  {id:"neo3",name:"Neo Revelation",year:2001,series:"Neo"},
-  {id:"neo4",name:"Neo Destiny",year:2002,series:"Neo"},
-  {id:"ecard1",name:"Expedition Base Set",year:2002,series:"e-Card"},
-  {id:"ecard2",name:"Aquapolis",year:2003,series:"e-Card"},
-  {id:"ecard3",name:"Skyridge",year:2003,series:"e-Card"},
-  {id:"ex1",name:"EX Ruby & Sapphire",year:2003,series:"EX"},
-  {id:"ex2",name:"EX Sandstorm",year:2003,series:"EX"},
-  {id:"ex3",name:"EX Dragon",year:2003,series:"EX"},
-  {id:"ex4",name:"EX Team Magma vs Team Aqua",year:2004,series:"EX"},
-  {id:"ex5",name:"EX Hidden Legends",year:2004,series:"EX"},
-  {id:"ex6",name:"EX FireRed & LeafGreen",year:2004,series:"EX"},
-  {id:"ex7",name:"EX Team Rocket Returns",year:2004,series:"EX"},
-  {id:"ex8",name:"EX Deoxys",year:2005,series:"EX"},
-  {id:"ex9",name:"EX Emerald",year:2005,series:"EX"},
-  {id:"ex10",name:"EX Unseen Forces",year:2005,series:"EX"},
-  {id:"ex11",name:"EX Delta Species",year:2005,series:"EX"},
-  {id:"ex12",name:"EX Legend Maker",year:2006,series:"EX"},
-  {id:"ex13",name:"EX Holon Phantoms",year:2006,series:"EX"},
-  {id:"ex14",name:"EX Crystal Guardians",year:2006,series:"EX"},
-  {id:"ex15",name:"EX Dragon Frontiers",year:2006,series:"EX"},
-  {id:"ex16",name:"EX Power Keepers",year:2007,series:"EX"},
-  {id:"dp1",name:"Diamond & Pearl",year:2007,series:"Diamond & Pearl"},
-  {id:"dp2",name:"Mysterious Treasures",year:2007,series:"Diamond & Pearl"},
-  {id:"dp3",name:"Secret Wonders",year:2007,series:"Diamond & Pearl"},
-  {id:"dp4",name:"Great Encounters",year:2008,series:"Diamond & Pearl"},
-  {id:"dp5",name:"Majestic Dawn",year:2008,series:"Diamond & Pearl"},
-  {id:"dp6",name:"Legends Awakened",year:2008,series:"Diamond & Pearl"},
-  {id:"dp7",name:"Stormfront",year:2008,series:"Diamond & Pearl"},
-  {id:"pl1",name:"Platinum",year:2009,series:"Platinum"},
-  {id:"pl2",name:"Rising Rivals",year:2009,series:"Platinum"},
-  {id:"pl3",name:"Supreme Victors",year:2009,series:"Platinum"},
-  {id:"pl4",name:"Arceus",year:2009,series:"Platinum"},
-  {id:"hgss1",name:"HeartGold & SoulSilver",year:2010,series:"HGSS"},
-  {id:"hgss2",name:"Unleashed",year:2010,series:"HGSS"},
-  {id:"hgss3",name:"Undaunted",year:2010,series:"HGSS"},
-  {id:"hgss4",name:"Triumphant",year:2010,series:"HGSS"},
-  {id:"col1",name:"Call of Legends",year:2011,series:"HGSS"},
-  {id:"bw1",name:"Black & White",year:2011,series:"Black & White"},
-  {id:"bw2",name:"Emerging Powers",year:2011,series:"Black & White"},
-  {id:"bw3",name:"Noble Victories",year:2011,series:"Black & White"},
-  {id:"bw4",name:"Next Destinies",year:2012,series:"Black & White"},
-  {id:"bw5",name:"Dark Explorers",year:2012,series:"Black & White"},
-  {id:"bw6",name:"Dragons Exalted",year:2012,series:"Black & White"},
-  {id:"bw7",name:"Boundaries Crossed",year:2012,series:"Black & White"},
-  {id:"bw8",name:"Plasma Storm",year:2013,series:"Black & White"},
-  {id:"bw9",name:"Plasma Freeze",year:2013,series:"Black & White"},
-  {id:"bw10",name:"Plasma Blast",year:2013,series:"Black & White"},
-  {id:"bw11",name:"Legendary Treasures",year:2013,series:"Black & White"},
-  {id:"xy1",name:"XY",year:2014,series:"XY"},
-  {id:"xy2",name:"Flashfire",year:2014,series:"XY"},
-  {id:"xy3",name:"Furious Fists",year:2014,series:"XY"},
-  {id:"xy4",name:"Phantom Forces",year:2014,series:"XY"},
-  {id:"xy5",name:"Primal Clash",year:2015,series:"XY"},
-  {id:"xy6",name:"Roaring Skies",year:2015,series:"XY"},
-  {id:"xy7",name:"Ancient Origins",year:2015,series:"XY"},
-  {id:"xy8",name:"BREAKthrough",year:2015,series:"XY"},
-  {id:"xy9",name:"BREAKpoint",year:2016,series:"XY"},
-  {id:"xy10",name:"Fates Collide",year:2016,series:"XY"},
-  {id:"xy11",name:"Steam Siege",year:2016,series:"XY"},
-  {id:"xy12",name:"Evolutions",year:2016,series:"XY"},
-  {id:"sm1",name:"Sun & Moon",year:2017,series:"Sun & Moon"},
-  {id:"sm2",name:"Guardians Rising",year:2017,series:"Sun & Moon"},
-  {id:"sm3",name:"Burning Shadows",year:2017,series:"Sun & Moon"},
-  {id:"sm4",name:"Crimson Invasion",year:2017,series:"Sun & Moon"},
-  {id:"sm5",name:"Ultra Prism",year:2018,series:"Sun & Moon"},
-  {id:"sm6",name:"Forbidden Light",year:2018,series:"Sun & Moon"},
-  {id:"sm7",name:"Celestial Storm",year:2018,series:"Sun & Moon"},
-  {id:"sm8",name:"Lost Thunder",year:2018,series:"Sun & Moon"},
-  {id:"sm9",name:"Team Up",year:2019,series:"Sun & Moon"},
-  {id:"sm10",name:"Unbroken Bonds",year:2019,series:"Sun & Moon"},
-  {id:"sm11",name:"Unified Minds",year:2019,series:"Sun & Moon"},
-  {id:"sm12",name:"Cosmic Eclipse",year:2019,series:"Sun & Moon"},
-  {id:"swsh1",name:"Sword & Shield",year:2020,series:"Sword & Shield"},
-  {id:"swsh2",name:"Rebel Clash",year:2020,series:"Sword & Shield"},
-  {id:"swsh3",name:"Darkness Ablaze",year:2020,series:"Sword & Shield"},
-  {id:"swsh4",name:"Vivid Voltage",year:2020,series:"Sword & Shield"},
-  {id:"swsh5",name:"Battle Styles",year:2021,series:"Sword & Shield"},
-  {id:"swsh6",name:"Chilling Reign",year:2021,series:"Sword & Shield"},
-  {id:"swsh7",name:"Evolving Skies",year:2021,series:"Sword & Shield"},
-  {id:"swsh8",name:"Fusion Strike",year:2021,series:"Sword & Shield"},
-  {id:"swsh9",name:"Brilliant Stars",year:2022,series:"Sword & Shield"},
-  {id:"swsh10",name:"Astral Radiance",year:2022,series:"Sword & Shield"},
-  {id:"swsh11",name:"Lost Origin",year:2022,series:"Sword & Shield"},
-  {id:"swsh12",name:"Silver Tempest",year:2022,series:"Sword & Shield"},
-  {id:"swsh13",name:"Crown Zenith",year:2023,series:"Sword & Shield"},
-  {id:"sv1",name:"Scarlet & Violet",year:2023,series:"Scarlet & Violet"},
-  {id:"sv2",name:"Paldea Evolved",year:2023,series:"Scarlet & Violet"},
-  {id:"sv3",name:"Obsidian Flames",year:2023,series:"Scarlet & Violet"},
-  {id:"sv4",name:"Paradox Rift",year:2023,series:"Scarlet & Violet"},
-  {id:"sv5",name:"Temporal Forces",year:2024,series:"Scarlet & Violet"},
-  {id:"sv6",name:"Twilight Masquerade",year:2024,series:"Scarlet & Violet"},
-  {id:"sv7",name:"Stellar Crown",year:2024,series:"Scarlet & Violet"},
-  {id:"sv8",name:"Surging Sparks",year:2024,series:"Scarlet & Violet"},
-  {id:"sv9",name:"Prismatic Evolutions",year:2025,series:"Scarlet & Violet"},
-  {id:"sv10",name:"Destined Rivals",year:2025,series:"Scarlet & Violet"},
-];
-
 const SERIES_COLORS = {
   "Original":"#e63946","Gym":"#f4a261","Neo":"#2a9d8f","e-Card":"#9b5de5",
   "EX":"#4361ee","Diamond & Pearl":"#7b6fb5","Platinum":"#a8dadc",
   "HGSS":"#d4a017","Black & White":"#6c757d","XY":"#0077b6",
   "Sun & Moon":"#f77f00","Sword & Shield":"#52b788","Scarlet & Violet":"#e5383b",
 };
-const SERIES_LIST = [...new Set(TCG_SETS.map(s => s.series))];
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-const STORAGE_KEY = "pokebinder_v3";
-let state = { owned: {}, sets: {} };
-try { const r = localStorage.getItem(STORAGE_KEY); if (r) state = JSON.parse(r); } catch {}
-function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {} }
+const SK = "pokebinder_v4";
+const PK_KEY = "pokebinder_prices_v4";
+const PRICE_TTL = 24 * 60 * 60 * 1000; // 24h
 
+let state = { cards: {}, github: null }; // cards: { cardId: { name, set, setId, series, price, priceDate, img, num, rarity } }
+let priceCache = {}; // cardId -> { price, ts }
+let bwMode = true;
+let isDark = true;
 let binderFilter = "all";
-let seriesFilter = "all";
-let currentLookup = null;
+let browseFilter = "all";
+let currentLookupPokemon = null;
+let currentLookupCards = [];
+let syncTimer = null;
+
+function loadState() {
+  try { const r = localStorage.getItem(SK); if (r) state = {...state, ...JSON.parse(r)}; } catch {}
+  try { const r = localStorage.getItem(PK_KEY); if (r) priceCache = JSON.parse(r); } catch {}
+}
+function saveLocal() {
+  try { localStorage.setItem(SK, JSON.stringify(state)); } catch {}
+  try { localStorage.setItem(PK_KEY, JSON.stringify(priceCache)); } catch {}
+}
+function scheduleSync() {
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(syncToGithub, 800);
+}
+function persistState() { saveLocal(); scheduleSync(); }
+
+// ── GITHUB SYNC ───────────────────────────────────────────────────────────────
+function openGithubModal() {
+  const g = state.github || {};
+  document.getElementById("gh-user").value = g.user || "";
+  document.getElementById("gh-repo").value = g.repo || "";
+  document.getElementById("gh-file").value = g.file || "collection.json";
+  document.getElementById("gh-token").value = g.token || "";
+  document.getElementById("gh-modal-status").textContent = "";
+  document.getElementById("github-modal").style.display = "flex";
+}
+function closeGithubModal(e) {
+  if (e && e.target !== document.getElementById("github-modal")) return;
+  document.getElementById("github-modal").style.display = "none";
+}
+function saveGithubConfig() {
+  state.github = {
+    user: document.getElementById("gh-user").value.trim(),
+    repo: document.getElementById("gh-repo").value.trim(),
+    file: document.getElementById("gh-file").value.trim() || "collection.json",
+    token: document.getElementById("gh-token").value.trim(),
+  };
+  saveLocal();
+  document.getElementById("github-modal").style.display = "none";
+  syncToGithub();
+}
+async function testGithubSync() {
+  const st = document.getElementById("gh-modal-status");
+  st.textContent = "Testing…"; st.style.color = "#f4a261";
+  const g = {
+    user: document.getElementById("gh-user").value.trim(),
+    repo: document.getElementById("gh-repo").value.trim(),
+    file: document.getElementById("gh-file").value.trim() || "collection.json",
+    token: document.getElementById("gh-token").value.trim(),
+  };
+  try {
+    const r = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
+      { headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json" }});
+    if (r.status === 200 || r.status === 404) {
+      st.textContent = "✓ Connection successful!"; st.style.color = "#52b788";
+    } else {
+      st.textContent = `✗ Error ${r.status} — check credentials`; st.style.color = "#e63946";
+    }
+  } catch { st.textContent = "✗ Network error"; st.style.color = "#e63946"; }
+}
+async function syncToGithub() {
+  const g = state.github;
+  if (!g || !g.token || !g.user || !g.repo) return;
+  setSyncStatus("busy", "Syncing…");
+  try {
+    // Get current SHA (if exists)
+    const getR = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
+      { headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json" }});
+    let sha = null;
+    if (getR.status === 200) { const j = await getR.json(); sha = j.sha; }
+
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify({ cards: state.cards }, null, 2))));
+    const body = { message: `Update collection ${new Date().toISOString()}`, content };
+    if (sha) body.sha = sha;
+
+    const putR = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
+      { method: "PUT", headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
+        body: JSON.stringify(body) });
+    if (putR.ok) setSyncStatus("ok", "✓ Synced " + new Date().toLocaleTimeString());
+    else setSyncStatus("err", "✗ Sync failed (" + putR.status + ")");
+  } catch (e) { setSyncStatus("err", "✗ Network error"); }
+}
+async function loadFromGithub() {
+  const g = state.github;
+  if (!g || !g.token || !g.user || !g.repo) return;
+  try {
+    const r = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
+      { headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json" }});
+    if (r.status === 200) {
+      const j = await r.json();
+      const data = JSON.parse(decodeURIComponent(escape(atob(j.content))));
+      if (data.cards) { state.cards = data.cards; saveLocal(); updateStats(); renderBinder(); }
+    }
+  } catch {}
+}
+function setSyncStatus(type, msg) {
+  const el = document.getElementById("sync-status-bar");
+  el.style.display = "block";
+  el.className = "sync-status " + (type === "ok" ? "sync-ok" : type === "err" ? "sync-err" : "sync-busy");
+  el.textContent = msg;
+}
+
+// ── PRICES ────────────────────────────────────────────────────────────────────
+function getCardPrice(card) {
+  const p = card.cardmarket?.prices?.averageSellPrice
+    || card.cardmarket?.prices?.avg1
+    || card.tcgplayer?.prices?.holofoil?.market
+    || card.tcgplayer?.prices?.normal?.market
+    || card.tcgplayer?.prices?.["1stEditionNormal"]?.market
+    || null;
+  return p ? parseFloat(p) : null;
+}
+function fmtPrice(p) { return p != null ? "€" + p.toFixed(2) : ""; }
+function totalCollectionValue() {
+  let total = 0;
+  for (const c of Object.values(state.cards)) { if (c.price) total += c.price; }
+  return total;
+}
 
 // ── STATS ─────────────────────────────────────────────────────────────────────
 function updateStats() {
-  const owned = Object.keys(state.owned).length;
-  const g1 = POKEMON.filter(p => p.id <= 151 && state.owned[p.id]).length;
-  const g2 = POKEMON.filter(p => p.id > 151 && state.owned[p.id]).length;
-  const sets = Object.keys(state.sets).length;
-  const pct = Math.round((owned / 251) * 100);
-  const circ = 2 * Math.PI * 27;
-
+  const ownedIds = new Set(Object.values(state.cards).map(c => c.pokemonId));
+  const owned = ownedIds.size;
+  const g1 = [...ownedIds].filter(id => id <= 151).length;
+  const g2 = [...ownedIds].filter(id => id > 151).length;
+  const totalCards = Object.keys(state.cards).length;
+  const pct = Math.round(owned / 251 * 100);
+  const circ = 2 * Math.PI * 25;
   document.getElementById("stat-owned").textContent = owned;
+  document.getElementById("stat-cards").textContent = totalCards;
   document.getElementById("ring-pct-text").textContent = pct + "%";
   document.getElementById("ring-fill").setAttribute("stroke-dasharray", `${circ * pct / 100} ${circ}`);
   document.getElementById("g1-stat").textContent = g1 + "/151";
   document.getElementById("g1-bar").style.width = (g1/151*100) + "%";
   document.getElementById("g2-stat").textContent = g2 + "/100";
   document.getElementById("g2-bar").style.width = (g2/100*100) + "%";
-  document.getElementById("sets-stat").textContent = sets + "/" + TCG_SETS.length;
+  document.getElementById("stat-value").textContent = "€" + totalCollectionValue().toFixed(2);
 }
 
 // ── TABS ──────────────────────────────────────────────────────────────────────
 function showTab(id, btn) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById("page-" + id).classList.add("active");
+  document.getElementById("page-"+id).classList.add("active");
   document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
+  if (id === "sets") renderSets();
+}
+
+// ── THEME ─────────────────────────────────────────────────────────────────────
+function toggleTheme() {
+  isDark = !isDark;
+  document.body.classList.toggle("light", !isDark);
+  document.getElementById("theme-icon").textContent = isDark ? "☀️" : "🌙";
+  document.getElementById("theme-label").textContent = isDark ? "Light Mode" : "Dark Mode";
+  try { localStorage.setItem("pokebinder_theme", isDark?"dark":"light"); } catch {}
+}
+function initTheme() {
+  try { const t = localStorage.getItem("pokebinder_theme"); if (t === "light") { isDark = false; document.body.classList.add("light"); document.getElementById("theme-icon").textContent = "🌙"; document.getElementById("theme-label").textContent = "Dark Mode"; } } catch {}
+}
+
+// ── BW MODE ───────────────────────────────────────────────────────────────────
+function toggleBWMode() {
+  bwMode = !bwMode;
+  const btn = document.getElementById("lk-color-btn");
+  btn.textContent = bwMode ? "🎨 Full Colour" : "⬛ B&W Mode";
+  btn.classList.toggle("active", !bwMode);
+  renderLookupCards();
 }
 
 // ── BINDER ────────────────────────────────────────────────────────────────────
@@ -533,217 +625,270 @@ function setBFilter(f, btn) {
   btn.classList.add("active");
   renderBinder();
 }
-
+function cardCountFor(pokemonId) {
+  return Object.values(state.cards).filter(c => c.pokemonId === pokemonId).length;
+}
 function renderBinder() {
   const q = document.getElementById("binder-search").value.toLowerCase();
   const grid = document.getElementById("poke-grid");
   const filtered = POKEMON.filter(p => {
     const ms = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
     if (!ms) return false;
-    if (binderFilter === "owned") return !!state.owned[p.id];
-    if (binderFilter === "missing") return !state.owned[p.id];
+    const owned = cardCountFor(p.id) > 0;
+    if (binderFilter === "owned") return owned;
+    if (binderFilter === "missing") return !owned;
     if (binderFilter === "gen1") return p.id <= 151;
     if (binderFilter === "gen2") return p.id > 151;
     return true;
   });
-
   if (!filtered.length) {
     grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div>🔍</div><div>No Pokémon found</div></div>';
     return;
   }
-
   grid.innerHTML = filtered.map(p => {
-    const owned = !!state.owned[p.id];
+    const count = cardCountFor(p.id);
+    const owned = count > 0;
     const gen = p.id <= 151 ? 1 : 2;
-    const oc = owned ? (gen === 1 ? "owned-g1" : "owned-g2") : "unowned";
-    const gc = gen === 1 ? "gen1-badge" : "gen2-badge";
-    const checkColor = gen === 1 ? "#e63946" : "#4cc9f0";
-    return `<div class="pcard ${oc}" onclick="toggleOwned(${p.id})">
+    const oc = owned ? (gen===1?"owned-g1":"owned-g2") : "unowned";
+    const cc = gen===1?"g1c":"g2c";
+    const dot = gen===1?"var(--red)":"var(--blue)";
+    return `<div class="pcard ${oc}" onclick="openLookup(${p.id})">
       <div class="pcard-num">#${String(p.id).padStart(3,"0")}</div>
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}" loading="lazy">
-      ${owned ? `<div class="owned-check" style="background:${checkColor}">✓</div>` : ""}
+      ${owned ? `<div class="owned-dot" style="background:${dot}">✓</div>` : ""}
       <div class="pcard-name">${p.name}</div>
-      <div class="pcard-gen ${gc}">GEN ${gen}</div>
-      <button class="lookup-icon" onclick="event.stopPropagation();openLookup(${p.id})" title="Browse TCG cards">🃏</button>
+      <div class="pcard-count ${cc}">${owned ? count+" card"+(count>1?"s":"") : "Gen "+gen}</div>
+      <button class="browse-icon" onclick="event.stopPropagation();openLookup(${p.id})" title="Browse cards">🃏</button>
     </div>`;
   }).join("");
 }
 
-function toggleOwned(id) {
-  if (state.owned[id]) delete state.owned[id]; else state.owned[id] = true;
-  saveState(); updateStats(); renderBinder();
+// ── LOOKUP BROWSE ─────────────────────────────────────────────────────────────
+function setBrowseFilter(f, btn) {
+  browseFilter = f;
+  document.querySelectorAll("#lookup-intro .fbtn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderBrowse();
 }
-
-// ── SETS ──────────────────────────────────────────────────────────────────────
-function buildSeriesFilters() {
-  const wrap = document.getElementById("series-filters");
-  wrap.innerHTML = `<button class="fbtn active" onclick="setSFilter('all',this)">All</button>` +
-    SERIES_LIST.map(s => {
-      const c = SERIES_COLORS[s] || "#888";
-      return `<button class="fbtn" onclick="setSFilter('${s.replace(/'/g,"\\'")}',this)"
-        style="border-color:${c}20">${s}</button>`;
-    }).join("");
-}
-
-function setSFilter(f, btn) {
-  seriesFilter = f;
-  document.querySelectorAll("#series-filters .fbtn").forEach(b => {
-    b.classList.remove("active","series-active");
-    b.style.background = "";
-    b.style.color = "";
+function renderBrowse() {
+  const q = document.getElementById("browse-search").value.toLowerCase();
+  const filtered = POKEMON.filter(p => {
+    const ms = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
+    if (!ms) return false;
+    if (browseFilter === "gen1") return p.id <= 151;
+    if (browseFilter === "gen2") return p.id > 151;
+    return true;
   });
-  btn.classList.add(f === "all" ? "active" : "series-active");
-  if (f !== "all") { btn.style.background = SERIES_COLORS[f]; btn.style.color = "#fff"; }
-  renderSets();
-}
-
-function renderSets() {
-  const q = document.getElementById("sets-search").value.toLowerCase();
-  const container = document.getElementById("sets-container");
-  const setsOwned = Object.keys(state.sets).length;
-  document.getElementById("sets-sub").textContent =
-    `${TCG_SETS.length} sets across all eras — ${setsOwned} collected`;
-
-  const activeSeries = seriesFilter === "all" ? SERIES_LIST : [seriesFilter];
-  let html = "";
-
-  for (const series of activeSeries) {
-    const sets = TCG_SETS.filter(s => s.series === series &&
-      s.name.toLowerCase().includes(q));
-    if (!sets.length) continue;
-    const color = SERIES_COLORS[series] || "#888";
-    const ownedInSeries = sets.filter(s => state.sets[s.id]).length;
-    html += `<div class="series-group">
-      <div class="series-header">
-        <div class="series-bar" style="background:${color}"></div>
-        <span class="series-title">${series}</span>
-        <span class="series-count">${ownedInSeries}/${sets.length} owned</span>
-        <div class="series-divider"></div>
-      </div>
-      <div class="sets-grid">
-        ${sets.map(s => {
-          const owned = !!state.sets[s.id];
-          return `<div class="set-row ${owned?"owned":""}" onclick="toggleSet('${s.id}')"
-            style="${owned ? `border-color:${color};background:${color}18` : ""}">
-            <div>
-              <div class="set-name">${s.name}</div>
-              <div class="set-year">${s.year}</div>
-            </div>
-            <div class="set-check ${owned?"done":""}" style="${owned?`background:${color};border:none`:""}">
-              ${owned?"✓":""}
-            </div>
-          </div>`;
-        }).join("")}
-      </div>
-    </div>`;
-  }
-  container.innerHTML = html || '<div class="empty-state"><div>📦</div><div>No sets found</div></div>';
-}
-
-function toggleSet(id) {
-  if (state.sets[id]) delete state.sets[id]; else state.sets[id] = true;
-  saveState(); updateStats(); renderSets();
-}
-
-// ── LOOKUP ────────────────────────────────────────────────────────────────────
-function buildLookupBrowse() {
-  document.getElementById("lookup-browse").innerHTML = POKEMON.map(p =>
-    `<div class="lp-card" onclick="openLookup(${p.id})">
+  document.getElementById("lookup-browse").innerHTML = filtered.map(p => {
+    const count = cardCountFor(p.id);
+    return `<div class="lp-card" onclick="openLookup(${p.id})">
       <div class="lp-card-num">#${String(p.id).padStart(3,"0")}</div>
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}" loading="lazy">
       <div class="lp-card-name">${p.name}</div>
-    </div>`
-  ).join("");
+      ${count > 0 ? `<div class="lp-card-count">✓ ${count} card${count>1?"s":""}</div>` : ""}
+    </div>`;
+  }).join("");
 }
 
-async function openLookup(id) {
-  const p = POKEMON.find(x => x.id === id);
+// ── LOOKUP DETAIL ─────────────────────────────────────────────────────────────
+async function openLookup(pokemonId) {
+  const p = POKEMON.find(x => x.id === pokemonId);
   if (!p) return;
-  currentLookup = p;
+  currentLookupPokemon = p;
+  currentLookupCards = [];
 
-  // switch to lookup tab
+  // Switch to lookup tab if not already there
   document.querySelectorAll(".page").forEach(x => x.classList.remove("active"));
   document.getElementById("page-lookup").classList.add("active");
   document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-  document.querySelectorAll(".nav-btn")[2].classList.add("active");
+  document.querySelectorAll(".nav-btn")[1].classList.add("active");
 
   document.getElementById("lookup-intro").style.display = "none";
-  const detail = document.getElementById("lookup-detail");
-  detail.style.display = "block";
-
-  document.getElementById("lk-sprite").src =
-    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`;
+  document.getElementById("lookup-detail").style.display = "block";
+  document.getElementById("lk-sprite").src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`;
   document.getElementById("lk-name").textContent = `#${String(p.id).padStart(3,"0")} ${p.name}`;
-  document.getElementById("lk-sub").textContent = "Fetching cards from PokéTCG API…";
+  document.getElementById("lk-sub").textContent = "Fetching cards…";
   document.getElementById("lk-error").style.display = "none";
   document.getElementById("lk-grid").innerHTML = "";
   document.getElementById("lk-empty").style.display = "none";
-  updateLookupOwn();
+  bwMode = true;
+  document.getElementById("lk-color-btn").textContent = "🎨 Full Colour";
+  document.getElementById("lk-color-btn").classList.remove("active");
 
-  // skeletons
   const skelWrap = document.getElementById("lk-skels");
   skelWrap.style.display = "grid";
-  skelWrap.innerHTML = [...Array(12)].map(() => `<div class="skel" style="height:220px"></div>`).join("");
+  skelWrap.innerHTML = [...Array(8)].map(() => `<div class="skel" style="height:230px"></div>`).join("");
 
   try {
     const name = encodeURIComponent(p.name.replace(/[♀♂]/g,"").trim());
     const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:"${name}"&orderBy=set.releaseDate&pageSize=100`);
-    if (!res.ok) throw new Error();
+    if (!res.ok) throw new Error("API " + res.status);
     const data = await res.json();
-    const cards = data.data || [];
+    currentLookupCards = (data.data || []).map(c => ({
+      ...c,
+      _price: getCardPrice(c),
+      _releaseTs: new Date(c.set?.releaseDate || "1999-01-01").getTime(),
+    }));
     skelWrap.style.display = "none";
-    document.getElementById("lk-sub").textContent = `${cards.length} cards found across all sets`;
-    if (!cards.length) { document.getElementById("lk-empty").style.display = "block"; return; }
-    document.getElementById("lk-grid").innerHTML = cards.map(c => `
-      <div class="tcg-card">
-        ${c.images?.small
-          ? `<img src="${c.images.small}" alt="${c.name}" loading="lazy">`
-          : `<div class="tcg-noimg">No Image</div>`}
-        <div class="tcg-card-info">
-          <div class="tcg-card-name">${c.name}</div>
-          <div class="tcg-card-set">${c.set?.name || ""}</div>
-          <div class="tcg-card-bot">
-            <span class="tcg-card-num">#${c.number}/${c.set?.printedTotal || "?"}</span>
-            ${c.rarity ? `<span class="tcg-rarity">${c.rarity}</span>` : ""}
-          </div>
+    document.getElementById("lk-sub").textContent = `${currentLookupCards.length} cards found — click to collect`;
+    if (!currentLookupCards.length) { document.getElementById("lk-empty").style.display = "block"; return; }
+    applySortFilter();
+  } catch (err) {
+    skelWrap.style.display = "none";
+    const eb = document.getElementById("lk-error");
+    eb.textContent = "Could not load cards: " + err.message;
+    eb.style.display = "block";
+    document.getElementById("lk-sub").textContent = "Error";
+  }
+}
+
+function applySortFilter() {
+  const s = document.getElementById("sort-select").value;
+  const cards = [...currentLookupCards];
+  if (s === "date-asc") cards.sort((a,b) => a._releaseTs - b._releaseTs);
+  else if (s === "date-desc") cards.sort((a,b) => b._releaseTs - a._releaseTs);
+  else if (s === "price-asc") cards.sort((a,b) => (a._price||0) - (b._price||0));
+  else if (s === "price-desc") cards.sort((a,b) => (b._price||0) - (a._price||0));
+  renderLookupCards(cards);
+}
+
+function renderLookupCards(cards) {
+  const list = cards || currentLookupCards;
+  const grid = document.getElementById("lk-grid");
+  grid.innerHTML = list.map(c => {
+    const isCollected = !!state.cards[c.id];
+    const bwClass = bwMode ? "bw-mode" : "";
+    const collClass = isCollected ? "collected" : "";
+    const price = c._price;
+    const seriesColor = SERIES_COLORS[c.set?.series] || "#888";
+    return `<div class="tcg-card ${bwClass} ${collClass}" onclick="toggleCard('${c.id}',event)" id="tc-${c.id}">
+      ${isCollected ? `<div class="tcg-collected-badge">✓ Owned</div>` : ""}
+      <button class="tcg-zoom-btn" onclick="event.stopPropagation();zoomCard('${c.id}')">🔍</button>
+      ${c.images?.small ? `<img src="${c.images.small}" alt="${c.name}" loading="lazy">` : `<div class="tcg-noimg">No Image</div>`}
+      <div class="tcg-info">
+        <div class="tcg-name">${c.name}</div>
+        <div class="tcg-set"><span class="set-series-dot" style="background:${seriesColor};width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px"></span>${c.set?.name || "Unknown"} <span style="color:var(--text4)">(${c.set?.releaseDate?.slice(0,4) || "?"})</span></div>
+        <div class="tcg-bot">
+          <span class="tcg-num">#${c.number}/${c.set?.printedTotal||"?"}</span>
+          ${c.rarity ? `<span class="tcg-rarity">${c.rarity}</span>` : ""}
         </div>
-      </div>`).join("");
-  } catch {
-    skelWrap.style.display = "none";
-    const err = document.getElementById("lk-error");
-    err.textContent = "Could not load cards — the PokéTCG API may be unavailable. Check your connection and try again.";
-    err.style.display = "block";
-    document.getElementById("lk-sub").textContent = "Error loading cards";
+        ${price != null ? `<div class="tcg-price" style="margin-top:4px">€${price.toFixed(2)}</div>` : `<div class="price-loading">Price N/A</div>`}
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function toggleCard(cardId, event) {
+  const card = currentLookupCards.find(c => c.id === cardId);
+  if (!card) return;
+  if (state.cards[cardId]) {
+    delete state.cards[cardId];
+  } else {
+    state.cards[cardId] = {
+      pokemonId: currentLookupPokemon.id,
+      pokemonName: currentLookupPokemon.name,
+      name: card.name,
+      set: card.set?.name || "",
+      setId: card.set?.id || "",
+      series: card.set?.series || "",
+      number: card.number,
+      rarity: card.rarity || "",
+      img: card.images?.small || "",
+      price: card._price,
+      priceDate: Date.now(),
+    };
+  }
+  persistState();
+  updateStats();
+  renderBinder();
+  // update just this card element
+  const el = document.getElementById("tc-"+cardId);
+  if (el) {
+    const isCollected = !!state.cards[cardId];
+    el.classList.toggle("collected", isCollected);
+    // update badge
+    const existingBadge = el.querySelector(".tcg-collected-badge");
+    if (isCollected && !existingBadge) {
+      const b = document.createElement("div");
+      b.className = "tcg-collected-badge"; b.textContent = "✓ Owned";
+      el.insertBefore(b, el.firstChild);
+    } else if (!isCollected && existingBadge) {
+      existingBadge.remove();
+    }
   }
 }
 
 function closeLookup() {
   document.getElementById("lookup-intro").style.display = "block";
   document.getElementById("lookup-detail").style.display = "none";
-  currentLookup = null;
+  currentLookupPokemon = null;
+  currentLookupCards = [];
+  renderBrowse();
 }
 
-function toggleLookupOwned() {
-  if (!currentLookup) return;
-  const id = currentLookup.id;
-  if (state.owned[id]) delete state.owned[id]; else state.owned[id] = true;
-  saveState(); updateStats(); updateLookupOwn(); renderBinder();
+// ── ZOOM ─────────────────────────────────────────────────────────────────────
+function zoomCard(cardId) {
+  const card = currentLookupCards.find(c => c.id === cardId);
+  if (!card) return;
+  document.getElementById("zoom-img").src = card.images?.large || card.images?.small || "";
+  document.getElementById("zoom-name").textContent = card.name;
+  document.getElementById("zoom-set").textContent = (card.set?.name || "") + " · #" + card.number + "/" + (card.set?.printedTotal||"?");
+  document.getElementById("zoom-rarity").textContent = card.rarity || "";
+  document.getElementById("zoom-price").textContent = card._price != null ? "€" + card._price.toFixed(2) : "";
+  document.getElementById("zoom-modal").style.display = "flex";
 }
+function closeZoom() { document.getElementById("zoom-modal").style.display = "none"; }
+document.addEventListener("keydown", e => { if (e.key === "Escape") { closeZoom(); closeGithubModal(null); } });
 
-function updateLookupOwn() {
-  if (!currentLookup) return;
-  const btn = document.getElementById("lk-own-btn");
-  const owned = !!state.owned[currentLookup.id];
-  btn.textContent = owned ? "✓ Owned" : "+ Mark Owned";
-  btn.classList.toggle("owned", owned);
+// ── SETS BREAKDOWN ────────────────────────────────────────────────────────────
+function renderSets() {
+  const q = document.getElementById("sets-search").value.toLowerCase();
+  // Aggregate cards by setId
+  const bySet = {};
+  for (const c of Object.values(state.cards)) {
+    if (!bySet[c.setId]) bySet[c.setId] = { name: c.set, setId: c.setId, series: c.series, count: 0, value: 0 };
+    bySet[c.setId].count++;
+    if (c.price) bySet[c.setId].value += c.price;
+  }
+  let rows = Object.values(bySet).sort((a,b) => b.count - a.count);
+  if (q) rows = rows.filter(r => r.name.toLowerCase().includes(q) || (r.series||"").toLowerCase().includes(q));
+
+  if (!rows.length) {
+    document.getElementById("sets-container").innerHTML = '<div class="empty-state"><div>📦</div><div>No sets yet — collect some cards!</div></div>';
+    return;
+  }
+
+  const maxCount = Math.max(...rows.map(r => r.count));
+  document.getElementById("sets-container").innerHTML = `
+    <table class="sets-table">
+      <thead><tr>
+        <th>Set</th><th>Series</th><th>Cards Owned</th><th class="set-bar-cell">Progress</th><th>Value</th>
+      </tr></thead>
+      <tbody>
+        ${rows.map(r => {
+          const color = SERIES_COLORS[r.series] || "#888";
+          const barW = Math.round((r.count / maxCount) * 100);
+          return `<tr>
+            <td style="font-weight:700;color:var(--text)">${r.name || r.setId}</td>
+            <td><span class="set-series-dot" style="background:${color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px"></span>${r.series||"—"}</td>
+            <td style="font-weight:700;color:var(--red)">${r.count}</td>
+            <td class="set-bar-cell">
+              <div class="set-mini-bar"><div class="set-mini-fill" style="width:${barW}%;background:${color}"></div></div>
+            </td>
+            <td style="color:var(--green);font-weight:700">${r.value > 0 ? "€"+r.value.toFixed(2) : "—"}</td>
+          </tr>`;
+        }).join("")}
+      </tbody>
+    </table>`;
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-buildSeriesFilters();
+loadState();
+initTheme();
 renderBinder();
-renderSets();
-buildLookupBrowse();
+renderBrowse();
 updateStats();
+if (state.github?.token) loadFromGithub();
 </script>
 </body>
 </html>
