@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>PokéBinder — Gen I & II Tracker</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0c0b13; --sidebar: #0f0e18; --card: #13121a; --border: #1e1b2e;
+    --border2: #2a2040; --red: #e63946; --blue: #4cc9f0; --text: #f0eeff;
+    --muted: #555; --muted2: #888;
+  }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; display: flex; }
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: #2a1f45; border-radius: 3px; }
+
+  /* LAYOUT */
+  #sidebar {
+    width: 210px; min-width: 210px; background: var(--sidebar);
+    border-right: 1px solid #1a1626; display: flex; flex-direction: column;
+    position: sticky; top: 0; height: 100vh; overflow-y: auto;
+  }
+  #main { flex: 1; overflow-y: auto; padding: 24px; }
+
+  /* LOGO */
+  .logo-wrap { padding: 18px 18px 16px; border-bottom: 1px solid #1a1626; }
+  .logo { font-size: 21px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+  .logo span { color: var(--red); }
+  .logo-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  /* STATS */
+  .stats-wrap { padding: 14px 18px; border-bottom: 1px solid #1a1626; }
+  .ring-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .ring-box { position: relative; flex-shrink: 0; }
+  .ring-pct { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 900; color: var(--red); }
+  .mini-bar-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; }
+  .mini-bar-track { height: 3px; background: #1a1626; border-radius: 2px; overflow: hidden; margin-bottom: 6px; }
+  .mini-bar-fill { height: 100%; border-radius: 2px; transition: width .5s; }
+
+  /* NAV */
+  nav { padding: 10px 10px; flex: 1; }
+  .nav-btn {
+    display: flex; align-items: center; gap: 10px; width: 100%;
+    padding: 10px 12px; border-radius: 10px; border: none; cursor: pointer;
+    margin-bottom: 3px; text-align: left; font-size: 14px; background: transparent;
+    color: #666; font-weight: 400; transition: all .15s; border-left: 3px solid transparent;
+  }
+  .nav-btn:hover { color: #aaa; background: #13121a; }
+  .nav-btn.active {
+    background: linear-gradient(135deg,#2a1f45,#1e1540);
+    color: #fff; font-weight: 700; border-left-color: var(--red);
+  }
+  .footer-note { padding: 14px 18px; font-size: 10px; color: #333; line-height: 1.7; }
+
+  /* TOOLBAR */
+  .toolbar { display: flex; gap: 10px; margin-bottom: 18px; flex-wrap: wrap; align-items: center; }
+  .toolbar input {
+    flex: 1; min-width: 180px; background: var(--card); border: 1px solid var(--border2);
+    color: #fff; padding: 9px 14px; border-radius: 10px; font-size: 14px; outline: none;
+    transition: border-color .15s;
+  }
+  .toolbar input:focus { border-color: #5a3fa0; }
+  .filter-group { display: flex; gap: 4px; flex-wrap: wrap; }
+  .fbtn {
+    background: var(--card); border: 1px solid var(--border2); color: var(--muted2);
+    padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 600;
+    transition: all .15s; white-space: nowrap;
+  }
+  .fbtn:hover { color: #ccc; }
+  .fbtn.active { background: var(--red); border-color: var(--red); color: #fff; }
+  .fbtn.series-active { color: #fff; }
+
+  /* POKEMON GRID */
+  #poke-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 8px;
+  }
+  .pcard {
+    background: var(--card); border: 2px solid var(--border);
+    border-radius: 14px; padding: 10px 8px 8px; text-align: center; cursor: pointer;
+    position: relative; transition: transform .18s, box-shadow .18s, border-color .18s, background .18s;
+    user-select: none;
+  }
+  .pcard:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+  .pcard.owned-g1 { border-color: var(--red); background: #1e0d20; box-shadow: 0 0 14px #e6394633; }
+  .pcard.owned-g2 { border-color: var(--blue); background: #0d1a22; box-shadow: 0 0 14px #4cc9f033; }
+  .pcard-num { font-size: 9px; color: #444; font-weight: 800; margin-bottom: 2px; letter-spacing: 1px; }
+  .pcard img { width: 60px; height: 60px; image-rendering: pixelated; display: block; margin: 0 auto; transition: filter .2s; }
+  .pcard.unowned img { filter: grayscale(1) brightness(0.3); }
+  .pcard-name { font-size: 10px; color: #ccc; font-weight: 700; margin-top: 4px; line-height: 1.2; }
+  .pcard-gen { font-size: 8px; font-weight: 800; padding: 1px 5px; border-radius: 8px; display: inline-block; margin-top: 3px; }
+  .gen1-badge { color: var(--red); background: #e6394622; }
+  .gen2-badge { color: var(--blue); background: #4cc9f022; }
+  .owned-check {
+    position: absolute; top: 5px; right: 5px; width: 16px; height: 16px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 9px; color: #fff; font-weight: 900;
+  }
+  .lookup-icon {
+    position: absolute; bottom: 5px; right: 5px; background: transparent;
+    border: none; cursor: pointer; font-size: 13px; opacity: 0.4; padding: 0;
+    line-height: 1; transition: opacity .15s;
+  }
+  .lookup-icon:hover { opacity: 1; }
+
+  /* SETS */
+  .series-group { margin-bottom: 26px; }
+  .series-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .series-bar { width: 4px; height: 20px; border-radius: 2px; }
+  .series-title { font-size: 14px; font-weight: 800; color: #fff; }
+  .series-count { font-size: 11px; color: var(--muted); }
+  .series-divider { flex: 1; height: 1px; background: #1a1626; }
+  .sets-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 7px; }
+  .set-row {
+    background: var(--card); border: 2px solid var(--border);
+    border-radius: 10px; padding: 11px 14px; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: all .15s;
+  }
+  .set-row:hover { background: #1a1826; }
+  .set-row.owned { }
+  .set-name { font-size: 13px; font-weight: 700; color: #fff; }
+  .set-year { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .set-check {
+    width: 22px; height: 22px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: #fff; font-weight: 900;
+    border: 2px solid var(--border2); transition: all .15s;
+  }
+  .set-check.done { border: none; }
+
+  /* LOOKUP */
+  #lookup-browse { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 8px; }
+  .lp-card {
+    background: var(--card); border: 2px solid var(--border); border-radius: 14px;
+    padding: 10px 8px 8px; text-align: center; cursor: pointer;
+    transition: transform .18s, box-shadow .18s;
+  }
+  .lp-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.5); }
+  .lp-card img { width: 60px; height: 60px; image-rendering: pixelated; }
+  .lp-card-name { font-size: 10px; color: #888; font-weight: 600; margin-top: 4px; }
+  .lp-card-num { font-size: 9px; color: #444; font-weight: 800; margin-bottom: 2px; }
+
+  .lookup-header {
+    display: flex; align-items: center; gap: 16px; margin-bottom: 22px;
+    background: var(--card); border: 1px solid var(--border2); border-radius: 12px; padding: 14px 18px;
+  }
+  .lookup-header h1 { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -0.5px; }
+  .lookup-header p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .back-btn {
+    background: var(--card); border: 1px solid var(--border2); color: var(--muted2);
+    padding: 8px 14px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 600;
+  }
+  .own-toggle {
+    margin-left: auto; padding: 8px 16px; border-radius: 10px; cursor: pointer;
+    font-size: 13px; font-weight: 700; border: 1px solid var(--border2);
+    background: var(--card); color: #fff; transition: all .15s;
+  }
+  .own-toggle.owned { background: var(--red); border-color: var(--red); }
+
+  .tcg-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 11px; }
+  .tcg-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; transition: transform .18s ease;
+  }
+  .tcg-card:hover { transform: scale(1.04); }
+  .tcg-card img { width: 100%; display: block; }
+  .tcg-card-info { padding: 8px 10px; }
+  .tcg-card-name { font-size: 11px; font-weight: 700; color: #ddd; margin-bottom: 2px; }
+  .tcg-card-set { font-size: 10px; color: #666; margin-bottom: 3px; }
+  .tcg-card-bot { display: flex; justify-content: space-between; align-items: center; }
+  .tcg-card-num { font-size: 10px; color: #555; }
+  .tcg-rarity { font-size: 9px; color: var(--red); background: #2a0e0e; padding: 1px 5px; border-radius: 6px; font-weight: 700; }
+  .tcg-noimg { height: 180px; display: flex; align-items: center; justify-content: center; color: #333; font-size: 12px; }
+
+  .skel { background: linear-gradient(90deg,#1a1826 25%,#221f30 50%,#1a1826 75%); background-size: 400px 100%; animation: shimmer 1.4s infinite; border-radius: 12px; }
+  @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
+  .skel-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 11px; }
+
+  .page { display: none; animation: fadeIn .25s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:none; } }
+
+  .empty-state { text-align: center; color: #444; padding: 60px 20px; font-size: 14px; }
+  .empty-state div:first-child { font-size: 40px; margin-bottom: 10px; }
+  .error-box { background: #2a0e0e; border: 1px solid #5a1e1e; color: #ff6b6b; padding: 14px 16px; border-radius: 10px; margin-bottom: 16px; font-size: 13px; }
+  .page-title { font-size: 26px; font-weight: 900; color: #fff; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .page-sub { font-size: 13px; color: var(--muted); margin-bottom: 18px; }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div id="sidebar">
+  <div class="logo-wrap">
+    <div class="logo">Poké<span>Binder</span></div>
+    <div class="logo-sub">Gen I & II Tracker</div>
+  </div>
+  <div class="stats-wrap">
+    <div class="ring-row">
+      <div class="ring-box">
+        <svg id="ring-svg" width="64" height="64" style="transform:rotate(-90deg)">
+          <circle cx="32" cy="32" r="27" fill="none" stroke="#1e1b2e" stroke-width="5"/>
+          <circle id="ring-fill" cx="32" cy="32" r="27" fill="none" stroke="#e63946" stroke-width="5"
+            stroke-dasharray="0 169.6" stroke-linecap="round" style="transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)"/>
+        </svg>
+        <div class="ring-pct"><span id="ring-pct-text">0%</span></div>
+      </div>
+      <div>
+        <div style="font-size:18px;font-weight:800;color:#fff"><span id="stat-owned">0</span><span style="font-size:12px;color:#555;font-weight:400">/251</span></div>
+        <div style="font-size:11px;color:#555">Pokémon</div>
+      </div>
+    </div>
+    <div class="mini-bar-row"><span style="color:#e63946">● Gen I</span><span id="g1-stat" style="color:#888">0/151</span></div>
+    <div class="mini-bar-track"><div id="g1-bar" class="mini-bar-fill" style="width:0%;background:#e63946"></div></div>
+    <div class="mini-bar-row"><span style="color:#4cc9f0">● Gen II</span><span id="g2-stat" style="color:#888">0/100</span></div>
+    <div class="mini-bar-track"><div id="g2-bar" class="mini-bar-fill" style="width:0%;background:#4cc9f0"></div></div>
+    <div class="mini-bar-row"><span style="color:#52b788">● Sets</span><span id="sets-stat" style="color:#888">0/95</span></div>
+  </div>
+  <nav>
+    <button class="nav-btn active" onclick="showTab('binder',this)">📖 &nbsp;Binder</button>
+    <button class="nav-btn" onclick="showTab('sets',this)">📦 &nbsp;Sets</button>
+    <button class="nav-btn" onclick="showTab('lookup',this)">🔍 &nbsp;Card Lookup</button>
+  </nav>
+  <div class="footer-note">Click cards to mark owned<br>🃏 to browse TCG cards<br>Data saved in browser</div>
+</div>
+
+<!-- MAIN -->
+<div id="main">
+
+  <!-- BINDER -->
+  <div id="page-binder" class="page active">
+    <div class="page-title">My Binder</div>
+    <div class="page-sub">All 251 Pokémon — click a card to mark as owned</div>
+    <div class="toolbar">
+      <input id="binder-search" placeholder="Search by name or #…" oninput="renderBinder()" />
+      <div class="filter-group" id="binder-filters">
+        <button class="fbtn active" onclick="setBFilter('all',this)">All</button>
+        <button class="fbtn" onclick="setBFilter('owned',this)">✓ Owned</button>
+        <button class="fbtn" onclick="setBFilter('missing',this)">✗ Missing</button>
+        <button class="fbtn" onclick="setBFilter('gen1',this)">Gen I</button>
+        <button class="fbtn" onclick="setBFilter('gen2',this)">Gen II</button>
+      </div>
+    </div>
+    <div id="poke-grid"></div>
+  </div>
+
+  <!-- SETS -->
+  <div id="page-sets" class="page">
+    <div class="page-title">TCG Sets</div>
+    <div class="page-sub" id="sets-sub">95 sets across all eras — mark the ones you own</div>
+    <div class="toolbar">
+      <input id="sets-search" placeholder="Search sets…" oninput="renderSets()" />
+      <div class="filter-group" id="series-filters"></div>
+    </div>
+    <div id="sets-container"></div>
+  </div>
+
+  <!-- LOOKUP -->
+  <div id="page-lookup" class="page">
+    <div id="lookup-intro">
+      <div class="page-title">Card Lookup</div>
+      <div class="page-sub">Pick a Pokémon to see every TCG card ever printed for it</div>
+      <div id="lookup-browse"></div>
+    </div>
+    <div id="lookup-detail" style="display:none">
+      <div class="lookup-header">
+        <button class="back-btn" onclick="closeLookup()">← Back</button>
+        <img id="lk-sprite" src="" style="width:54px;height:54px;image-rendering:pixelated" alt="">
+        <div>
+          <h1 id="lk-name" class="lookup-header" style="border:none;padding:0;background:none;font-size:22px;font-weight:900;color:#fff"></h1>
+          <p id="lk-sub"></p>
+        </div>
+        <button id="lk-own-btn" class="own-toggle" onclick="toggleLookupOwned()">+ Mark Owned</button>
+      </div>
+      <div id="lk-error" style="display:none" class="error-box"></div>
+      <div id="lk-skels" style="display:none" class="skel-grid"></div>
+      <div id="lk-grid" class="tcg-grid"></div>
+      <div id="lk-empty" style="display:none" class="empty-state"><div>🃏</div><div>No cards found</div></div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ── DATA ─────────────────────────────────────────────────────────────────────
+const POKEMON = [
+  {id:1,name:"Bulbasaur"},{id:2,name:"Ivysaur"},{id:3,name:"Venusaur"},
+  {id:4,name:"Charmander"},{id:5,name:"Charmeleon"},{id:6,name:"Charizard"},
+  {id:7,name:"Squirtle"},{id:8,name:"Wartortle"},{id:9,name:"Blastoise"},
+  {id:10,name:"Caterpie"},{id:11,name:"Metapod"},{id:12,name:"Butterfree"},
+  {id:13,name:"Weedle"},{id:14,name:"Kakuna"},{id:15,name:"Beedrill"},
+  {id:16,name:"Pidgey"},{id:17,name:"Pidgeotto"},{id:18,name:"Pidgeot"},
+  {id:19,name:"Rattata"},{id:20,name:"Raticate"},{id:21,name:"Spearow"},
+  {id:22,name:"Fearow"},{id:23,name:"Ekans"},{id:24,name:"Arbok"},
+  {id:25,name:"Pikachu"},{id:26,name:"Raichu"},{id:27,name:"Sandshrew"},
+  {id:28,name:"Sandslash"},{id:29,name:"Nidoran♀"},{id:30,name:"Nidorina"},
+  {id:31,name:"Nidoqueen"},{id:32,name:"Nidoran♂"},{id:33,name:"Nidorino"},
+  {id:34,name:"Nidoking"},{id:35,name:"Clefairy"},{id:36,name:"Clefable"},
+  {id:37,name:"Vulpix"},{id:38,name:"Ninetales"},{id:39,name:"Jigglypuff"},
+  {id:40,name:"Wigglytuff"},{id:41,name:"Zubat"},{id:42,name:"Golbat"},
+  {id:43,name:"Oddish"},{id:44,name:"Gloom"},{id:45,name:"Vileplume"},
+  {id:46,name:"Paras"},{id:47,name:"Parasect"},{id:48,name:"Venonat"},
+  {id:49,name:"Venomoth"},{id:50,name:"Diglett"},{id:51,name:"Dugtrio"},
+  {id:52,name:"Meowth"},{id:53,name:"Persian"},{id:54,name:"Psyduck"},
+  {id:55,name:"Golduck"},{id:56,name:"Mankey"},{id:57,name:"Primeape"},
+  {id:58,name:"Growlithe"},{id:59,name:"Arcanine"},{id:60,name:"Poliwag"},
+  {id:61,name:"Poliwhirl"},{id:62,name:"Poliwrath"},{id:63,name:"Abra"},
+  {id:64,name:"Kadabra"},{id:65,name:"Alakazam"},{id:66,name:"Machop"},
+  {id:67,name:"Machoke"},{id:68,name:"Machamp"},{id:69,name:"Bellsprout"},
+  {id:70,name:"Weepinbell"},{id:71,name:"Victreebel"},{id:72,name:"Tentacool"},
+  {id:73,name:"Tentacruel"},{id:74,name:"Geodude"},{id:75,name:"Graveler"},
+  {id:76,name:"Golem"},{id:77,name:"Ponyta"},{id:78,name:"Rapidash"},
+  {id:79,name:"Slowpoke"},{id:80,name:"Slowbro"},{id:81,name:"Magnemite"},
+  {id:82,name:"Magneton"},{id:83,name:"Farfetch'd"},{id:84,name:"Doduo"},
+  {id:85,name:"Dodrio"},{id:86,name:"Seel"},{id:87,name:"Dewgong"},
+  {id:88,name:"Grimer"},{id:89,name:"Muk"},{id:90,name:"Shellder"},
+  {id:91,name:"Cloyster"},{id:92,name:"Gastly"},{id:93,name:"Haunter"},
+  {id:94,name:"Gengar"},{id:95,name:"Onix"},{id:96,name:"Drowzee"},
+  {id:97,name:"Hypno"},{id:98,name:"Krabby"},{id:99,name:"Kingler"},
+  {id:100,name:"Voltorb"},{id:101,name:"Electrode"},{id:102,name:"Exeggcute"},
+  {id:103,name:"Exeggutor"},{id:104,name:"Cubone"},{id:105,name:"Marowak"},
+  {id:106,name:"Hitmonlee"},{id:107,name:"Hitmonchan"},{id:108,name:"Lickitung"},
+  {id:109,name:"Koffing"},{id:110,name:"Weezing"},{id:111,name:"Rhyhorn"},
+  {id:112,name:"Rhydon"},{id:113,name:"Chansey"},{id:114,name:"Tangela"},
+  {id:115,name:"Kangaskhan"},{id:116,name:"Horsea"},{id:117,name:"Seadra"},
+  {id:118,name:"Goldeen"},{id:119,name:"Seaking"},{id:120,name:"Staryu"},
+  {id:121,name:"Starmie"},{id:122,name:"Mr. Mime"},{id:123,name:"Scyther"},
+  {id:124,name:"Jynx"},{id:125,name:"Electabuzz"},{id:126,name:"Magmar"},
+  {id:127,name:"Pinsir"},{id:128,name:"Tauros"},{id:129,name:"Magikarp"},
+  {id:130,name:"Gyarados"},{id:131,name:"Lapras"},{id:132,name:"Ditto"},
+  {id:133,name:"Eevee"},{id:134,name:"Vaporeon"},{id:135,name:"Jolteon"},
+  {id:136,name:"Flareon"},{id:137,name:"Porygon"},{id:138,name:"Omanyte"},
+  {id:139,name:"Omastar"},{id:140,name:"Kabuto"},{id:141,name:"Kabutops"},
+  {id:142,name:"Aerodactyl"},{id:143,name:"Snorlax"},{id:144,name:"Articuno"},
+  {id:145,name:"Zapdos"},{id:146,name:"Moltres"},{id:147,name:"Dratini"},
+  {id:148,name:"Dragonair"},{id:149,name:"Dragonite"},{id:150,name:"Mewtwo"},
+  {id:151,name:"Mew"},
+  {id:152,name:"Chikorita"},{id:153,name:"Bayleef"},{id:154,name:"Meganium"},
+  {id:155,name:"Cyndaquil"},{id:156,name:"Quilava"},{id:157,name:"Typhlosion"},
+  {id:158,name:"Totodile"},{id:159,name:"Croconaw"},{id:160,name:"Feraligatr"},
+  {id:161,name:"Sentret"},{id:162,name:"Furret"},{id:163,name:"Hoothoot"},
+  {id:164,name:"Noctowl"},{id:165,name:"Ledyba"},{id:166,name:"Ledian"},
+  {id:167,name:"Spinarak"},{id:168,name:"Ariados"},{id:169,name:"Crobat"},
+  {id:170,name:"Chinchou"},{id:171,name:"Lanturn"},{id:172,name:"Pichu"},
+  {id:173,name:"Cleffa"},{id:174,name:"Igglybuff"},{id:175,name:"Togepi"},
+  {id:176,name:"Togetic"},{id:177,name:"Natu"},{id:178,name:"Xatu"},
+  {id:179,name:"Mareep"},{id:180,name:"Flaaffy"},{id:181,name:"Ampharos"},
+  {id:182,name:"Bellossom"},{id:183,name:"Marill"},{id:184,name:"Azumarill"},
+  {id:185,name:"Sudowoodo"},{id:186,name:"Politoed"},{id:187,name:"Hoppip"},
+  {id:188,name:"Skiploom"},{id:189,name:"Jumpluff"},{id:190,name:"Aipom"},
+  {id:191,name:"Sunkern"},{id:192,name:"Sunflora"},{id:193,name:"Yanma"},
+  {id:194,name:"Wooper"},{id:195,name:"Quagsire"},{id:196,name:"Espeon"},
+  {id:197,name:"Umbreon"},{id:198,name:"Murkrow"},{id:199,name:"Slowking"},
+  {id:200,name:"Misdreavus"},{id:201,name:"Unown"},{id:202,name:"Wobbuffet"},
+  {id:203,name:"Girafarig"},{id:204,name:"Pineco"},{id:205,name:"Forretress"},
+  {id:206,name:"Dunsparce"},{id:207,name:"Gligar"},{id:208,name:"Steelix"},
+  {id:209,name:"Snubbull"},{id:210,name:"Granbull"},{id:211,name:"Qwilfish"},
+  {id:212,name:"Scizor"},{id:213,name:"Shuckle"},{id:214,name:"Heracross"},
+  {id:215,name:"Sneasel"},{id:216,name:"Teddiursa"},{id:217,name:"Ursaring"},
+  {id:218,name:"Slugma"},{id:219,name:"Magcargo"},{id:220,name:"Swinub"},
+  {id:221,name:"Piloswine"},{id:222,name:"Corsola"},{id:223,name:"Remoraid"},
+  {id:224,name:"Octillery"},{id:225,name:"Delibird"},{id:226,name:"Mantine"},
+  {id:227,name:"Skarmory"},{id:228,name:"Houndour"},{id:229,name:"Houndoom"},
+  {id:230,name:"Kingdra"},{id:231,name:"Phanpy"},{id:232,name:"Donphan"},
+  {id:233,name:"Porygon2"},{id:234,name:"Stantler"},{id:235,name:"Smeargle"},
+  {id:236,name:"Tyrogue"},{id:237,name:"Hitmontop"},{id:238,name:"Smoochum"},
+  {id:239,name:"Elekid"},{id:240,name:"Magby"},{id:241,name:"Miltank"},
+  {id:242,name:"Blissey"},{id:243,name:"Raikou"},{id:244,name:"Entei"},
+  {id:245,name:"Suicune"},{id:246,name:"Larvitar"},{id:247,name:"Pupitar"},
+  {id:248,name:"Tyranitar"},{id:249,name:"Lugia"},{id:250,name:"Ho-Oh"},
+  {id:251,name:"Celebi"},
+];
+
+const TCG_SETS = [
+  {id:"base1",name:"Base Set",year:1999,series:"Original"},
+  {id:"jungle",name:"Jungle",year:1999,series:"Original"},
+  {id:"fossil",name:"Fossil",year:1999,series:"Original"},
+  {id:"base2",name:"Base Set 2",year:2000,series:"Original"},
+  {id:"teamrocket",name:"Team Rocket",year:2000,series:"Original"},
+  {id:"lc",name:"Legendary Collection",year:2002,series:"Original"},
+  {id:"gym1",name:"Gym Heroes",year:2000,series:"Gym"},
+  {id:"gym2",name:"Gym Challenge",year:2000,series:"Gym"},
+  {id:"neo1",name:"Neo Genesis",year:2000,series:"Neo"},
+  {id:"neo2",name:"Neo Discovery",year:2001,series:"Neo"},
+  {id:"neo3",name:"Neo Revelation",year:2001,series:"Neo"},
+  {id:"neo4",name:"Neo Destiny",year:2002,series:"Neo"},
+  {id:"ecard1",name:"Expedition Base Set",year:2002,series:"e-Card"},
+  {id:"ecard2",name:"Aquapolis",year:2003,series:"e-Card"},
+  {id:"ecard3",name:"Skyridge",year:2003,series:"e-Card"},
+  {id:"ex1",name:"EX Ruby & Sapphire",year:2003,series:"EX"},
+  {id:"ex2",name:"EX Sandstorm",year:2003,series:"EX"},
+  {id:"ex3",name:"EX Dragon",year:2003,series:"EX"},
+  {id:"ex4",name:"EX Team Magma vs Team Aqua",year:2004,series:"EX"},
+  {id:"ex5",name:"EX Hidden Legends",year:2004,series:"EX"},
+  {id:"ex6",name:"EX FireRed & LeafGreen",year:2004,series:"EX"},
+  {id:"ex7",name:"EX Team Rocket Returns",year:2004,series:"EX"},
+  {id:"ex8",name:"EX Deoxys",year:2005,series:"EX"},
+  {id:"ex9",name:"EX Emerald",year:2005,series:"EX"},
+  {id:"ex10",name:"EX Unseen Forces",year:2005,series:"EX"},
+  {id:"ex11",name:"EX Delta Species",year:2005,series:"EX"},
+  {id:"ex12",name:"EX Legend Maker",year:2006,series:"EX"},
+  {id:"ex13",name:"EX Holon Phantoms",year:2006,series:"EX"},
+  {id:"ex14",name:"EX Crystal Guardians",year:2006,series:"EX"},
+  {id:"ex15",name:"EX Dragon Frontiers",year:2006,series:"EX"},
+  {id:"ex16",name:"EX Power Keepers",year:2007,series:"EX"},
+  {id:"dp1",name:"Diamond & Pearl",year:2007,series:"Diamond & Pearl"},
+  {id:"dp2",name:"Mysterious Treasures",year:2007,series:"Diamond & Pearl"},
+  {id:"dp3",name:"Secret Wonders",year:2007,series:"Diamond & Pearl"},
+  {id:"dp4",name:"Great Encounters",year:2008,series:"Diamond & Pearl"},
+  {id:"dp5",name:"Majestic Dawn",year:2008,series:"Diamond & Pearl"},
+  {id:"dp6",name:"Legends Awakened",year:2008,series:"Diamond & Pearl"},
+  {id:"dp7",name:"Stormfront",year:2008,series:"Diamond & Pearl"},
+  {id:"pl1",name:"Platinum",year:2009,series:"Platinum"},
+  {id:"pl2",name:"Rising Rivals",year:2009,series:"Platinum"},
+  {id:"pl3",name:"Supreme Victors",year:2009,series:"Platinum"},
+  {id:"pl4",name:"Arceus",year:2009,series:"Platinum"},
+  {id:"hgss1",name:"HeartGold & SoulSilver",year:2010,series:"HGSS"},
+  {id:"hgss2",name:"Unleashed",year:2010,series:"HGSS"},
+  {id:"hgss3",name:"Undaunted",year:2010,series:"HGSS"},
+  {id:"hgss4",name:"Triumphant",year:2010,series:"HGSS"},
+  {id:"col1",name:"Call of Legends",year:2011,series:"HGSS"},
+  {id:"bw1",name:"Black & White",year:2011,series:"Black & White"},
+  {id:"bw2",name:"Emerging Powers",year:2011,series:"Black & White"},
+  {id:"bw3",name:"Noble Victories",year:2011,series:"Black & White"},
+  {id:"bw4",name:"Next Destinies",year:2012,series:"Black & White"},
+  {id:"bw5",name:"Dark Explorers",year:2012,series:"Black & White"},
+  {id:"bw6",name:"Dragons Exalted",year:2012,series:"Black & White"},
+  {id:"bw7",name:"Boundaries Crossed",year:2012,series:"Black & White"},
+  {id:"bw8",name:"Plasma Storm",year:2013,series:"Black & White"},
+  {id:"bw9",name:"Plasma Freeze",year:2013,series:"Black & White"},
+  {id:"bw10",name:"Plasma Blast",year:2013,series:"Black & White"},
+  {id:"bw11",name:"Legendary Treasures",year:2013,series:"Black & White"},
+  {id:"xy1",name:"XY",year:2014,series:"XY"},
+  {id:"xy2",name:"Flashfire",year:2014,series:"XY"},
+  {id:"xy3",name:"Furious Fists",year:2014,series:"XY"},
+  {id:"xy4",name:"Phantom Forces",year:2014,series:"XY"},
+  {id:"xy5",name:"Primal Clash",year:2015,series:"XY"},
+  {id:"xy6",name:"Roaring Skies",year:2015,series:"XY"},
+  {id:"xy7",name:"Ancient Origins",year:2015,series:"XY"},
+  {id:"xy8",name:"BREAKthrough",year:2015,series:"XY"},
+  {id:"xy9",name:"BREAKpoint",year:2016,series:"XY"},
+  {id:"xy10",name:"Fates Collide",year:2016,series:"XY"},
+  {id:"xy11",name:"Steam Siege",year:2016,series:"XY"},
+  {id:"xy12",name:"Evolutions",year:2016,series:"XY"},
+  {id:"sm1",name:"Sun & Moon",year:2017,series:"Sun & Moon"},
+  {id:"sm2",name:"Guardians Rising",year:2017,series:"Sun & Moon"},
+  {id:"sm3",name:"Burning Shadows",year:2017,series:"Sun & Moon"},
+  {id:"sm4",name:"Crimson Invasion",year:2017,series:"Sun & Moon"},
+  {id:"sm5",name:"Ultra Prism",year:2018,series:"Sun & Moon"},
+  {id:"sm6",name:"Forbidden Light",year:2018,series:"Sun & Moon"},
+  {id:"sm7",name:"Celestial Storm",year:2018,series:"Sun & Moon"},
+  {id:"sm8",name:"Lost Thunder",year:2018,series:"Sun & Moon"},
+  {id:"sm9",name:"Team Up",year:2019,series:"Sun & Moon"},
+  {id:"sm10",name:"Unbroken Bonds",year:2019,series:"Sun & Moon"},
+  {id:"sm11",name:"Unified Minds",year:2019,series:"Sun & Moon"},
+  {id:"sm12",name:"Cosmic Eclipse",year:2019,series:"Sun & Moon"},
+  {id:"swsh1",name:"Sword & Shield",year:2020,series:"Sword & Shield"},
+  {id:"swsh2",name:"Rebel Clash",year:2020,series:"Sword & Shield"},
+  {id:"swsh3",name:"Darkness Ablaze",year:2020,series:"Sword & Shield"},
+  {id:"swsh4",name:"Vivid Voltage",year:2020,series:"Sword & Shield"},
+  {id:"swsh5",name:"Battle Styles",year:2021,series:"Sword & Shield"},
+  {id:"swsh6",name:"Chilling Reign",year:2021,series:"Sword & Shield"},
+  {id:"swsh7",name:"Evolving Skies",year:2021,series:"Sword & Shield"},
+  {id:"swsh8",name:"Fusion Strike",year:2021,series:"Sword & Shield"},
+  {id:"swsh9",name:"Brilliant Stars",year:2022,series:"Sword & Shield"},
+  {id:"swsh10",name:"Astral Radiance",year:2022,series:"Sword & Shield"},
+  {id:"swsh11",name:"Lost Origin",year:2022,series:"Sword & Shield"},
+  {id:"swsh12",name:"Silver Tempest",year:2022,series:"Sword & Shield"},
+  {id:"swsh13",name:"Crown Zenith",year:2023,series:"Sword & Shield"},
+  {id:"sv1",name:"Scarlet & Violet",year:2023,series:"Scarlet & Violet"},
+  {id:"sv2",name:"Paldea Evolved",year:2023,series:"Scarlet & Violet"},
+  {id:"sv3",name:"Obsidian Flames",year:2023,series:"Scarlet & Violet"},
+  {id:"sv4",name:"Paradox Rift",year:2023,series:"Scarlet & Violet"},
+  {id:"sv5",name:"Temporal Forces",year:2024,series:"Scarlet & Violet"},
+  {id:"sv6",name:"Twilight Masquerade",year:2024,series:"Scarlet & Violet"},
+  {id:"sv7",name:"Stellar Crown",year:2024,series:"Scarlet & Violet"},
+  {id:"sv8",name:"Surging Sparks",year:2024,series:"Scarlet & Violet"},
+  {id:"sv9",name:"Prismatic Evolutions",year:2025,series:"Scarlet & Violet"},
+  {id:"sv10",name:"Destined Rivals",year:2025,series:"Scarlet & Violet"},
+];
+
+const SERIES_COLORS = {
+  "Original":"#e63946","Gym":"#f4a261","Neo":"#2a9d8f","e-Card":"#9b5de5",
+  "EX":"#4361ee","Diamond & Pearl":"#7b6fb5","Platinum":"#a8dadc",
+  "HGSS":"#d4a017","Black & White":"#6c757d","XY":"#0077b6",
+  "Sun & Moon":"#f77f00","Sword & Shield":"#52b788","Scarlet & Violet":"#e5383b",
+};
+const SERIES_LIST = [...new Set(TCG_SETS.map(s => s.series))];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+const STORAGE_KEY = "pokebinder_v3";
+let state = { owned: {}, sets: {} };
+try { const r = localStorage.getItem(STORAGE_KEY); if (r) state = JSON.parse(r); } catch {}
+function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch {} }
+
+let binderFilter = "all";
+let seriesFilter = "all";
+let currentLookup = null;
+
+// ── STATS ─────────────────────────────────────────────────────────────────────
+function updateStats() {
+  const owned = Object.keys(state.owned).length;
+  const g1 = POKEMON.filter(p => p.id <= 151 && state.owned[p.id]).length;
+  const g2 = POKEMON.filter(p => p.id > 151 && state.owned[p.id]).length;
+  const sets = Object.keys(state.sets).length;
+  const pct = Math.round((owned / 251) * 100);
+  const circ = 2 * Math.PI * 27;
+
+  document.getElementById("stat-owned").textContent = owned;
+  document.getElementById("ring-pct-text").textContent = pct + "%";
+  document.getElementById("ring-fill").setAttribute("stroke-dasharray", `${circ * pct / 100} ${circ}`);
+  document.getElementById("g1-stat").textContent = g1 + "/151";
+  document.getElementById("g1-bar").style.width = (g1/151*100) + "%";
+  document.getElementById("g2-stat").textContent = g2 + "/100";
+  document.getElementById("g2-bar").style.width = (g2/100*100) + "%";
+  document.getElementById("sets-stat").textContent = sets + "/" + TCG_SETS.length;
+}
+
+// ── TABS ──────────────────────────────────────────────────────────────────────
+function showTab(id, btn) {
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById("page-" + id).classList.add("active");
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+// ── BINDER ────────────────────────────────────────────────────────────────────
+function setBFilter(f, btn) {
+  binderFilter = f;
+  document.querySelectorAll("#binder-filters .fbtn").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+  renderBinder();
+}
+
+function renderBinder() {
+  const q = document.getElementById("binder-search").value.toLowerCase();
+  const grid = document.getElementById("poke-grid");
+  const filtered = POKEMON.filter(p => {
+    const ms = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
+    if (!ms) return false;
+    if (binderFilter === "owned") return !!state.owned[p.id];
+    if (binderFilter === "missing") return !state.owned[p.id];
+    if (binderFilter === "gen1") return p.id <= 151;
+    if (binderFilter === "gen2") return p.id > 151;
+    return true;
+  });
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div>🔍</div><div>No Pokémon found</div></div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(p => {
+    const owned = !!state.owned[p.id];
+    const gen = p.id <= 151 ? 1 : 2;
+    const oc = owned ? (gen === 1 ? "owned-g1" : "owned-g2") : "unowned";
+    const gc = gen === 1 ? "gen1-badge" : "gen2-badge";
+    const checkColor = gen === 1 ? "#e63946" : "#4cc9f0";
+    return `<div class="pcard ${oc}" onclick="toggleOwned(${p.id})">
+      <div class="pcard-num">#${String(p.id).padStart(3,"0")}</div>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}" loading="lazy">
+      ${owned ? `<div class="owned-check" style="background:${checkColor}">✓</div>` : ""}
+      <div class="pcard-name">${p.name}</div>
+      <div class="pcard-gen ${gc}">GEN ${gen}</div>
+      <button class="lookup-icon" onclick="event.stopPropagation();openLookup(${p.id})" title="Browse TCG cards">🃏</button>
+    </div>`;
+  }).join("");
+}
+
+function toggleOwned(id) {
+  if (state.owned[id]) delete state.owned[id]; else state.owned[id] = true;
+  saveState(); updateStats(); renderBinder();
+}
+
+// ── SETS ──────────────────────────────────────────────────────────────────────
+function buildSeriesFilters() {
+  const wrap = document.getElementById("series-filters");
+  wrap.innerHTML = `<button class="fbtn active" onclick="setSFilter('all',this)">All</button>` +
+    SERIES_LIST.map(s => {
+      const c = SERIES_COLORS[s] || "#888";
+      return `<button class="fbtn" onclick="setSFilter('${s.replace(/'/g,"\\'")}',this)"
+        style="border-color:${c}20">${s}</button>`;
+    }).join("");
+}
+
+function setSFilter(f, btn) {
+  seriesFilter = f;
+  document.querySelectorAll("#series-filters .fbtn").forEach(b => {
+    b.classList.remove("active","series-active");
+    b.style.background = "";
+    b.style.color = "";
+  });
+  btn.classList.add(f === "all" ? "active" : "series-active");
+  if (f !== "all") { btn.style.background = SERIES_COLORS[f]; btn.style.color = "#fff"; }
+  renderSets();
+}
+
+function renderSets() {
+  const q = document.getElementById("sets-search").value.toLowerCase();
+  const container = document.getElementById("sets-container");
+  const setsOwned = Object.keys(state.sets).length;
+  document.getElementById("sets-sub").textContent =
+    `${TCG_SETS.length} sets across all eras — ${setsOwned} collected`;
+
+  const activeSeries = seriesFilter === "all" ? SERIES_LIST : [seriesFilter];
+  let html = "";
+
+  for (const series of activeSeries) {
+    const sets = TCG_SETS.filter(s => s.series === series &&
+      s.name.toLowerCase().includes(q));
+    if (!sets.length) continue;
+    const color = SERIES_COLORS[series] || "#888";
+    const ownedInSeries = sets.filter(s => state.sets[s.id]).length;
+    html += `<div class="series-group">
+      <div class="series-header">
+        <div class="series-bar" style="background:${color}"></div>
+        <span class="series-title">${series}</span>
+        <span class="series-count">${ownedInSeries}/${sets.length} owned</span>
+        <div class="series-divider"></div>
+      </div>
+      <div class="sets-grid">
+        ${sets.map(s => {
+          const owned = !!state.sets[s.id];
+          return `<div class="set-row ${owned?"owned":""}" onclick="toggleSet('${s.id}')"
+            style="${owned ? `border-color:${color};background:${color}18` : ""}">
+            <div>
+              <div class="set-name">${s.name}</div>
+              <div class="set-year">${s.year}</div>
+            </div>
+            <div class="set-check ${owned?"done":""}" style="${owned?`background:${color};border:none`:""}">
+              ${owned?"✓":""}
+            </div>
+          </div>`;
+        }).join("")}
+      </div>
+    </div>`;
+  }
+  container.innerHTML = html || '<div class="empty-state"><div>📦</div><div>No sets found</div></div>';
+}
+
+function toggleSet(id) {
+  if (state.sets[id]) delete state.sets[id]; else state.sets[id] = true;
+  saveState(); updateStats(); renderSets();
+}
+
+// ── LOOKUP ────────────────────────────────────────────────────────────────────
+function buildLookupBrowse() {
+  document.getElementById("lookup-browse").innerHTML = POKEMON.map(p =>
+    `<div class="lp-card" onclick="openLookup(${p.id})">
+      <div class="lp-card-num">#${String(p.id).padStart(3,"0")}</div>
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}" loading="lazy">
+      <div class="lp-card-name">${p.name}</div>
+    </div>`
+  ).join("");
+}
+
+async function openLookup(id) {
+  const p = POKEMON.find(x => x.id === id);
+  if (!p) return;
+  currentLookup = p;
+
+  // switch to lookup tab
+  document.querySelectorAll(".page").forEach(x => x.classList.remove("active"));
+  document.getElementById("page-lookup").classList.add("active");
+  document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".nav-btn")[2].classList.add("active");
+
+  document.getElementById("lookup-intro").style.display = "none";
+  const detail = document.getElementById("lookup-detail");
+  detail.style.display = "block";
+
+  document.getElementById("lk-sprite").src =
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`;
+  document.getElementById("lk-name").textContent = `#${String(p.id).padStart(3,"0")} ${p.name}`;
+  document.getElementById("lk-sub").textContent = "Fetching cards from PokéTCG API…";
+  document.getElementById("lk-error").style.display = "none";
+  document.getElementById("lk-grid").innerHTML = "";
+  document.getElementById("lk-empty").style.display = "none";
+  updateLookupOwn();
+
+  // skeletons
+  const skelWrap = document.getElementById("lk-skels");
+  skelWrap.style.display = "grid";
+  skelWrap.innerHTML = [...Array(12)].map(() => `<div class="skel" style="height:220px"></div>`).join("");
+
+  try {
+    const name = encodeURIComponent(p.name.replace(/[♀♂]/g,"").trim());
+    const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:"${name}"&orderBy=set.releaseDate&pageSize=100`);
+    if (!res.ok) throw new Error();
+    const data = await res.json();
+    const cards = data.data || [];
+    skelWrap.style.display = "none";
+    document.getElementById("lk-sub").textContent = `${cards.length} cards found across all sets`;
+    if (!cards.length) { document.getElementById("lk-empty").style.display = "block"; return; }
+    document.getElementById("lk-grid").innerHTML = cards.map(c => `
+      <div class="tcg-card">
+        ${c.images?.small
+          ? `<img src="${c.images.small}" alt="${c.name}" loading="lazy">`
+          : `<div class="tcg-noimg">No Image</div>`}
+        <div class="tcg-card-info">
+          <div class="tcg-card-name">${c.name}</div>
+          <div class="tcg-card-set">${c.set?.name || ""}</div>
+          <div class="tcg-card-bot">
+            <span class="tcg-card-num">#${c.number}/${c.set?.printedTotal || "?"}</span>
+            ${c.rarity ? `<span class="tcg-rarity">${c.rarity}</span>` : ""}
+          </div>
+        </div>
+      </div>`).join("");
+  } catch {
+    skelWrap.style.display = "none";
+    const err = document.getElementById("lk-error");
+    err.textContent = "Could not load cards — the PokéTCG API may be unavailable. Check your connection and try again.";
+    err.style.display = "block";
+    document.getElementById("lk-sub").textContent = "Error loading cards";
+  }
+}
+
+function closeLookup() {
+  document.getElementById("lookup-intro").style.display = "block";
+  document.getElementById("lookup-detail").style.display = "none";
+  currentLookup = null;
+}
+
+function toggleLookupOwned() {
+  if (!currentLookup) return;
+  const id = currentLookup.id;
+  if (state.owned[id]) delete state.owned[id]; else state.owned[id] = true;
+  saveState(); updateStats(); updateLookupOwn(); renderBinder();
+}
+
+function updateLookupOwn() {
+  if (!currentLookup) return;
+  const btn = document.getElementById("lk-own-btn");
+  const owned = !!state.owned[currentLookup.id];
+  btn.textContent = owned ? "✓ Owned" : "+ Mark Owned";
+  btn.classList.toggle("owned", owned);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+buildSeriesFilters();
+renderBinder();
+renderSets();
+buildLookupBrowse();
+updateStats();
+</script>
+</body>
+</html>
