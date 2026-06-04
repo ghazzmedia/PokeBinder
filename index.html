@@ -4,180 +4,184 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>PokéBinder — Gen I & II</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e63946' stroke='%23111' stroke-width='4'/%3E%3Crect x='2' y='46' width='96' height='8' fill='%23111'/%3E%3Ccircle cx='50' cy='50' r='14' fill='white' stroke='%23111' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23e63946'/%3E%3Crect x='2' y='74' width='96' height='24' rx='48' fill='%23eee' stroke='%23111' stroke-width='0'/%3E%3C/svg%3E"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e63946' stroke='%23222' stroke-width='4'/%3E%3Crect x='2' y='46' width='96' height='8' fill='%23222'/%3E%3Ccircle cx='50' cy='50' r='15' fill='white' stroke='%23222' stroke-width='4'/%3E%3Ccircle cx='50' cy='50' r='7' fill='%23e63946'/%3E%3C/svg%3E"/>
 <style>
-:root {
-  --bg:#0c0b13; --bg2:#0f0e18; --bg3:#13121a; --bg4:#1a1826;
-  --border:#1e1b2e; --border2:#2a2040;
-  --text:#f0eeff; --text2:#aaa; --text3:#666; --text4:#444;
-  --red:#e63946; --blue:#4cc9f0; --green:#52b788; --gold:#f4a261;
-  --shadow:rgba(0,0,0,.6);
-  --card-radius:14px; --trans:.18s;
+:root{
+  --bg:#0c0b13;--bg2:#0f0e18;--bg3:#13121a;--bg4:#1e1b2e;
+  --border:#1e1b2e;--border2:#2a2040;
+  --text:#f0eeff;--text2:#aaa;--text3:#666;--text4:#3a3850;
+  --red:#e63946;--blue:#4cc9f0;--green:#52b788;--gold:#f4a261;
+  --radius:13px;--tr:.18s;
 }
-.light {
-  --bg:#f4f4f8; --bg2:#eaeaf0; --bg3:#ffffff; --bg4:#e0e0ea;
-  --border:#d0d0e0; --border2:#c0c0d8;
-  --text:#111122; --text2:#444; --text3:#888; --text4:#bbb;
-  --shadow:rgba(0,0,0,.15);
+.light{
+  --bg:#f2f2f7;--bg2:#e8e8f0;--bg3:#ffffff;--bg4:#dddde8;
+  --border:#d0d0df;--border2:#b8b8cc;
+  --text:#111020;--text2:#444;--text3:#888;--text4:#ccc;
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;transition:background var(--trans),color var(--trans)}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;min-height:100vh;display:flex;transition:background var(--tr),color var(--tr)}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 
-/* LAYOUT */
-#sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;transition:background var(--trans)}
+/* SIDEBAR */
+#sidebar{width:218px;min-width:218px;background:var(--bg2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto;transition:background var(--tr),border-color var(--tr)}
 #main{flex:1;overflow-y:auto;padding:24px;min-width:0}
-
-/* LOGO */
 .logo-wrap{padding:16px 18px 14px;border-bottom:1px solid var(--border)}
-.logo{font-size:20px;font-weight:900;color:var(--text);letter-spacing:-.5px}
-.logo span{color:var(--red)}
+.logo{font-size:20px;font-weight:900;letter-spacing:-.5px}
+.logo em{color:var(--red);font-style:normal}
 .logo-sub{font-size:10px;color:var(--text3);margin-top:2px}
 
-/* STATS */
-.stats-wrap{padding:14px 16px;border-bottom:1px solid var(--border)}
+.stats-wrap{padding:13px 16px;border-bottom:1px solid var(--border)}
 .ring-row{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .ring-box{position:relative;flex-shrink:0}
 .ring-pct{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:var(--red)}
-.mini-bar-row{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
-.mini-bar-track{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px}
-.mini-bar-fill{height:100%;border-radius:2px;transition:width .5s}
+.mbl{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
+.mbt{height:3px;background:var(--border);border-radius:2px;overflow:hidden;margin-bottom:5px}
+.mbf{height:100%;border-radius:2px;transition:width .5s}
+.val-row{margin-top:4px;font-size:13px;font-weight:800;color:var(--green)}
 
-/* NAV */
-nav{padding:8px 8px;flex:1}
-.nav-btn{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;border-radius:10px;border:none;cursor:pointer;margin-bottom:3px;text-align:left;font-size:13px;background:transparent;color:var(--text3);font-weight:400;transition:all var(--trans);border-left:3px solid transparent}
-.nav-btn:hover{color:var(--text2);background:var(--bg3)}
-.nav-btn.active{background:var(--bg4);color:var(--text);font-weight:700;border-left-color:var(--red)}
+nav{padding:8px;flex:1}
+.nb{display:flex;align-items:center;gap:8px;width:100%;padding:9px 10px;border-radius:10px;border:none;cursor:pointer;margin-bottom:3px;text-align:left;font-size:13px;background:transparent;color:var(--text3);font-weight:400;transition:all var(--tr);border-left:3px solid transparent}
+.nb:hover{color:var(--text2);background:var(--bg3)}
+.nb.active{background:var(--bg4);color:var(--text);font-weight:700;border-left-color:var(--red)}
 
-/* THEME + SYNC buttons */
-.sidebar-actions{padding:10px 12px;display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border)}
-.action-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;transition:all var(--trans);font-weight:600;width:100%}
-.action-btn:hover{border-color:var(--red);color:var(--text)}
-.sync-status{font-size:10px;padding:4px 10px;border-radius:6px;text-align:center}
-.sync-ok{background:#0d2a1a;color:#52b788}
-.sync-err{background:#2a0d0d;color:#e63946}
-.sync-busy{background:#1a1a0d;color:#f4a261}
-.footer-note{padding:10px 16px;font-size:10px;color:var(--text4);line-height:1.7;border-top:1px solid var(--border)}
+.sb-bottom{padding:10px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:6px}
+.act-btn{display:flex;align-items:center;gap:7px;padding:8px 10px;border-radius:8px;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);font-size:12px;cursor:pointer;transition:all var(--tr);font-weight:600;width:100%;text-align:left}
+.act-btn:hover{border-color:var(--red);color:var(--text)}
+#sync-pill{font-size:10px;padding:5px 10px;border-radius:6px;text-align:center;display:none;line-height:1.4;word-break:break-word}
+.pill-ok{background:#0d2a1a;color:#52b788}
+.pill-err{background:#2a0d0d;color:#e63946}
+.pill-busy{background:#1e1a0d;color:#f4a261}
+.footer-note{padding:8px 14px 12px;font-size:10px;color:var(--text4);line-height:1.7}
 
-/* TOOLBAR */
-.toolbar{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
-.toolbar input{flex:1;min-width:160px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:8px 13px;border-radius:9px;font-size:13px;outline:none;transition:border-color var(--trans)}
-.toolbar input:focus{border-color:var(--red)}
-.filter-group{display:flex;gap:4px;flex-wrap:wrap}
-.fbtn{background:var(--bg3);border:1px solid var(--border2);color:var(--text3);padding:7px 11px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:600;transition:all var(--trans);white-space:nowrap}
-.fbtn:hover{color:var(--text2)}
-.fbtn.active{background:var(--red);border-color:var(--red);color:#fff}
-.sort-select{background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:7px 10px;border-radius:9px;font-size:12px;cursor:pointer;outline:none}
-
-/* PAGE */
-.page{display:none;animation:fadeIn .25s ease}
+/* PAGES */
+.page{display:none;animation:fadeIn .22s ease}
 .page.active{display:block}
-@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.page-title{font-size:24px;font-weight:900;color:var(--text);letter-spacing:-.5px;margin-bottom:3px}
-.page-sub{font-size:12px;color:var(--text3);margin-bottom:16px}
+@keyframes fadeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.page-title{font-size:23px;font-weight:900;letter-spacing:-.5px;margin-bottom:3px}
+.page-sub{font-size:12px;color:var(--text3);margin-bottom:15px}
 
-/* POKEMON BINDER GRID */
-#poke-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:8px}
-.pcard{background:var(--bg3);border:2px solid var(--border);border-radius:var(--card-radius);padding:10px 7px 8px;text-align:center;cursor:pointer;position:relative;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans),background var(--trans);user-select:none}
-.pcard:hover{transform:translateY(-2px);box-shadow:0 8px 20px var(--shadow)}
-.pcard.owned-g1{border-color:var(--red);background:var(--bg4);box-shadow:0 0 12px #e6394628}
-.pcard.owned-g2{border-color:var(--blue);background:var(--bg4);box-shadow:0 0 12px #4cc9f028}
-.pcard-num{font-size:9px;color:var(--text4);font-weight:800;margin-bottom:2px;letter-spacing:1px}
-.pcard img{width:58px;height:58px;image-rendering:pixelated;display:block;margin:0 auto;transition:filter .25s}
-.pcard.unowned img{filter:grayscale(1) brightness(.3)}
-.pcard-name{font-size:10px;color:var(--text2);font-weight:700;margin-top:3px;line-height:1.2}
-.pcard-count{font-size:9px;font-weight:800;padding:1px 5px;border-radius:8px;display:inline-block;margin-top:3px}
-.g1c{color:var(--red);background:#e6394618}
-.g2c{color:var(--blue);background:#4cc9f018}
-.owned-dot{position:absolute;top:5px;right:5px;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff;font-weight:900}
-.browse-icon{position:absolute;bottom:5px;right:5px;background:transparent;border:none;cursor:pointer;font-size:12px;opacity:.4;padding:0;line-height:1;transition:opacity var(--trans);color:var(--text)}
-.browse-icon:hover{opacity:1}
+.toolbar{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;align-items:center}
+.tbi{flex:1;min-width:160px;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:8px 12px;border-radius:9px;font-size:13px;outline:none;transition:border-color var(--tr)}
+.tbi:focus{border-color:var(--red)}
+.fg{display:flex;gap:4px;flex-wrap:wrap}
+.fb{background:var(--bg3);border:1px solid var(--border2);color:var(--text3);padding:7px 11px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:600;transition:all var(--tr);white-space:nowrap}
+.fb:hover{color:var(--text2)}
+.fb.on{background:var(--red);border-color:var(--red);color:#fff}
+.sort-sel{background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:7px 10px;border-radius:9px;font-size:12px;cursor:pointer;outline:none}
 
-/* CARD LOOKUP PANEL */
-.lookup-header-bar{display:flex;align-items:center;gap:14px;margin-bottom:18px;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:12px 16px;flex-wrap:wrap}
-.lookup-header-bar h1{font-size:20px;font-weight:900;color:var(--text);letter-spacing:-.5px}
-.lookup-header-bar p{font-size:11px;color:var(--text3);margin-top:2px}
-.back-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;transition:all var(--trans)}
+/* SETUP BANNER */
+.setup-banner{background:var(--bg3);border:2px dashed var(--border2);border-radius:12px;padding:18px 22px;margin-bottom:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.setup-banner p{font-size:13px;color:var(--text2);flex:1;line-height:1.6;min-width:180px}
+.btn-p{background:var(--red);border:none;color:#fff;padding:9px 20px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:700;transition:opacity var(--tr);white-space:nowrap}
+.btn-p:hover{opacity:.85}
+.btn-s{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:9px 15px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600}
+.btn-s:hover{border-color:var(--red);color:var(--text)}
+
+/* BINDER GRID */
+#poke-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(106px,1fr));gap:8px}
+.pc{background:var(--bg3);border:2px solid var(--border);border-radius:var(--radius);padding:9px 7px 7px;text-align:center;cursor:pointer;position:relative;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr),background var(--tr);user-select:none}
+.pc:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(0,0,0,.4)}
+.pc.og1{border-color:var(--red);background:var(--bg4);box-shadow:0 0 10px #e6394622}
+.pc.og2{border-color:var(--blue);background:var(--bg4);box-shadow:0 0 10px #4cc9f022}
+.pc.unowned img{filter:grayscale(1) brightness(.28)}
+.pc img{width:56px;height:56px;image-rendering:pixelated;display:block;margin:0 auto;transition:filter .25s}
+.pc-num{font-size:9px;color:var(--text4);font-weight:800;margin-bottom:2px;letter-spacing:.8px}
+.pc-name{font-size:10px;color:var(--text2);font-weight:700;margin-top:3px;line-height:1.2}
+.pc-count{font-size:9px;font-weight:800;padding:1px 5px;border-radius:8px;display:inline-block;margin-top:3px}
+.cc1{color:var(--red);background:#e6394616}
+.cc2{color:var(--blue);background:#4cc9f016}
+.pc-dot{position:absolute;top:5px;right:5px;width:13px;height:13px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;color:#fff;font-weight:900}
+.pc-ico{position:absolute;bottom:5px;right:5px;background:transparent;border:none;cursor:pointer;font-size:11px;opacity:.35;padding:0;line-height:1;transition:opacity var(--tr);color:var(--text)}
+.pc-ico:hover{opacity:1}
+
+/* BROWSE GRID */
+#lookup-browse{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:7px}
+.lpc{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:8px 6px 7px;text-align:center;cursor:pointer;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr)}
+.lpc:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(0,0,0,.35);border-color:var(--border2)}
+.lpc img{width:52px;height:52px;image-rendering:pixelated}
+.lpc-num{font-size:9px;color:var(--text4);font-weight:800;margin-bottom:1px}
+.lpc-name{font-size:10px;color:var(--text2);font-weight:600;margin-top:2px}
+.lpc-cnt{font-size:9px;color:var(--green);font-weight:700;margin-top:1px}
+
+/* LOOKUP HEADER */
+.lk-hdr{display:flex;align-items:center;gap:10px;margin-bottom:16px;background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:11px 15px;flex-wrap:wrap}
+.lk-hdr h1{font-size:18px;font-weight:900;letter-spacing:-.5px}
+.lk-hdr p{font-size:11px;color:var(--text3);margin-top:2px}
+.back-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:7px 12px;border-radius:8px;cursor:pointer;font-size:12px;font-weight:600;white-space:nowrap;transition:all var(--tr)}
 .back-btn:hover{border-color:var(--red);color:var(--text)}
-.own-toggle{padding:7px 14px;border-radius:9px;cursor:pointer;font-size:12px;font-weight:700;border:1px solid var(--border2);background:var(--bg3);color:var(--text);transition:all var(--trans)}
-.own-toggle.active{background:var(--red);border-color:var(--red);color:#fff}
-.color-toggle{padding:7px 12px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);transition:all var(--trans)}
-.color-toggle.active{background:#2a1f45;border-color:#5a3fa0;color:#c9b8ff}
+.col-btn{padding:7px 12px;border-radius:9px;cursor:pointer;font-size:11px;font-weight:600;border:1px solid var(--border2);background:var(--bg3);color:var(--text2);transition:all var(--tr)}
+.col-btn.on{background:#2a1f45;border-color:#5a3fa0;color:#c9b8ff}
 
-/* TCG CARDS GRID */
-.tcg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
-.tcg-card{background:var(--bg3);border:2px solid var(--border);border-radius:12px;overflow:hidden;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans);cursor:pointer;position:relative}
-.tcg-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px var(--shadow)}
-.tcg-card.collected{border-color:var(--green);box-shadow:0 0 12px #52b78828}
-.tcg-card img{width:100%;display:block;transition:filter .3s}
-.tcg-card.bw-mode img{filter:grayscale(1) brightness(.55)}
-.tcg-card.bw-mode.collected img{filter:none}
-.tcg-noimg{height:190px;display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:12px}
-.tcg-info{padding:8px 10px}
-.tcg-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
-.tcg-set{font-size:10px;color:var(--text3);margin-bottom:3px}
-.tcg-bot{display:flex;justify-content:space-between;align-items:center;gap:4px;flex-wrap:wrap}
-.tcg-num{font-size:10px;color:var(--text4)}
-.tcg-rarity{font-size:9px;color:var(--red);background:#2a0e0e;padding:1px 5px;border-radius:5px;font-weight:700}
-.tcg-price{font-size:10px;font-weight:700;color:var(--green)}
-.tcg-collected-badge{position:absolute;top:6px;left:6px;background:var(--green);color:#fff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:6px}
-.tcg-zoom-btn{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.55);border:none;color:#fff;font-size:12px;border-radius:6px;padding:3px 5px;cursor:pointer;opacity:0;transition:opacity var(--trans)}
-.tcg-card:hover .tcg-zoom-btn{opacity:1}
+/* TCG GRID */
+.tcg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:11px}
+.tcard{background:var(--bg3);border:2px solid var(--border);border-radius:12px;overflow:hidden;transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr);cursor:pointer;position:relative}
+.tcard:hover{transform:translateY(-3px);box-shadow:0 10px 26px rgba(0,0,0,.5)}
+.tcard.owned{border-color:var(--green);box-shadow:0 0 11px #52b78825}
+.tcard img{width:100%;display:block;transition:filter .28s}
+.tcard.bw img{filter:grayscale(1) brightness(.5)}
+.tcard.bw.owned img{filter:none}
+.tcard-noimg{height:188px;display:flex;align-items:center;justify-content:center;color:var(--text4);font-size:12px}
+.tcard-info{padding:8px 10px}
+.tcard-name{font-size:11px;font-weight:700;color:var(--text);margin-bottom:2px}
+.tcard-set{font-size:10px;color:var(--text3);margin-bottom:3px}
+.tcard-bot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:3px}
+.tcard-num{font-size:10px;color:var(--text4)}
+.tcard-rar{font-size:9px;color:var(--red);background:#2a0e0e;padding:1px 5px;border-radius:5px;font-weight:700}
+.tcard-price{font-size:10px;font-weight:800;color:var(--green);margin-top:3px}
+.tcard-badge{position:absolute;top:6px;left:6px;background:var(--green);color:#fff;font-size:9px;font-weight:900;padding:2px 6px;border-radius:6px;pointer-events:none}
+.tcard-zoom{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.55);border:none;color:#fff;font-size:11px;border-radius:6px;padding:3px 5px;cursor:pointer;opacity:0;transition:opacity var(--tr);line-height:1}
+.tcard:hover .tcard-zoom{opacity:1}
 
-/* SETS BREAKDOWN */
-.sets-table{width:100%;border-collapse:collapse}
-.sets-table th{text-align:left;font-size:11px;color:var(--text3);font-weight:700;padding:6px 10px;border-bottom:1px solid var(--border)}
-.sets-table td{padding:7px 10px;font-size:12px;border-bottom:1px solid var(--border);color:var(--text2)}
-.sets-table tr:hover td{background:var(--bg4)}
-.sets-table .set-bar-cell{width:160px}
-.set-mini-bar{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:3px}
-.set-mini-fill{height:100%;background:var(--red);border-radius:3px}
-.set-series-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;flex-shrink:0}
+/* SETS TABLE */
+.sets-tbl{width:100%;border-collapse:collapse}
+.sets-tbl th{text-align:left;font-size:11px;color:var(--text3);font-weight:700;padding:6px 10px;border-bottom:1px solid var(--border)}
+.sets-tbl td{padding:7px 10px;font-size:12px;border-bottom:1px solid var(--border);color:var(--text2)}
+.sets-tbl tr:hover td{background:var(--bg4)}
+.smb{height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin-top:3px;min-width:80px}
+.smf{height:100%;border-radius:3px}
+.sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;vertical-align:middle}
 
-/* GITHUB SYNC MODAL */
-.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
-.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:28px;width:460px;max-width:94vw;box-shadow:0 24px 64px rgba(0,0,0,.6)}
-.modal h2{font-size:18px;font-weight:900;color:var(--text);margin-bottom:6px}
-.modal p{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:14px}
-.modal input,.modal select{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:9px 12px;border-radius:9px;font-size:13px;outline:none;margin-bottom:10px}
-.modal input:focus,.modal select:focus{border-color:var(--red)}
-.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:6px}
-.btn-primary{background:var(--red);border:none;color:#fff;padding:9px 20px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:700;transition:opacity var(--trans)}
-.btn-primary:hover{opacity:.85}
-.btn-secondary{background:var(--bg3);border:1px solid var(--border2);color:var(--text2);padding:9px 16px;border-radius:9px;cursor:pointer;font-size:13px;font-weight:600}
-.modal-label{font-size:11px;color:var(--text3);margin-bottom:4px;display:block;margin-top:2px}
+/* MODAL */
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:900;display:flex;align-items:flex-start;justify-content:center;backdrop-filter:blur(6px);padding:20px;overflow-y:auto}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:16px;padding:26px;width:520px;max-width:100%;box-shadow:0 20px 60px rgba(0,0,0,.65);margin:auto}
+.modal h2{font-size:17px;font-weight:900;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.step-box{background:var(--bg3);border-radius:10px;padding:14px 16px;margin-bottom:14px;counter-reset:steps}
+.step{display:flex;gap:10px;margin-bottom:10px;font-size:12px;color:var(--text2);line-height:1.6;align-items:flex-start}
+.step:last-child{margin-bottom:0}
+.step-n{background:var(--red);color:#fff;border-radius:50%;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900;flex-shrink:0;margin-top:1px}
+.step a{color:var(--blue);text-decoration:none}
+.step a:hover{text-decoration:underline}
+.step code{background:var(--bg4);padding:1px 5px;border-radius:4px;font-size:11px;color:var(--gold);font-family:monospace}
+.step b{color:var(--text)}
+.mlabel{font-size:11px;color:var(--text3);margin-bottom:3px;display:block;margin-top:10px}
+.modal input{width:100%;background:var(--bg3);border:1px solid var(--border2);color:var(--text);padding:9px 12px;border-radius:9px;font-size:13px;outline:none;transition:border-color var(--tr);font-family:monospace}
+.modal input:focus{border-color:var(--red)}
+.modal input::placeholder{font-family:'Segoe UI',system-ui,sans-serif;font-size:12px}
+.mstatus{font-size:11px;min-height:16px;margin-top:8px;padding:0 2px}
+.modal-btns{display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap}
+.warn-box{background:#1a150a;border:1px solid #5a3a0a;border-radius:8px;padding:10px 13px;font-size:11px;color:var(--gold);line-height:1.6;margin-bottom:12px}
 
-/* ZOOM MODAL */
-.zoom-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);cursor:pointer}
-.zoom-inner{max-width:380px;width:90vw;animation:zoomIn .2s ease}
-@keyframes zoomIn{from{transform:scale(.85);opacity:0}to{transform:scale(1);opacity:1}}
-.zoom-inner img{width:100%;border-radius:16px;box-shadow:0 24px 64px rgba(0,0,0,.8);display:block}
-.zoom-info{background:var(--bg2);border-radius:0 0 16px 16px;padding:14px 16px}
-.zoom-info h3{font-size:15px;font-weight:800;color:var(--text)}
-.zoom-info p{font-size:12px;color:var(--text3);margin-top:3px}
-.zoom-price{font-size:14px;font-weight:800;color:var(--green);margin-top:4px}
-.zoom-close{position:absolute;top:20px;right:20px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:20px;border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+/* ZOOM */
+.zoom-back{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:1000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);cursor:pointer}
+.zoom-box{max-width:370px;width:88vw;animation:zIn .2s ease;cursor:default;border-radius:16px;overflow:hidden;box-shadow:0 24px 64px rgba(0,0,0,.8)}
+@keyframes zIn{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+.zoom-box img{width:100%;display:block}
+.zoom-info{background:var(--bg2);padding:14px 16px}
+.zoom-info h3{font-size:14px;font-weight:800}
+.zoom-info p{font-size:11px;color:var(--text3);margin-top:3px}
+.zoom-price{font-size:15px;font-weight:800;color:var(--green);margin-top:5px}
+.zoom-close{position:fixed;top:18px;right:18px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:18px;border-radius:50%;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1001;transition:background var(--tr)}
+.zoom-close:hover{background:rgba(255,255,255,.2)}
 
 /* MISC */
-.skel{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:400px 100%;animation:shimmer 1.4s infinite;border-radius:12px}
-@keyframes shimmer{0%{background-position:-400px 0}100%{background-position:400px 0}}
-.skel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:12px}
-.empty-state{text-align:center;color:var(--text4);padding:50px 20px;font-size:13px}
-.empty-state div:first-child{font-size:38px;margin-bottom:8px}
-.error-box{background:#2a0d0d;border:1px solid #5a1e1e;color:#ff6b6b;padding:12px 16px;border-radius:10px;margin-bottom:14px;font-size:12px}
-.badge{display:inline-block;font-size:9px;font-weight:800;padding:2px 7px;border-radius:10px}
-.price-loading{color:var(--text4);font-size:10px;font-style:italic}
-
-/* BROWSE GRID (lookup intro) */
-#lookup-browse{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:7px}
-.lp-card{background:var(--bg3);border:2px solid var(--border);border-radius:12px;padding:9px 7px 7px;text-align:center;cursor:pointer;transition:transform var(--trans),box-shadow var(--trans),border-color var(--trans)}
-.lp-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px var(--shadow);border-color:var(--border2)}
-.lp-card img{width:55px;height:55px;image-rendering:pixelated}
-.lp-card-num{font-size:9px;color:var(--text4);font-weight:800;margin-bottom:1px}
-.lp-card-name{font-size:10px;color:var(--text2);font-weight:600;margin-top:3px}
-.lp-card-count{font-size:9px;color:var(--green);font-weight:700;margin-top:1px}
+.skel{background:linear-gradient(90deg,var(--bg3) 25%,var(--bg4) 50%,var(--bg3) 75%);background-size:400px 100%;animation:shim 1.4s infinite;border-radius:12px}
+@keyframes shim{0%{background-position:-400px 0}100%{background-position:400px 0}}
+.skel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(152px,1fr));gap:11px}
+.empty{text-align:center;color:var(--text4);padding:50px 20px;font-size:13px}
+.empty span{font-size:36px;display:block;margin-bottom:8px}
+.err-box{background:#2a0d0d;border:1px solid #5a1e1e;color:#ff6b6b;padding:11px 14px;border-radius:10px;margin-bottom:13px;font-size:12px}
 </style>
 </head>
 <body>
@@ -185,8 +189,8 @@ nav{padding:8px 8px;flex:1}
 <!-- SIDEBAR -->
 <div id="sidebar">
   <div class="logo-wrap">
-    <div class="logo">Poké<span>Binder</span></div>
-    <div class="logo-sub">Gen I & II · Card Tracker</div>
+    <div class="logo">Poké<em>Binder</em></div>
+    <div class="logo-sub">Gen I &amp; II · Card Tracker</div>
   </div>
   <div class="stats-wrap">
     <div class="ring-row">
@@ -194,40 +198,37 @@ nav{padding:8px 8px;flex:1}
         <svg width="60" height="60" style="transform:rotate(-90deg)">
           <circle cx="30" cy="30" r="25" fill="none" stroke="var(--border)" stroke-width="5"/>
           <circle id="ring-fill" cx="30" cy="30" r="25" fill="none" stroke="var(--red)" stroke-width="5"
-            stroke-dasharray="0 157" stroke-linecap="round" style="transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)"/>
+            stroke-dasharray="0 157.08" stroke-linecap="round"
+            style="transition:stroke-dasharray .6s cubic-bezier(.4,0,.2,1)"/>
         </svg>
-        <div class="ring-pct"><span id="ring-pct-text">0%</span></div>
+        <div class="ring-pct"><span id="s-pct">0%</span></div>
       </div>
       <div>
-        <div style="font-size:16px;font-weight:800;color:var(--text)"><span id="stat-owned">0</span><span style="font-size:11px;color:var(--text3);font-weight:400">/251</span></div>
+        <div style="font-size:16px;font-weight:800"><span id="s-owned">0</span><span style="font-size:11px;color:var(--text3);font-weight:400">/251</span></div>
         <div style="font-size:10px;color:var(--text3)">Pokémon collected</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:2px"><span id="stat-cards">0</span> cards owned</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:1px"><span id="s-cards">0</span> total cards</div>
       </div>
     </div>
-    <div class="mini-bar-row"><span style="color:var(--red)">● Gen I</span><span id="g1-stat" style="color:var(--text3)">0/151</span></div>
-    <div class="mini-bar-track"><div id="g1-bar" class="mini-bar-fill" style="width:0%;background:var(--red)"></div></div>
-    <div class="mini-bar-row"><span style="color:var(--blue)">● Gen II</span><span id="g2-stat" style="color:var(--text3)">0/100</span></div>
-    <div class="mini-bar-track"><div id="g2-bar" class="mini-bar-fill" style="width:0%;background:var(--blue)"></div></div>
-    <div class="mini-bar-row" style="margin-top:2px">
-      <span style="color:var(--green)">● Collection value</span>
-    </div>
-    <div style="font-size:13px;font-weight:800;color:var(--green)" id="stat-value">€0.00</div>
+    <div class="mbl"><span style="color:var(--red)">● Gen I</span><span id="s-g1" style="color:var(--text3)">0/151</span></div>
+    <div class="mbt"><div id="b-g1" class="mbf" style="width:0%;background:var(--red)"></div></div>
+    <div class="mbl"><span style="color:var(--blue)">● Gen II</span><span id="s-g2" style="color:var(--text3)">0/100</span></div>
+    <div class="mbt"><div id="b-g2" class="mbf" style="width:0%;background:var(--blue)"></div></div>
+    <div class="mbl" style="margin-top:3px"><span style="color:var(--green)">● Collection value</span></div>
+    <div class="val-row" id="s-val">€0.00</div>
   </div>
   <nav>
-    <button class="nav-btn active" onclick="showTab('binder',this)">📖 &nbsp;Binder</button>
-    <button class="nav-btn" onclick="showTab('lookup',this)">🃏 &nbsp;Card Lookup</button>
-    <button class="nav-btn" onclick="showTab('sets',this)">📦 &nbsp;Sets Breakdown</button>
+    <button class="nb active" onclick="showTab('binder',this)">📖 &nbsp;Binder</button>
+    <button class="nb" onclick="showTab('lookup',this)">🃏 &nbsp;Card Lookup</button>
+    <button class="nb" onclick="showTab('sets',this)">📦 &nbsp;Sets Breakdown</button>
   </nav>
-  <div class="sidebar-actions">
-    <button class="action-btn" onclick="toggleTheme()">
-      <span id="theme-icon">☀️</span><span id="theme-label">Light Mode</span>
+  <div class="sb-bottom">
+    <button class="act-btn" onclick="toggleTheme()"><span id="th-ico">☀️</span><span id="th-lbl">Light Mode</span></button>
+    <button class="act-btn" onclick="openSyncModal()">
+      <span id="sync-ico">☁️</span><span id="sync-lbl">GitHub Sync</span>
     </button>
-    <button class="action-btn" onclick="openGithubModal()">
-      <span>⚙️</span><span>GitHub Sync</span>
-    </button>
-    <div id="sync-status-bar" class="sync-status" style="display:none"></div>
+    <div id="sync-pill"></div>
   </div>
-  <div class="footer-note">Click 🃏 to browse cards<br>Click a card to collect it<br>🔍 to zoom in</div>
+  <div class="footer-note">🃏 Browse cards → click to collect<br>🔍 Hover a card to zoom in<br>☁️ Auto-syncs to your GitHub repo</div>
 </div>
 
 <!-- MAIN -->
@@ -236,15 +237,20 @@ nav{padding:8px 8px;flex:1}
   <!-- BINDER -->
   <div id="page-binder" class="page active">
     <div class="page-title">My Binder</div>
-    <div class="page-sub">All 251 Pokémon — browse and collect individual cards</div>
+    <div class="page-sub">All 251 Pokémon — click any entry to browse &amp; collect its cards</div>
+    <div id="setup-banner" class="setup-banner">
+      <span style="font-size:28px">☁️</span>
+      <p>Connect <strong>GitHub Sync</strong> to keep your collection safe forever — free, lives in your own repo.</p>
+      <button class="btn-p" onclick="openSyncModal()">Set Up Sync →</button>
+    </div>
     <div class="toolbar">
-      <input id="binder-search" placeholder="Search Pokémon by name or #…" oninput="renderBinder()"/>
-      <div class="filter-group" id="binder-filters">
-        <button class="fbtn active" onclick="setBFilter('all',this)">All</button>
-        <button class="fbtn" onclick="setBFilter('owned',this)">✓ Collected</button>
-        <button class="fbtn" onclick="setBFilter('missing',this)">✗ Missing</button>
-        <button class="fbtn" onclick="setBFilter('gen1',this)">Gen I</button>
-        <button class="fbtn" onclick="setBFilter('gen2',this)">Gen II</button>
+      <input class="tbi" id="binder-search" placeholder="Search by name or #…" oninput="renderBinder()"/>
+      <div class="fg" id="bf-group">
+        <button class="fb on" onclick="setBF('all',this)">All</button>
+        <button class="fb" onclick="setBF('owned',this)">✓ Collected</button>
+        <button class="fb" onclick="setBF('missing',this)">✗ Missing</button>
+        <button class="fb" onclick="setBF('gen1',this)">Gen I</button>
+        <button class="fb" onclick="setBF('gen2',this)">Gen II</button>
       </div>
     </div>
     <div id="poke-grid"></div>
@@ -252,95 +258,110 @@ nav{padding:8px 8px;flex:1}
 
   <!-- LOOKUP -->
   <div id="page-lookup" class="page">
-    <div id="lookup-intro">
+    <div id="lk-intro">
       <div class="page-title">Card Lookup</div>
-      <div class="page-sub">Choose a Pokémon to browse and collect individual TCG cards</div>
+      <div class="page-sub">Select a Pokémon to browse every TCG card ever printed for it</div>
       <div class="toolbar">
-        <input id="browse-search" placeholder="Search Pokémon…" oninput="renderBrowse()"/>
-        <div class="filter-group">
-          <button class="fbtn active" onclick="setBrowseFilter('all',this)">All</button>
-          <button class="fbtn" onclick="setBrowseFilter('gen1',this)">Gen I</button>
-          <button class="fbtn" onclick="setBrowseFilter('gen2',this)">Gen II</button>
+        <input class="tbi" id="browse-search" placeholder="Search Pokémon…" oninput="renderBrowse()"/>
+        <div class="fg" id="browse-fg">
+          <button class="fb on" onclick="setBrowse('all',this)">All</button>
+          <button class="fb" onclick="setBrowse('gen1',this)">Gen I</button>
+          <button class="fb" onclick="setBrowse('gen2',this)">Gen II</button>
         </div>
       </div>
       <div id="lookup-browse"></div>
     </div>
-    <div id="lookup-detail" style="display:none">
-      <div class="lookup-header-bar">
+    <div id="lk-detail" style="display:none">
+      <div class="lk-hdr">
         <button class="back-btn" onclick="closeLookup()">← Back</button>
-        <img id="lk-sprite" src="" style="width:50px;height:50px;image-rendering:pixelated" alt="">
+        <img id="lk-sprite" src="" style="width:48px;height:48px;image-rendering:pixelated" alt="">
         <div style="flex:1;min-width:0">
-          <h1 id="lk-name">—</h1>
+          <h1 id="lk-title">—</h1>
           <p id="lk-sub">Loading…</p>
         </div>
-        <button id="lk-color-btn" class="color-toggle" onclick="toggleBWMode()">🎨 Full Colour</button>
-        <div class="filter-group">
-          <label style="font-size:11px;color:var(--text3);align-self:center">Sort:</label>
-          <select id="sort-select" class="sort-select" onchange="applySortFilter()">
-            <option value="date-asc">Release ↑</option>
-            <option value="date-desc">Release ↓</option>
-            <option value="price-asc">Price ↑</option>
-            <option value="price-desc">Price ↓</option>
-          </select>
-        </div>
+        <button id="col-btn" class="col-btn" onclick="toggleBW()">🎨 Full Colour</button>
+        <select id="sort-sel" class="sort-sel" onchange="applySort()">
+          <option value="date-asc">Release ↑</option>
+          <option value="date-desc">Release ↓</option>
+          <option value="price-asc">Price ↑</option>
+          <option value="price-desc">Price ↓</option>
+        </select>
       </div>
-      <div id="lk-error" style="display:none" class="error-box"></div>
-      <div id="lk-skels" style="display:none" class="skel-grid"></div>
+      <div id="lk-err" class="err-box" style="display:none"></div>
+      <div id="lk-skels" class="skel-grid" style="display:none"></div>
       <div id="lk-grid" class="tcg-grid"></div>
-      <div id="lk-empty" style="display:none" class="empty-state"><div>🃏</div><div>No cards found</div></div>
+      <div id="lk-empty" class="empty" style="display:none"><span>🃏</span>No cards found</div>
     </div>
   </div>
 
-  <!-- SETS BREAKDOWN -->
+  <!-- SETS -->
   <div id="page-sets" class="page">
     <div class="page-title">Sets Breakdown</div>
-    <div class="page-sub">How many cards you own from each set</div>
+    <div class="page-sub">Your collected cards grouped by set</div>
     <div class="toolbar">
-      <input id="sets-search" placeholder="Search sets…" oninput="renderSets()"/>
+      <input class="tbi" id="sets-search" placeholder="Search sets…" oninput="renderSets()"/>
     </div>
-    <div id="sets-container"></div>
+    <div id="sets-body"></div>
   </div>
 
 </div>
 
-<!-- GITHUB MODAL -->
-<div id="github-modal" class="modal-backdrop" style="display:none" onclick="closeGithubModal(event)">
-  <div class="modal" onclick="event.stopPropagation()">
-    <h2>⚙️ GitHub Sync</h2>
-    <p>Your collection will be saved as a JSON file in your GitHub repository. Changes sync automatically whenever you collect or remove a card.<br><br>You need a Personal Access Token with <strong>repo</strong> scope.</p>
-    <span class="modal-label">GitHub Username</span>
-    <input id="gh-user" placeholder="e.g. gonçalo123" />
-    <span class="modal-label">Repository Name</span>
-    <input id="gh-repo" placeholder="e.g. pokebinder" />
-    <span class="modal-label">File path in repo</span>
-    <input id="gh-file" placeholder="collection.json" />
-    <span class="modal-label">Personal Access Token</span>
-    <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxx" />
-    <div id="gh-modal-status" style="font-size:11px;color:var(--text3);min-height:16px;margin-bottom:6px"></div>
+<!-- GITHUB SYNC MODAL -->
+<div id="sync-modal" class="backdrop" style="display:none" onclick="if(event.target===this)closeSyncModal()">
+  <div class="modal">
+    <h2>☁️ GitHub Sync Setup</h2>
+
+    <div class="step-box">
+      <div class="step"><div class="step-n">1</div><div>Go to your GitHub repo → click <b>Add file → Create new file</b> → name it <code>collection.json</code> → paste <code>{}</code> as the content → click <b>Commit changes</b></div></div>
+      <div class="step"><div class="step-n">2</div><div>Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a> (also found under <b>Settings → Developer settings → Personal access tokens → Tokens (classic)</b>)</div></div>
+      <div class="step"><div class="step-n">3</div><div>Give it any name (e.g. <code>pokebinder</code>), set expiration to <b>No expiration</b>, tick the <b>repo</b> checkbox, scroll down and click <b>Generate token</b></div></div>
+      <div class="step"><div class="step-n">4</div><div>Copy the token immediately — GitHub only shows it <b>once</b>. Paste it below along with your GitHub username and repo name.</div></div>
+    </div>
+
+    <div class="warn-box">⚠️ Your token is stored only in your browser's localStorage — it never leaves your device except to talk directly to GitHub's API.</div>
+
+    <span class="mlabel">GitHub Username</span>
+    <input id="gh-user" placeholder="e.g. yourname"/>
+
+    <span class="mlabel">Repository name</span>
+    <input id="gh-repo" placeholder="e.g. pokebinder"/>
+
+    <span class="mlabel">File path in repo</span>
+    <input id="gh-file" placeholder="collection.json"/>
+
+    <span class="mlabel">Personal Access Token</span>
+    <input id="gh-token" type="password" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"/>
+
+    <div id="gh-status" class="mstatus" style="color:var(--text3)"></div>
+
     <div class="modal-btns">
-      <button class="btn-secondary" onclick="closeGithubModal(null)">Cancel</button>
-      <button class="btn-secondary" onclick="testGithubSync()">Test</button>
-      <button class="btn-primary" onclick="saveGithubConfig()">Save & Sync</button>
+      <button class="btn-s" onclick="closeSyncModal()">Cancel</button>
+      <button class="btn-s" onclick="testGH()">🔌 Test Connection</button>
+      <button class="btn-p" onclick="saveGH()">Save &amp; Sync</button>
     </div>
   </div>
 </div>
 
 <!-- ZOOM MODAL -->
-<div id="zoom-modal" class="zoom-backdrop" style="display:none" onclick="closeZoom()">
+<div id="zoom-modal" class="zoom-back" style="display:none" onclick="closeZoom()">
   <button class="zoom-close" onclick="closeZoom()">✕</button>
-  <div class="zoom-inner" onclick="event.stopPropagation()">
+  <div class="zoom-box" onclick="event.stopPropagation()">
     <img id="zoom-img" src="" alt="">
     <div class="zoom-info">
       <h3 id="zoom-name"></h3>
       <p id="zoom-set"></p>
-      <p id="zoom-rarity"></p>
+      <p id="zoom-rar" style="color:var(--red);font-size:11px;margin-top:2px"></p>
       <div id="zoom-price" class="zoom-price"></div>
     </div>
   </div>
 </div>
 
 <script>
-// ── POKEMON DATA ──────────────────────────────────────────────────────────────
+'use strict';
+
+// ══════════════════════════════════════════════════════════
+//  POKÉMON LIST
+// ══════════════════════════════════════════════════════════
 const POKEMON = [
   {id:1,name:"Bulbasaur"},{id:2,name:"Ivysaur"},{id:3,name:"Venusaur"},
   {id:4,name:"Charmander"},{id:5,name:"Charmeleon"},{id:6,name:"Charizard"},
@@ -436,459 +457,519 @@ const SERIES_COLORS = {
   "Sun & Moon":"#f77f00","Sword & Shield":"#52b788","Scarlet & Violet":"#e5383b",
 };
 
-// ── STATE ─────────────────────────────────────────────────────────────────────
-const SK = "pokebinder_v4";
-const PK_KEY = "pokebinder_prices_v4";
-const PRICE_TTL = 24 * 60 * 60 * 1000; // 24h
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+const LS       = "pokebinder_v7";
+const LS_THEME = "pokebinder_theme";
+const GH_API   = "https://api.github.com";
 
-let state = { cards: {}, github: null }; // cards: { cardId: { name, set, setId, series, price, priceDate, img, num, rarity } }
-let priceCache = {}; // cardId -> { price, ts }
-let bwMode = true;
-let isDark = true;
-let binderFilter = "all";
-let browseFilter = "all";
-let currentLookupPokemon = null;
-let currentLookupCards = [];
+let state = { cards:{}, ghUser:"", ghRepo:"", ghFile:"collection.json", ghToken:"" };
+let isDark = true, bwMode = true;
+let binderFilter = "all", browseFilter = "all";
+let currentPoke = null, currentCards = [];
 let syncTimer = null;
 
-function loadState() {
-  try { const r = localStorage.getItem(SK); if (r) state = {...state, ...JSON.parse(r)}; } catch {}
-  try { const r = localStorage.getItem(PK_KEY); if (r) priceCache = JSON.parse(r); } catch {}
-}
+// ── Boot ─────────────────────────────────────────────────
+(function boot() {
+  try { const r = localStorage.getItem(LS); if (r) Object.assign(state, JSON.parse(r)); } catch {}
+  try { if (localStorage.getItem(LS_THEME) === "light") applyTheme(false); } catch {}
+  updateBanner();
+  updateStats();
+  renderBinder();
+  renderBrowse();
+  if (state.ghToken) pullFromGH();
+})();
+
 function saveLocal() {
-  try { localStorage.setItem(SK, JSON.stringify(state)); } catch {}
-  try { localStorage.setItem(PK_KEY, JSON.stringify(priceCache)); } catch {}
+  try { localStorage.setItem(LS, JSON.stringify(state)); } catch {}
 }
-function scheduleSync() {
-  clearTimeout(syncTimer);
-  syncTimer = setTimeout(syncToGithub, 800);
-}
-function persistState() { saveLocal(); scheduleSync(); }
 
-// ── GITHUB SYNC ───────────────────────────────────────────────────────────────
-function openGithubModal() {
-  const g = state.github || {};
-  document.getElementById("gh-user").value = g.user || "";
-  document.getElementById("gh-repo").value = g.repo || "";
-  document.getElementById("gh-file").value = g.file || "collection.json";
-  document.getElementById("gh-token").value = g.token || "";
-  document.getElementById("gh-modal-status").textContent = "";
-  document.getElementById("github-modal").style.display = "flex";
-}
-function closeGithubModal(e) {
-  if (e && e.target !== document.getElementById("github-modal")) return;
-  document.getElementById("github-modal").style.display = "none";
-}
-function saveGithubConfig() {
-  state.github = {
-    user: document.getElementById("gh-user").value.trim(),
-    repo: document.getElementById("gh-repo").value.trim(),
-    file: document.getElementById("gh-file").value.trim() || "collection.json",
-    token: document.getElementById("gh-token").value.trim(),
+// ══════════════════════════════════════════════════════════
+//  GITHUB SYNC
+// ══════════════════════════════════════════════════════════
+function ghHeaders() {
+  return {
+    "Authorization": "Bearer " + state.ghToken,
+    "Accept": "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "Content-Type": "application/json",
   };
-  saveLocal();
-  document.getElementById("github-modal").style.display = "none";
-  syncToGithub();
 }
-async function testGithubSync() {
-  const st = document.getElementById("gh-modal-status");
-  st.textContent = "Testing…"; st.style.color = "#f4a261";
-  const g = {
-    user: document.getElementById("gh-user").value.trim(),
-    repo: document.getElementById("gh-repo").value.trim(),
-    file: document.getElementById("gh-file").value.trim() || "collection.json",
-    token: document.getElementById("gh-token").value.trim(),
-  };
+
+function apiUrl() {
+  const file = state.ghFile || "collection.json";
+  return `${GH_API}/repos/${state.ghUser}/${state.ghRepo}/contents/${file}`;
+}
+
+async function pullFromGH() {
+  if (!state.ghToken || !state.ghUser || !state.ghRepo) return;
+  setPill("busy", "Loading from GitHub…");
   try {
-    const r = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
-      { headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json" }});
-    if (r.status === 200 || r.status === 404) {
-      st.textContent = "✓ Connection successful!"; st.style.color = "#52b788";
-    } else {
-      st.textContent = `✗ Error ${r.status} — check credentials`; st.style.color = "#e63946";
+    const r = await fetch(apiUrl(), { headers: ghHeaders() });
+    if (r.status === 404) {
+      // File doesn't exist yet — push our local data
+      await pushToGH();
+      return;
     }
-  } catch { st.textContent = "✗ Network error"; st.style.color = "#e63946"; }
+    if (!r.ok) { setPill("err", "✗ GitHub error " + r.status); return; }
+    const j    = await r.json();
+    const text = decodeURIComponent(escape(atob(j.content.replace(/\n/g,""))));
+    const data = JSON.parse(text);
+    if (data.cards) {
+      state.cards = data.cards;
+      saveLocal();
+      updateStats();
+      renderBinder();
+      renderBrowse();
+    }
+    setPill("ok", "✓ Loaded from GitHub");
+  } catch (e) {
+    setPill("err", "✗ Load failed: " + e.message);
+  }
 }
-async function syncToGithub() {
-  const g = state.github;
-  if (!g || !g.token || !g.user || !g.repo) return;
-  setSyncStatus("busy", "Syncing…");
-  try {
-    // Get current SHA (if exists)
-    const getR = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
-      { headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json" }});
-    let sha = null;
-    if (getR.status === 200) { const j = await getR.json(); sha = j.sha; }
 
-    const content = btoa(unescape(encodeURIComponent(JSON.stringify({ cards: state.cards }, null, 2))));
-    const body = { message: `Update collection ${new Date().toISOString()}`, content };
+async function pushToGH() {
+  if (!state.ghToken || !state.ghUser || !state.ghRepo) return;
+  setPill("busy", "Saving to GitHub…");
+  try {
+    // Get current SHA (needed for updates)
+    let sha = null;
+    const get = await fetch(apiUrl(), { headers: ghHeaders() });
+    if (get.ok) {
+      const gj = await get.json();
+      sha = gj.sha;
+    } else if (get.status !== 404) {
+      setPill("err", "✗ GitHub error " + get.status); return;
+    }
+
+    const content = btoa(unescape(encodeURIComponent(
+      JSON.stringify({ cards: state.cards }, null, 2)
+    )));
+
+    const body = {
+      message: "PokéBinder sync " + new Date().toISOString(),
+      content,
+    };
     if (sha) body.sha = sha;
 
-    const putR = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
-      { method: "PUT", headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json", "Content-Type": "application/json" },
-        body: JSON.stringify(body) });
-    if (putR.ok) setSyncStatus("ok", "✓ Synced " + new Date().toLocaleTimeString());
-    else setSyncStatus("err", "✗ Sync failed (" + putR.status + ")");
-  } catch (e) { setSyncStatus("err", "✗ Network error"); }
-}
-async function loadFromGithub() {
-  const g = state.github;
-  if (!g || !g.token || !g.user || !g.repo) return;
-  try {
-    const r = await fetch(`https://api.github.com/repos/${g.user}/${g.repo}/contents/${g.file}`,
-      { headers: { Authorization: `Bearer ${g.token}`, Accept: "application/vnd.github+json" }});
-    if (r.status === 200) {
-      const j = await r.json();
-      const data = JSON.parse(decodeURIComponent(escape(atob(j.content))));
-      if (data.cards) { state.cards = data.cards; saveLocal(); updateStats(); renderBinder(); }
+    const put = await fetch(apiUrl(), {
+      method: "PUT",
+      headers: ghHeaders(),
+      body: JSON.stringify(body),
+    });
+
+    if (put.ok) setPill("ok", "✓ Saved to GitHub · " + new Date().toLocaleTimeString());
+    else {
+      const err = await put.json();
+      setPill("err", "✗ Save failed: " + (err.message || put.status));
     }
-  } catch {}
+  } catch (e) {
+    setPill("err", "✗ Network error: " + e.message);
+  }
 }
-function setSyncStatus(type, msg) {
-  const el = document.getElementById("sync-status-bar");
+
+function schedulePush() {
+  clearTimeout(syncTimer);
+  syncTimer = setTimeout(pushToGH, 1000);
+}
+
+function setPill(type, msg) {
+  const el = document.getElementById("sync-pill");
   el.style.display = "block";
-  el.className = "sync-status " + (type === "ok" ? "sync-ok" : type === "err" ? "sync-err" : "sync-busy");
+  el.className = type === "ok" ? "pill-ok" : type === "err" ? "pill-err" : "pill-busy";
   el.textContent = msg;
 }
 
-// ── PRICES ────────────────────────────────────────────────────────────────────
-function getCardPrice(card) {
-  const p = card.cardmarket?.prices?.averageSellPrice
-    || card.cardmarket?.prices?.avg1
-    || card.tcgplayer?.prices?.holofoil?.market
-    || card.tcgplayer?.prices?.normal?.market
-    || card.tcgplayer?.prices?.["1stEditionNormal"]?.market
-    || null;
-  return p ? parseFloat(p) : null;
+// ── Modal ──────────────────────────────────────────────────
+function openSyncModal() {
+  document.getElementById("gh-user").value  = state.ghUser  || "";
+  document.getElementById("gh-repo").value  = state.ghRepo  || "";
+  document.getElementById("gh-file").value  = state.ghFile  || "collection.json";
+  document.getElementById("gh-token").value = state.ghToken || "";
+  document.getElementById("gh-status").textContent = "";
+  document.getElementById("sync-modal").style.display = "flex";
 }
-function fmtPrice(p) { return p != null ? "€" + p.toFixed(2) : ""; }
-function totalCollectionValue() {
-  let total = 0;
-  for (const c of Object.values(state.cards)) { if (c.price) total += c.price; }
-  return total;
+function closeSyncModal() {
+  document.getElementById("sync-modal").style.display = "none";
 }
 
-// ── STATS ─────────────────────────────────────────────────────────────────────
-function updateStats() {
-  const ownedIds = new Set(Object.values(state.cards).map(c => c.pokemonId));
-  const owned = ownedIds.size;
-  const g1 = [...ownedIds].filter(id => id <= 151).length;
-  const g2 = [...ownedIds].filter(id => id > 151).length;
-  const totalCards = Object.keys(state.cards).length;
-  const pct = Math.round(owned / 251 * 100);
-  const circ = 2 * Math.PI * 25;
-  document.getElementById("stat-owned").textContent = owned;
-  document.getElementById("stat-cards").textContent = totalCards;
-  document.getElementById("ring-pct-text").textContent = pct + "%";
-  document.getElementById("ring-fill").setAttribute("stroke-dasharray", `${circ * pct / 100} ${circ}`);
-  document.getElementById("g1-stat").textContent = g1 + "/151";
-  document.getElementById("g1-bar").style.width = (g1/151*100) + "%";
-  document.getElementById("g2-stat").textContent = g2 + "/100";
-  document.getElementById("g2-bar").style.width = (g2/100*100) + "%";
-  document.getElementById("stat-value").textContent = "€" + totalCollectionValue().toFixed(2);
+async function testGH() {
+  const user  = document.getElementById("gh-user").value.trim();
+  const repo  = document.getElementById("gh-repo").value.trim();
+  const token = document.getElementById("gh-token").value.trim();
+  const st    = document.getElementById("gh-status");
+  if (!user || !repo || !token) {
+    st.textContent = "Please fill in all fields."; st.style.color = "var(--red)"; return;
+  }
+  st.textContent = "Testing…"; st.style.color = "var(--gold)";
+  try {
+    const r = await fetch(`${GH_API}/repos/${user}/${repo}`, {
+      headers: { "Authorization": "Bearer " + token, "Accept": "application/vnd.github+json" }
+    });
+    if (r.ok) {
+      st.textContent = "✓ Connected! Repository found."; st.style.color = "var(--green)";
+    } else if (r.status === 401) {
+      st.textContent = "✗ Invalid token — check it was copied correctly."; st.style.color = "var(--red)";
+    } else if (r.status === 404) {
+      st.textContent = "✗ Repo not found — check username and repo name."; st.style.color = "var(--red)";
+    } else {
+      st.textContent = "✗ Error " + r.status; st.style.color = "var(--red)";
+    }
+  } catch {
+    st.textContent = "✗ Network error — check your connection."; st.style.color = "var(--red)";
+  }
 }
 
-// ── TABS ──────────────────────────────────────────────────────────────────────
+async function saveGH() {
+  state.ghUser  = document.getElementById("gh-user").value.trim();
+  state.ghRepo  = document.getElementById("gh-repo").value.trim();
+  state.ghFile  = document.getElementById("gh-file").value.trim() || "collection.json";
+  state.ghToken = document.getElementById("gh-token").value.trim();
+  saveLocal();
+  updateBanner();
+  closeSyncModal();
+  await pullFromGH(); // Load remote first, merges with local
+}
+
+function updateBanner() {
+  const b = document.getElementById("setup-banner");
+  if (b) b.style.display = state.ghToken ? "none" : "flex";
+  document.getElementById("sync-lbl").textContent =
+    state.ghToken ? "GitHub Sync ✓" : "GitHub Sync";
+}
+
+// ══════════════════════════════════════════════════════════
+//  THEME
+// ══════════════════════════════════════════════════════════
+function applyTheme(dark) {
+  isDark = dark;
+  document.body.classList.toggle("light", !dark);
+  document.getElementById("th-ico").textContent = dark ? "☀️" : "🌙";
+  document.getElementById("th-lbl").textContent = dark ? "Light Mode" : "Dark Mode";
+  try { localStorage.setItem(LS_THEME, dark ? "dark" : "light"); } catch {}
+}
+function toggleTheme() { applyTheme(!isDark); }
+
+// ══════════════════════════════════════════════════════════
+//  TABS
+// ══════════════════════════════════════════════════════════
 function showTab(id, btn) {
   document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-  document.getElementById("page-"+id).classList.add("active");
-  document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+  document.getElementById("page-" + id).classList.add("active");
+  document.querySelectorAll(".nb").forEach(b => b.classList.remove("active"));
   btn.classList.add("active");
   if (id === "sets") renderSets();
 }
 
-// ── THEME ─────────────────────────────────────────────────────────────────────
-function toggleTheme() {
-  isDark = !isDark;
-  document.body.classList.toggle("light", !isDark);
-  document.getElementById("theme-icon").textContent = isDark ? "☀️" : "🌙";
-  document.getElementById("theme-label").textContent = isDark ? "Light Mode" : "Dark Mode";
-  try { localStorage.setItem("pokebinder_theme", isDark?"dark":"light"); } catch {}
-}
-function initTheme() {
-  try { const t = localStorage.getItem("pokebinder_theme"); if (t === "light") { isDark = false; document.body.classList.add("light"); document.getElementById("theme-icon").textContent = "🌙"; document.getElementById("theme-label").textContent = "Dark Mode"; } } catch {}
+// ══════════════════════════════════════════════════════════
+//  STATS
+// ══════════════════════════════════════════════════════════
+function updateStats() {
+  const ownedIds = new Set(Object.values(state.cards).map(c => c.pokemonId));
+  const owned = ownedIds.size;
+  const g1    = [...ownedIds].filter(id => id <= 151).length;
+  const g2    = [...ownedIds].filter(id => id > 151).length;
+  const total = Object.keys(state.cards).length;
+  const value = Object.values(state.cards).reduce((s,c) => s + (c.price||0), 0);
+  const pct   = Math.round(owned / 251 * 100);
+  const circ  = 2 * Math.PI * 25;
+  document.getElementById("s-owned").textContent = owned;
+  document.getElementById("s-cards").textContent = total;
+  document.getElementById("s-pct").textContent   = pct + "%";
+  document.getElementById("ring-fill").setAttribute("stroke-dasharray",
+    `${(circ * pct / 100).toFixed(2)} ${circ.toFixed(2)}`);
+  document.getElementById("s-g1").textContent = g1 + "/151";
+  document.getElementById("b-g1").style.width = (g1/151*100) + "%";
+  document.getElementById("s-g2").textContent = g2 + "/100";
+  document.getElementById("b-g2").style.width = (g2/100*100) + "%";
+  document.getElementById("s-val").textContent = "€" + value.toFixed(2);
 }
 
-// ── BW MODE ───────────────────────────────────────────────────────────────────
-function toggleBWMode() {
-  bwMode = !bwMode;
-  const btn = document.getElementById("lk-color-btn");
-  btn.textContent = bwMode ? "🎨 Full Colour" : "⬛ B&W Mode";
-  btn.classList.toggle("active", !bwMode);
-  renderLookupCards();
+// ══════════════════════════════════════════════════════════
+//  BINDER
+// ══════════════════════════════════════════════════════════
+function cardCount(pid) {
+  return Object.values(state.cards).filter(c => c.pokemonId === pid).length;
 }
-
-// ── BINDER ────────────────────────────────────────────────────────────────────
-function setBFilter(f, btn) {
+function setBF(f, btn) {
   binderFilter = f;
-  document.querySelectorAll("#binder-filters .fbtn").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
+  document.querySelectorAll("#bf-group .fb").forEach(b => b.classList.remove("on"));
+  btn.classList.add("on");
   renderBinder();
 }
-function cardCountFor(pokemonId) {
-  return Object.values(state.cards).filter(c => c.pokemonId === pokemonId).length;
-}
 function renderBinder() {
-  const q = document.getElementById("binder-search").value.toLowerCase();
-  const grid = document.getElementById("poke-grid");
-  const filtered = POKEMON.filter(p => {
-    const ms = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
-    if (!ms) return false;
-    const owned = cardCountFor(p.id) > 0;
-    if (binderFilter === "owned") return owned;
+  const q = (document.getElementById("binder-search").value||"").toLowerCase();
+  const list = POKEMON.filter(p => {
+    const hit = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
+    if (!hit) return false;
+    const owned = cardCount(p.id) > 0;
+    if (binderFilter === "owned")   return owned;
     if (binderFilter === "missing") return !owned;
-    if (binderFilter === "gen1") return p.id <= 151;
-    if (binderFilter === "gen2") return p.id > 151;
+    if (binderFilter === "gen1")    return p.id <= 151;
+    if (binderFilter === "gen2")    return p.id > 151;
     return true;
   });
-  if (!filtered.length) {
-    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><div>🔍</div><div>No Pokémon found</div></div>';
+  const grid = document.getElementById("poke-grid");
+  if (!list.length) {
+    grid.innerHTML = '<div class="empty" style="grid-column:1/-1"><span>🔍</span>No Pokémon match</div>';
     return;
   }
-  grid.innerHTML = filtered.map(p => {
-    const count = cardCountFor(p.id);
-    const owned = count > 0;
-    const gen = p.id <= 151 ? 1 : 2;
-    const oc = owned ? (gen===1?"owned-g1":"owned-g2") : "unowned";
-    const cc = gen===1?"g1c":"g2c";
-    const dot = gen===1?"var(--red)":"var(--blue)";
-    return `<div class="pcard ${oc}" onclick="openLookup(${p.id})">
-      <div class="pcard-num">#${String(p.id).padStart(3,"0")}</div>
+  grid.innerHTML = list.map(p => {
+    const n  = cardCount(p.id);
+    const g  = p.id <= 151 ? 1 : 2;
+    const oc = n > 0 ? (g===1?"og1":"og2") : "unowned";
+    const cc = g===1 ? "cc1" : "cc2";
+    const dc = g===1 ? "var(--red)" : "var(--blue)";
+    return `<div class="pc ${oc}" onclick="openLookup(${p.id})">
+      <div class="pc-num">#${String(p.id).padStart(3,"0")}</div>
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}" loading="lazy">
-      ${owned ? `<div class="owned-dot" style="background:${dot}">✓</div>` : ""}
-      <div class="pcard-name">${p.name}</div>
-      <div class="pcard-count ${cc}">${owned ? count+" card"+(count>1?"s":"") : "Gen "+gen}</div>
-      <button class="browse-icon" onclick="event.stopPropagation();openLookup(${p.id})" title="Browse cards">🃏</button>
+      ${n>0?`<div class="pc-dot" style="background:${dc}">✓</div>`:""}
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-count ${cc}">${n>0?n+" card"+(n>1?"s":""):"Gen "+g}</div>
+      <button class="pc-ico" onclick="event.stopPropagation();openLookup(${p.id})" title="Browse cards">🃏</button>
     </div>`;
   }).join("");
 }
 
-// ── LOOKUP BROWSE ─────────────────────────────────────────────────────────────
-function setBrowseFilter(f, btn) {
+// ══════════════════════════════════════════════════════════
+//  BROWSE
+// ══════════════════════════════════════════════════════════
+function setBrowse(f, btn) {
   browseFilter = f;
-  document.querySelectorAll("#lookup-intro .fbtn").forEach(b => b.classList.remove("active"));
-  btn.classList.add("active");
+  document.querySelectorAll("#browse-fg .fb").forEach(b => b.classList.remove("on"));
+  btn.classList.add("on");
   renderBrowse();
 }
 function renderBrowse() {
-  const q = document.getElementById("browse-search").value.toLowerCase();
-  const filtered = POKEMON.filter(p => {
-    const ms = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
-    if (!ms) return false;
+  const q = (document.getElementById("browse-search").value||"").toLowerCase();
+  const list = POKEMON.filter(p => {
+    const hit = p.name.toLowerCase().includes(q) || String(p.id).includes(q);
+    if (!hit) return false;
     if (browseFilter === "gen1") return p.id <= 151;
     if (browseFilter === "gen2") return p.id > 151;
     return true;
   });
-  document.getElementById("lookup-browse").innerHTML = filtered.map(p => {
-    const count = cardCountFor(p.id);
-    return `<div class="lp-card" onclick="openLookup(${p.id})">
-      <div class="lp-card-num">#${String(p.id).padStart(3,"0")}</div>
+  document.getElementById("lookup-browse").innerHTML = list.map(p => {
+    const n = cardCount(p.id);
+    return `<div class="lpc" onclick="openLookup(${p.id})">
+      <div class="lpc-num">#${String(p.id).padStart(3,"0")}</div>
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png" alt="${p.name}" loading="lazy">
-      <div class="lp-card-name">${p.name}</div>
-      ${count > 0 ? `<div class="lp-card-count">✓ ${count} card${count>1?"s":""}</div>` : ""}
+      <div class="lpc-name">${p.name}</div>
+      ${n>0?`<div class="lpc-cnt">✓ ${n} card${n>1?"s":""}</div>`:""}
     </div>`;
   }).join("");
 }
 
-// ── LOOKUP DETAIL ─────────────────────────────────────────────────────────────
-async function openLookup(pokemonId) {
-  const p = POKEMON.find(x => x.id === pokemonId);
-  if (!p) return;
-  currentLookupPokemon = p;
-  currentLookupCards = [];
+// ══════════════════════════════════════════════════════════
+//  LOOKUP DETAIL
+// ══════════════════════════════════════════════════════════
+function extractPrice(c) {
+  const v = c.cardmarket?.prices?.averageSellPrice
+    || c.cardmarket?.prices?.avg1
+    || c.tcgplayer?.prices?.holofoil?.market
+    || c.tcgplayer?.prices?.normal?.market
+    || c.tcgplayer?.prices?.["1stEditionNormal"]?.market
+    || null;
+  return v ? parseFloat(v) : null;
+}
 
-  // Switch to lookup tab if not already there
+async function openLookup(pid) {
+  const p = POKEMON.find(x => x.id === pid);
+  if (!p) return;
+  currentPoke = p; currentCards = []; bwMode = true;
+
   document.querySelectorAll(".page").forEach(x => x.classList.remove("active"));
   document.getElementById("page-lookup").classList.add("active");
-  document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-  document.querySelectorAll(".nav-btn")[1].classList.add("active");
+  document.querySelectorAll(".nb").forEach(b => b.classList.remove("active"));
+  document.querySelectorAll(".nb")[1].classList.add("active");
 
-  document.getElementById("lookup-intro").style.display = "none";
-  document.getElementById("lookup-detail").style.display = "block";
-  document.getElementById("lk-sprite").src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`;
-  document.getElementById("lk-name").textContent = `#${String(p.id).padStart(3,"0")} ${p.name}`;
+  document.getElementById("lk-intro").style.display  = "none";
+  document.getElementById("lk-detail").style.display = "block";
+  document.getElementById("lk-sprite").src =
+    `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${p.id}.png`;
+  document.getElementById("lk-title").textContent =
+    `#${String(p.id).padStart(3,"0")} ${p.name}`;
   document.getElementById("lk-sub").textContent = "Fetching cards…";
-  document.getElementById("lk-error").style.display = "none";
-  document.getElementById("lk-grid").innerHTML = "";
+  document.getElementById("lk-err").style.display   = "none";
   document.getElementById("lk-empty").style.display = "none";
-  bwMode = true;
-  document.getElementById("lk-color-btn").textContent = "🎨 Full Colour";
-  document.getElementById("lk-color-btn").classList.remove("active");
+  document.getElementById("lk-grid").innerHTML = "";
+  const cb = document.getElementById("col-btn");
+  cb.textContent = "🎨 Full Colour"; cb.classList.remove("on");
 
-  const skelWrap = document.getElementById("lk-skels");
-  skelWrap.style.display = "grid";
-  skelWrap.innerHTML = [...Array(8)].map(() => `<div class="skel" style="height:230px"></div>`).join("");
+  const sk = document.getElementById("lk-skels");
+  sk.style.display = "grid";
+  sk.innerHTML = Array(8).fill('<div class="skel" style="height:228px"></div>').join("");
 
   try {
     const name = encodeURIComponent(p.name.replace(/[♀♂]/g,"").trim());
-    const res = await fetch(`https://api.pokemontcg.io/v2/cards?q=name:"${name}"&orderBy=set.releaseDate&pageSize=100`);
-    if (!res.ok) throw new Error("API " + res.status);
+    const res  = await fetch(
+      `https://api.pokemontcg.io/v2/cards?q=name:"${name}"&orderBy=set.releaseDate&pageSize=100`
+    );
+    if (!res.ok) throw new Error("PokéTCG API " + res.status);
     const data = await res.json();
-    currentLookupCards = (data.data || []).map(c => ({
+    currentCards = (data.data||[]).map(c => ({
       ...c,
-      _price: getCardPrice(c),
-      _releaseTs: new Date(c.set?.releaseDate || "1999-01-01").getTime(),
+      _price: extractPrice(c),
+      _ts: new Date(c.set?.releaseDate||"1999-01-01").getTime(),
     }));
-    skelWrap.style.display = "none";
-    document.getElementById("lk-sub").textContent = `${currentLookupCards.length} cards found — click to collect`;
-    if (!currentLookupCards.length) { document.getElementById("lk-empty").style.display = "block"; return; }
-    applySortFilter();
-  } catch (err) {
-    skelWrap.style.display = "none";
-    const eb = document.getElementById("lk-error");
+    sk.style.display = "none";
+    document.getElementById("lk-sub").textContent =
+      `${currentCards.length} cards — click any to collect`;
+    if (!currentCards.length) { document.getElementById("lk-empty").style.display="block"; return; }
+    applySort();
+  } catch(err) {
+    sk.style.display = "none";
+    const eb = document.getElementById("lk-err");
     eb.textContent = "Could not load cards: " + err.message;
     eb.style.display = "block";
     document.getElementById("lk-sub").textContent = "Error";
   }
 }
 
-function applySortFilter() {
-  const s = document.getElementById("sort-select").value;
-  const cards = [...currentLookupCards];
-  if (s === "date-asc") cards.sort((a,b) => a._releaseTs - b._releaseTs);
-  else if (s === "date-desc") cards.sort((a,b) => b._releaseTs - a._releaseTs);
-  else if (s === "price-asc") cards.sort((a,b) => (a._price||0) - (b._price||0));
-  else if (s === "price-desc") cards.sort((a,b) => (b._price||0) - (a._price||0));
-  renderLookupCards(cards);
+function applySort() {
+  const s = document.getElementById("sort-sel").value;
+  const sorted = [...currentCards];
+  if      (s==="date-asc")  sorted.sort((a,b)=>a._ts-b._ts);
+  else if (s==="date-desc") sorted.sort((a,b)=>b._ts-a._ts);
+  else if (s==="price-asc") sorted.sort((a,b)=>(a._price||0)-(b._price||0));
+  else                      sorted.sort((a,b)=>(b._price||0)-(a._price||0));
+  renderCards(sorted);
 }
 
-function renderLookupCards(cards) {
-  const list = cards || currentLookupCards;
-  const grid = document.getElementById("lk-grid");
-  grid.innerHTML = list.map(c => {
-    const isCollected = !!state.cards[c.id];
-    const bwClass = bwMode ? "bw-mode" : "";
-    const collClass = isCollected ? "collected" : "";
-    const price = c._price;
-    const seriesColor = SERIES_COLORS[c.set?.series] || "#888";
-    return `<div class="tcg-card ${bwClass} ${collClass}" onclick="toggleCard('${c.id}',event)" id="tc-${c.id}">
-      ${isCollected ? `<div class="tcg-collected-badge">✓ Owned</div>` : ""}
-      <button class="tcg-zoom-btn" onclick="event.stopPropagation();zoomCard('${c.id}')">🔍</button>
-      ${c.images?.small ? `<img src="${c.images.small}" alt="${c.name}" loading="lazy">` : `<div class="tcg-noimg">No Image</div>`}
-      <div class="tcg-info">
-        <div class="tcg-name">${c.name}</div>
-        <div class="tcg-set"><span class="set-series-dot" style="background:${seriesColor};width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:4px"></span>${c.set?.name || "Unknown"} <span style="color:var(--text4)">(${c.set?.releaseDate?.slice(0,4) || "?"})</span></div>
-        <div class="tcg-bot">
-          <span class="tcg-num">#${c.number}/${c.set?.printedTotal||"?"}</span>
-          ${c.rarity ? `<span class="tcg-rarity">${c.rarity}</span>` : ""}
+function renderCards(list) {
+  document.getElementById("lk-grid").innerHTML = list.map(c => {
+    const owned = !!state.cards[c.id];
+    const sc    = SERIES_COLORS[c.set?.series]||"#888";
+    const p     = c._price;
+    return `<div class="tcard ${bwMode?"bw":""} ${owned?"owned":""}" id="tc-${c.id}" onclick="toggleCard('${c.id}')">
+      ${owned?'<div class="tcard-badge">✓ Owned</div>':""}
+      <button class="tcard-zoom" onclick="event.stopPropagation();zoomCard('${c.id}')">🔍</button>
+      ${c.images?.small
+        ?`<img src="${c.images.small}" alt="${c.name}" loading="lazy">`
+        :'<div class="tcard-noimg">No image</div>'}
+      <div class="tcard-info">
+        <div class="tcard-name">${c.name}</div>
+        <div class="tcard-set">
+          <span class="sdot" style="background:${sc}"></span>
+          ${c.set?.name||"?"} <span style="color:var(--text4)">(${(c.set?.releaseDate||"").slice(0,4)||"?"})</span>
         </div>
-        ${price != null ? `<div class="tcg-price" style="margin-top:4px">€${price.toFixed(2)}</div>` : `<div class="price-loading">Price N/A</div>`}
+        <div class="tcard-bot">
+          <span class="tcard-num">#${c.number}/${c.set?.printedTotal||"?"}</span>
+          ${c.rarity?`<span class="tcard-rar">${c.rarity}</span>`:""}
+        </div>
+        <div class="tcard-price">${p!=null
+          ?"€"+p.toFixed(2)
+          :'<span style="color:var(--text4);font-size:10px;font-weight:400">Price N/A</span>'}</div>
       </div>
     </div>`;
   }).join("");
 }
 
-function toggleCard(cardId, event) {
-  const card = currentLookupCards.find(c => c.id === cardId);
+function toggleCard(cardId) {
+  const card = currentCards.find(c => c.id === cardId);
   if (!card) return;
   if (state.cards[cardId]) {
     delete state.cards[cardId];
   } else {
     state.cards[cardId] = {
-      pokemonId: currentLookupPokemon.id,
-      pokemonName: currentLookupPokemon.name,
-      name: card.name,
-      set: card.set?.name || "",
-      setId: card.set?.id || "",
-      series: card.set?.series || "",
-      number: card.number,
-      rarity: card.rarity || "",
-      img: card.images?.small || "",
-      price: card._price,
-      priceDate: Date.now(),
+      cardId, pokemonId: currentPoke.id, pokemonName: currentPoke.name,
+      name: card.name, set: card.set?.name||"", setId: card.set?.id||"",
+      series: card.set?.series||"", number: card.number, rarity: card.rarity||"",
+      img: card.images?.small||"", price: card._price, dateCollected: Date.now(),
     };
   }
-  persistState();
-  updateStats();
-  renderBinder();
-  // update just this card element
+  saveLocal(); updateStats(); renderBinder(); schedulePush();
+
   const el = document.getElementById("tc-"+cardId);
-  if (el) {
-    const isCollected = !!state.cards[cardId];
-    el.classList.toggle("collected", isCollected);
-    // update badge
-    const existingBadge = el.querySelector(".tcg-collected-badge");
-    if (isCollected && !existingBadge) {
-      const b = document.createElement("div");
-      b.className = "tcg-collected-badge"; b.textContent = "✓ Owned";
-      el.insertBefore(b, el.firstChild);
-    } else if (!isCollected && existingBadge) {
-      existingBadge.remove();
-    }
-  }
+  if (!el) return;
+  const now = !!state.cards[cardId];
+  el.classList.toggle("owned", now);
+  const badge = el.querySelector(".tcard-badge");
+  if (now && !badge) {
+    const b = document.createElement("div");
+    b.className="tcard-badge"; b.textContent="✓ Owned";
+    el.insertBefore(b, el.firstChild);
+  } else if (!now && badge) badge.remove();
 }
 
 function closeLookup() {
-  document.getElementById("lookup-intro").style.display = "block";
-  document.getElementById("lookup-detail").style.display = "none";
-  currentLookupPokemon = null;
-  currentLookupCards = [];
+  currentPoke=null; currentCards=[];
+  document.getElementById("lk-intro").style.display  = "block";
+  document.getElementById("lk-detail").style.display = "none";
   renderBrowse();
 }
 
-// ── ZOOM ─────────────────────────────────────────────────────────────────────
+function toggleBW() {
+  bwMode = !bwMode;
+  const btn = document.getElementById("col-btn");
+  btn.textContent = bwMode ? "🎨 Full Colour" : "⬛ B&W Mode";
+  btn.classList.toggle("on", !bwMode);
+  document.querySelectorAll(".tcard").forEach(el => el.classList.toggle("bw", bwMode));
+}
+
+// ══════════════════════════════════════════════════════════
+//  ZOOM
+// ══════════════════════════════════════════════════════════
 function zoomCard(cardId) {
-  const card = currentLookupCards.find(c => c.id === cardId);
-  if (!card) return;
-  document.getElementById("zoom-img").src = card.images?.large || card.images?.small || "";
-  document.getElementById("zoom-name").textContent = card.name;
-  document.getElementById("zoom-set").textContent = (card.set?.name || "") + " · #" + card.number + "/" + (card.set?.printedTotal||"?");
-  document.getElementById("zoom-rarity").textContent = card.rarity || "";
-  document.getElementById("zoom-price").textContent = card._price != null ? "€" + card._price.toFixed(2) : "";
+  const c = currentCards.find(x => x.id===cardId);
+  if (!c) return;
+  document.getElementById("zoom-img").src           = c.images?.large||c.images?.small||"";
+  document.getElementById("zoom-name").textContent  = c.name;
+  document.getElementById("zoom-set").textContent   =
+    (c.set?.name||"")+" · #"+c.number+"/"+(c.set?.printedTotal||"?");
+  document.getElementById("zoom-rar").textContent   = c.rarity||"";
+  document.getElementById("zoom-price").textContent =
+    c._price!=null ? "€"+c._price.toFixed(2) : "";
   document.getElementById("zoom-modal").style.display = "flex";
 }
-function closeZoom() { document.getElementById("zoom-modal").style.display = "none"; }
-document.addEventListener("keydown", e => { if (e.key === "Escape") { closeZoom(); closeGithubModal(null); } });
+function closeZoom() { document.getElementById("zoom-modal").style.display="none"; }
 
-// ── SETS BREAKDOWN ────────────────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════
+//  SETS BREAKDOWN
+// ══════════════════════════════════════════════════════════
 function renderSets() {
-  const q = document.getElementById("sets-search").value.toLowerCase();
-  // Aggregate cards by setId
+  const q = (document.getElementById("sets-search").value||"").toLowerCase();
   const bySet = {};
   for (const c of Object.values(state.cards)) {
-    if (!bySet[c.setId]) bySet[c.setId] = { name: c.set, setId: c.setId, series: c.series, count: 0, value: 0 };
+    if (!bySet[c.setId]) bySet[c.setId]={name:c.set,series:c.series,count:0,value:0};
     bySet[c.setId].count++;
     if (c.price) bySet[c.setId].value += c.price;
   }
-  let rows = Object.values(bySet).sort((a,b) => b.count - a.count);
-  if (q) rows = rows.filter(r => r.name.toLowerCase().includes(q) || (r.series||"").toLowerCase().includes(q));
-
+  let rows = Object.values(bySet).sort((a,b)=>b.count-a.count);
+  if (q) rows = rows.filter(r =>
+    (r.name||"").toLowerCase().includes(q)||(r.series||"").toLowerCase().includes(q));
+  const body = document.getElementById("sets-body");
   if (!rows.length) {
-    document.getElementById("sets-container").innerHTML = '<div class="empty-state"><div>📦</div><div>No sets yet — collect some cards!</div></div>';
+    body.innerHTML='<div class="empty"><span>📦</span>No cards collected yet — head to Card Lookup!</div>';
     return;
   }
-
-  const maxCount = Math.max(...rows.map(r => r.count));
-  document.getElementById("sets-container").innerHTML = `
-    <table class="sets-table">
-      <thead><tr>
-        <th>Set</th><th>Series</th><th>Cards Owned</th><th class="set-bar-cell">Progress</th><th>Value</th>
-      </tr></thead>
-      <tbody>
-        ${rows.map(r => {
-          const color = SERIES_COLORS[r.series] || "#888";
-          const barW = Math.round((r.count / maxCount) * 100);
-          return `<tr>
-            <td style="font-weight:700;color:var(--text)">${r.name || r.setId}</td>
-            <td><span class="set-series-dot" style="background:${color};width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px"></span>${r.series||"—"}</td>
-            <td style="font-weight:700;color:var(--red)">${r.count}</td>
-            <td class="set-bar-cell">
-              <div class="set-mini-bar"><div class="set-mini-fill" style="width:${barW}%;background:${color}"></div></div>
-            </td>
-            <td style="color:var(--green);font-weight:700">${r.value > 0 ? "€"+r.value.toFixed(2) : "—"}</td>
-          </tr>`;
-        }).join("")}
-      </tbody>
-    </table>`;
+  const mx = Math.max(...rows.map(r=>r.count));
+  body.innerHTML = `<table class="sets-tbl">
+    <thead><tr>
+      <th>Set</th><th>Series</th><th>Cards</th>
+      <th style="min-width:110px">Bar</th><th>Value</th>
+    </tr></thead>
+    <tbody>${rows.map(r=>{
+      const col=SERIES_COLORS[r.series]||"#888";
+      const bw=Math.round(r.count/mx*100);
+      return `<tr>
+        <td style="font-weight:700;color:var(--text)">${r.name||"Unknown"}</td>
+        <td><span class="sdot" style="background:${col}"></span>${r.series||"—"}</td>
+        <td style="font-weight:800;color:var(--red)">${r.count}</td>
+        <td><div class="smb"><div class="smf" style="width:${bw}%;background:${col}"></div></div></td>
+        <td style="color:var(--green);font-weight:700">${r.value>0?"€"+r.value.toFixed(2):"—"}</td>
+      </tr>`;
+    }).join("")}</tbody>
+  </table>`;
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
-loadState();
-initTheme();
-renderBinder();
-renderBrowse();
-updateStats();
-if (state.github?.token) loadFromGithub();
+// ══════════════════════════════════════════════════════════
+//  KEYBOARD
+// ══════════════════════════════════════════════════════════
+document.addEventListener("keydown", e => {
+  if (e.key==="Escape") { closeZoom(); closeSyncModal(); }
+});
 </script>
 </body>
 </html>
