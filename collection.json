@@ -1,1 +1,18 @@
-{}
+{
+  "cards": {
+    "ex14-45": {
+      "cardId": "ex14-45",
+      "pokemonId": 1,
+      "pokemonName": "Bulbasaur",
+      "name": "Bulbasaur",
+      "set": "Crystal Guardians",
+      "setId": "ex14",
+      "series": "EX",
+      "number": "45",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex14/45.png",
+      "price": 0.89,
+      "dateCollected": 1780611953959
+    }
+  }
+}
