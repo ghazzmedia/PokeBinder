@@ -1,18 +1,3 @@
 {
-  "cards": {
-    "mcd18-10": {
-      "cardId": "mcd18-10",
-      "pokemonId": 113,
-      "pokemonName": "Chansey",
-      "name": "Chansey",
-      "set": "McDonald's Collection 2018",
-      "setId": "mcd18",
-      "series": "Other",
-      "number": "10",
-      "rarity": "",
-      "img": "https://images.pokemontcg.io/mcd18/10.png",
-      "price": null,
-      "dateCollected": 1780674156508
-    }
-  }
+  "cards": {}
 }
