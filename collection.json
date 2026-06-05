@@ -1,3 +1,18 @@
 {
-  "cards": {}
+  "cards": {
+    "sm9-59": {
+      "cardId": "sm9-59",
+      "pokemonId": 34,
+      "pokemonName": "Nidoking",
+      "name": "Nidoking",
+      "set": "Team Up",
+      "setId": "sm9",
+      "series": "Sun & Moon",
+      "number": "59",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/sm9/59.png",
+      "price": 1.49,
+      "dateCollected": 1780663016462
+    }
+  }
 }
