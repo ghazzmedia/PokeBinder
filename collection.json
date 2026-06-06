@@ -1,3 +1,18 @@
 {
-  "cards": {}
+  "cards": {
+    "me4-10": {
+      "cardId": "me4-10",
+      "pokemonId": 250,
+      "pokemonName": "Ho-Oh",
+      "name": "Ho-Oh",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "10",
+      "rarity": "Rare",
+      "img": "https://images.scrydex.com/pokemon/me4-10/small",
+      "price": null,
+      "dateCollected": 1780779302111
+    }
+  }
 }
