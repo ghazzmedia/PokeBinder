@@ -13,6 +13,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-10/small",
       "price": null,
       "dateCollected": 1780779302111
+    },
+    "svp-141": {
+      "cardId": "svp-141",
+      "pokemonId": 164,
+      "pokemonName": "Noctowl",
+      "name": "Noctowl",
+      "set": "Scarlet & Violet Black Star Promos",
+      "setId": "svp",
+      "series": "Scarlet & Violet",
+      "number": "141",
+      "rarity": "Promo",
+      "img": "https://images.pokemontcg.io/svp/141.png",
+      "price": 52,
+      "dateCollected": 1780779407382
     }
   }
 }
