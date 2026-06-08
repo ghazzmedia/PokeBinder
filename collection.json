@@ -41,6 +41,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-28/small",
       "price": null,
       "dateCollected": 1780952525309
+    },
+    "sv8pt5-3": {
+      "cardId": "sv8pt5-3",
+      "pokemonId": 127,
+      "pokemonName": "Pinsir",
+      "name": "Pinsir",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "3",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv8pt5/3.png",
+      "price": 0.07,
+      "dateCollected": 1780952551512
     }
   }
 }
