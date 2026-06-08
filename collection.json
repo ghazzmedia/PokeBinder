@@ -363,6 +363,20 @@
       "img": "https://images.pokemontcg.io/sv7/114.png",
       "price": 0.15,
       "dateCollected": 1780952956348
+    },
+    "sv6-43": {
+      "cardId": "sv6-43",
+      "pokemonId": 62,
+      "pokemonName": "Poliwrath",
+      "name": "Poliwrath",
+      "set": "Twilight Masquerade",
+      "setId": "sv6",
+      "series": "Scarlet & Violet",
+      "number": "43",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv6/43.png",
+      "price": 0.04,
+      "dateCollected": 1780953030148
     }
   }
 }
