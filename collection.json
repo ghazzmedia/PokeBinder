@@ -405,6 +405,20 @@
       "img": "https://images.pokemontcg.io/sv7/3.png",
       "price": 0.06,
       "dateCollected": 1780953055019
+    },
+    "sv7-115": {
+      "cardId": "sv7-115",
+      "pokemonId": 164,
+      "pokemonName": "Noctowl",
+      "name": "Noctowl",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "115",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/sv7/115.png",
+      "price": 0.14,
+      "dateCollected": 1780953077640
     }
   }
 }
