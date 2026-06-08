@@ -209,6 +209,20 @@
       "img": "https://images.pokemontcg.io/sv7/34.png",
       "price": 0.03,
       "dateCollected": 1780952804846
+    },
+    "sv7-46": {
+      "cardId": "sv7-46",
+      "pokemonId": 125,
+      "pokemonName": "Electabuzz",
+      "name": "Electabuzz",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "46",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/46.png",
+      "price": 0.03,
+      "dateCollected": 1780952836268
     }
   }
 }
