@@ -195,6 +195,20 @@
       "img": "https://images.pokemontcg.io/sv7/31.png",
       "price": 0.04,
       "dateCollected": 1780952780027
+    },
+    "sv8-74": {
+      "cardId": "sv8-74",
+      "pokemonId": 184,
+      "pokemonName": "Azumarill",
+      "name": "Azumarill",
+      "set": "Surging Sparks",
+      "setId": "sv8",
+      "series": "Scarlet & Violet",
+      "number": "74",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv8/74.png",
+      "price": 0.07,
+      "dateCollected": 1780952799757
     }
   }
 }
