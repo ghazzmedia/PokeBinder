@@ -237,6 +237,20 @@
       "img": "https://images.pokemontcg.io/sv7/48.png",
       "price": 0.03,
       "dateCollected": 1780952845924
+    },
+    "sv7-49": {
+      "cardId": "sv7-49",
+      "pokemonId": 171,
+      "pokemonName": "Lanturn",
+      "name": "Lanturn",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "49",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv7/49.png",
+      "price": 0.03,
+      "dateCollected": 1780952854673
     }
   }
 }
