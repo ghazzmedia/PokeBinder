@@ -307,6 +307,20 @@
       "img": "https://images.pokemontcg.io/sv7/73.png",
       "price": 0.04,
       "dateCollected": 1780952900136
+    },
+    "sv7-75": {
+      "cardId": "sv7-75",
+      "pokemonId": 112,
+      "pokemonName": "Rhydon",
+      "name": "Rhydon",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "75",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/75.png",
+      "price": 0.06,
+      "dateCollected": 1780952909765
     }
   }
 }
