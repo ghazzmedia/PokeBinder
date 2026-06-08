@@ -223,6 +223,20 @@
       "img": "https://images.pokemontcg.io/sv7/46.png",
       "price": 0.03,
       "dateCollected": 1780952836268
+    },
+    "sv7-48": {
+      "cardId": "sv7-48",
+      "pokemonId": 170,
+      "pokemonName": "Chinchou",
+      "name": "Chinchou",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "48",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/48.png",
+      "price": 0.03,
+      "dateCollected": 1780952845924
     }
   }
 }
