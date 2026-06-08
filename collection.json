@@ -167,6 +167,20 @@
       "img": "https://images.pokemontcg.io/sv7/19.png",
       "price": 0.04,
       "dateCollected": 1780952732988
+    },
+    "sv7-20": {
+      "cardId": "sv7-20",
+      "pokemonId": 78,
+      "pokemonName": "Rapidash",
+      "name": "Rapidash",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "20",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv7/20.png",
+      "price": 0.03,
+      "dateCollected": 1780952757303
     }
   }
 }
