@@ -97,6 +97,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/22.png",
       "price": 0.35,
       "dateCollected": 1780952654024
+    },
+    "sv8pt5-24": {
+      "cardId": "sv8pt5-24",
+      "pokemonId": 245,
+      "pokemonName": "Suicune",
+      "name": "Suicune",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "24",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv8pt5/24.png",
+      "price": 0.11,
+      "dateCollected": 1780952672953
     }
   }
 }
