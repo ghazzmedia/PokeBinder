@@ -377,6 +377,20 @@
       "img": "https://images.pokemontcg.io/sv6/43.png",
       "price": 0.04,
       "dateCollected": 1780953030148
+    },
+    "sv6-27": {
+      "cardId": "sv6-27",
+      "pokemonId": 38,
+      "pokemonName": "Ninetales",
+      "name": "Ninetales",
+      "set": "Twilight Masquerade",
+      "setId": "sv6",
+      "series": "Scarlet & Violet",
+      "number": "27",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv6/27.png",
+      "price": 0.04,
+      "dateCollected": 1780953043841
     }
   }
 }
