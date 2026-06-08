@@ -321,6 +321,20 @@
       "img": "https://images.pokemontcg.io/sv7/75.png",
       "price": 0.06,
       "dateCollected": 1780952909765
+    },
+    "sv7-112": {
+      "cardId": "sv7-112",
+      "pokemonId": 128,
+      "pokemonName": "Tauros",
+      "name": "Tauros",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "112",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/112.png",
+      "price": 0.04,
+      "dateCollected": 1780952929329
     }
   }
 }
