@@ -69,6 +69,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/19.png",
       "price": 0.02,
       "dateCollected": 1780952571905
+    },
+    "sv8pt5-20": {
+      "cardId": "sv8pt5-20",
+      "pokemonId": 118,
+      "pokemonName": "Goldeen",
+      "name": "Goldeen",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "20",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv8pt5/20.png",
+      "price": 0.08,
+      "dateCollected": 1780952625787
     }
   }
 }
