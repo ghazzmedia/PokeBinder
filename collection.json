@@ -195,6 +195,20 @@
       "img": "https://images.pokemontcg.io/sv7/31.png",
       "price": 0.04,
       "dateCollected": 1780952780027
+    },
+    "sv7-34": {
+      "cardId": "sv7-34",
+      "pokemonId": 184,
+      "pokemonName": "Azumarill",
+      "name": "Azumarill",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "34",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv7/34.png",
+      "price": 0.03,
+      "dateCollected": 1780952804846
     }
   }
 }
