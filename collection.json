@@ -419,6 +419,20 @@
       "img": "https://images.pokemontcg.io/sv7/115.png",
       "price": 0.14,
       "dateCollected": 1780953077640
+    },
+    "sv8pt5-30": {
+      "cardId": "sv8pt5-30",
+      "pokemonId": 135,
+      "pokemonName": "Jolteon",
+      "name": "Jolteon ex",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "30",
+      "rarity": "Double Rare",
+      "img": "https://images.pokemontcg.io/sv8pt5/30.png",
+      "price": 4.2,
+      "dateCollected": 1780953100982
     }
   }
 }
