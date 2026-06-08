@@ -27,6 +27,20 @@
       "img": "https://images.pokemontcg.io/svp/141.png",
       "price": 52,
       "dateCollected": 1780779407382
+    },
+    "me4-28": {
+      "cardId": "me4-28",
+      "pokemonId": 180,
+      "pokemonName": "Flaaffy",
+      "name": "Flaaffy",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "28",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me4-28/small",
+      "price": null,
+      "dateCollected": 1780952525309
     }
   }
 }
