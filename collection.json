@@ -181,6 +181,20 @@
       "img": "https://images.pokemontcg.io/sv7/20.png",
       "price": 0.03,
       "dateCollected": 1780952757303
+    },
+    "sv7-31": {
+      "cardId": "sv7-31",
+      "pokemonId": 131,
+      "pokemonName": "Lapras",
+      "name": "Lapras",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "31",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv7/31.png",
+      "price": 0.04,
+      "dateCollected": 1780952780027
     }
   }
 }
