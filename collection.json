@@ -349,6 +349,20 @@
       "img": "https://images.pokemontcg.io/sv7/113.png",
       "price": 0.06,
       "dateCollected": 1780952943752
+    },
+    "sv7-114": {
+      "cardId": "sv7-114",
+      "pokemonId": 163,
+      "pokemonName": "Hoothoot",
+      "name": "Hoothoot",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "114",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/114.png",
+      "price": 0.15,
+      "dateCollected": 1780952956348
     }
   }
 }
