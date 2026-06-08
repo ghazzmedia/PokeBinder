@@ -83,6 +83,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/20.png",
       "price": 0.08,
       "dateCollected": 1780952625787
+    },
+    "sv8pt5-22": {
+      "cardId": "sv8pt5-22",
+      "pokemonId": 134,
+      "pokemonName": "Vaporeon",
+      "name": "Vaporeon",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "22",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/sv8pt5/22.png",
+      "price": 0.35,
+      "dateCollected": 1780952654024
     }
   }
 }
