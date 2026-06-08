@@ -433,6 +433,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/30.png",
       "price": 4.2,
       "dateCollected": 1780953100982
+    },
+    "sv8pt5-60": {
+      "cardId": "sv8pt5-60",
+      "pokemonId": 197,
+      "pokemonName": "Umbreon",
+      "name": "Umbreon ex",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "60",
+      "rarity": "Double Rare",
+      "img": "https://images.pokemontcg.io/sv8pt5/60.png",
+      "price": 6.83,
+      "dateCollected": 1780953114208
     }
   }
 }
