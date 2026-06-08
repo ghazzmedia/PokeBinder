@@ -139,6 +139,20 @@
       "img": "https://images.pokemontcg.io/sv7/2.png",
       "price": 0.03,
       "dateCollected": 1780952700738
+    },
+    "sv7-4": {
+      "cardId": "sv7-4",
+      "pokemonId": 251,
+      "pokemonName": "Celebi",
+      "name": "Celebi",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "4",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv7/4.png",
+      "price": 0.04,
+      "dateCollected": 1780952713118
     }
   }
 }
