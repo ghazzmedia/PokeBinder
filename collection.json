@@ -335,6 +335,20 @@
       "img": "https://images.pokemontcg.io/sv7/112.png",
       "price": 0.04,
       "dateCollected": 1780952929329
+    },
+    "sv7-113": {
+      "cardId": "sv7-113",
+      "pokemonId": 133,
+      "pokemonName": "Eevee",
+      "name": "Eevee",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "113",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/113.png",
+      "price": 0.06,
+      "dateCollected": 1780952943752
     }
   }
 }
