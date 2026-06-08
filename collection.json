@@ -265,6 +265,20 @@
       "img": "https://images.pokemontcg.io/sv7/57.png",
       "price": 0.05,
       "dateCollected": 1780952868011
+    },
+    "sv7-58": {
+      "cardId": "sv7-58",
+      "pokemonId": 199,
+      "pokemonName": "Slowking",
+      "name": "Slowking",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "58",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv7/58.png",
+      "price": 0.05,
+      "dateCollected": 1780952879136
     }
   }
 }
