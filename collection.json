@@ -153,6 +153,20 @@
       "img": "https://images.pokemontcg.io/sv7/4.png",
       "price": 0.04,
       "dateCollected": 1780952713118
+    },
+    "sv7-19": {
+      "cardId": "sv7-19",
+      "pokemonId": 77,
+      "pokemonName": "Ponyta",
+      "name": "Ponyta",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "19",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/19.png",
+      "price": 0.04,
+      "dateCollected": 1780952732988
     }
   }
 }
