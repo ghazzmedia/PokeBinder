@@ -391,6 +391,20 @@
       "img": "https://images.pokemontcg.io/sv6/27.png",
       "price": 0.04,
       "dateCollected": 1780953043841
+    },
+    "sv7-3": {
+      "cardId": "sv7-3",
+      "pokemonId": 166,
+      "pokemonName": "Ledian",
+      "name": "Ledian",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "3",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/sv7/3.png",
+      "price": 0.06,
+      "dateCollected": 1780953055019
     }
   }
 }
