@@ -279,6 +279,20 @@
       "img": "https://images.pokemontcg.io/sv7/58.png",
       "price": 0.05,
       "dateCollected": 1780952879136
+    },
+    "sv7-72": {
+      "cardId": "sv7-72",
+      "pokemonId": 104,
+      "pokemonName": "Cubone",
+      "name": "Cubone",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "72",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/72.png",
+      "price": 0.05,
+      "dateCollected": 1780952891416
     }
   }
 }
