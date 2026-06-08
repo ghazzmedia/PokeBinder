@@ -111,6 +111,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/24.png",
       "price": 0.11,
       "dateCollected": 1780952672953
+    },
+    "sv8pt5-63": {
+      "cardId": "sv8pt5-63",
+      "pokemonId": 229,
+      "pokemonName": "Houndoom",
+      "name": "Houndoom",
+      "set": "Prismatic Evolutions",
+      "setId": "sv8pt5",
+      "series": "Scarlet & Violet",
+      "number": "63",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv8pt5/63.png",
+      "price": 0.06,
+      "dateCollected": 1780952689683
     }
   }
 }
