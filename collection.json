@@ -125,6 +125,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/63.png",
       "price": 0.06,
       "dateCollected": 1780952689683
+    },
+    "sv7-2": {
+      "cardId": "sv7-2",
+      "pokemonId": 165,
+      "pokemonName": "Ledyba",
+      "name": "Ledyba",
+      "set": "Stellar Crown",
+      "setId": "sv7",
+      "series": "Scarlet & Violet",
+      "number": "2",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv7/2.png",
+      "price": 0.03,
+      "dateCollected": 1780952700738
     }
   }
 }
