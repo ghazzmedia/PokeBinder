@@ -727,6 +727,20 @@
       "img": "https://images.pokemontcg.io/ex6/1.png",
       "price": 3.56,
       "dateCollected": 1787839233420
+    },
+    "ex6-74": {
+      "cardId": "ex6-74",
+      "pokemonId": 25,
+      "pokemonName": "Pikachu",
+      "name": "Pikachu",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "74",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex6/74.png",
+      "price": 5.6,
+      "dateCollected": 1787839316416
     }
   }
 }
