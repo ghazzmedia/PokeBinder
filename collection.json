@@ -811,6 +811,20 @@
       "img": "https://images.pokemontcg.io/ex6/68.png",
       "price": 0.19,
       "dateCollected": 1787840184611
+    },
+    "sm1-21": {
+      "cardId": "sm1-21",
+      "pokemonId": 58,
+      "pokemonName": "Growlithe",
+      "name": "Growlithe",
+      "set": "Sun & Moon",
+      "setId": "sm1",
+      "series": "Sun & Moon",
+      "number": "21",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sm1/21.png",
+      "price": 0.15,
+      "dateCollected": 1787840261781
     }
   }
 }
