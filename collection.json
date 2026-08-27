@@ -951,6 +951,20 @@
       "img": "https://images.pokemontcg.io/ex10/38.png",
       "price": 0.81,
       "dateCollected": 1787840784130
+    },
+    "ex5-55": {
+      "cardId": "ex5-55",
+      "pokemonId": 152,
+      "pokemonName": "Chikorita",
+      "name": "Chikorita",
+      "set": "Hidden Legends",
+      "setId": "ex5",
+      "series": "EX",
+      "number": "55",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex5/55.png",
+      "price": 0.29,
+      "dateCollected": 1787842217108
     }
   }
 }
