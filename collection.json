@@ -699,6 +699,20 @@
       "img": "https://images.pokemontcg.io/ex6/86.png",
       "price": 0.42,
       "dateCollected": 1787839183154
+    },
+    "ex11-46": {
+      "cardId": "ex11-46",
+      "pokemonId": 14,
+      "pokemonName": "Kakuna",
+      "name": "Kakuna",
+      "set": "Delta Species",
+      "setId": "ex11",
+      "series": "EX",
+      "number": "46",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/ex11/46.png",
+      "price": 1.13,
+      "dateCollected": 1787839214641
     }
   }
 }
