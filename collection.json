@@ -657,6 +657,20 @@
       "img": "https://images.pokemontcg.io/base1/29.png",
       "price": 43.22,
       "dateCollected": 1787838974950
+    },
+    "neo1-68": {
+      "cardId": "neo1-68",
+      "pokemonId": 43,
+      "pokemonName": "Oddish",
+      "name": "Oddish",
+      "set": "Neo Genesis",
+      "setId": "neo1",
+      "series": "Neo",
+      "number": "68",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/neo1/68.png",
+      "price": 0.56,
+      "dateCollected": 1787839048886
     }
   }
 }
