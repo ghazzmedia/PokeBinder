@@ -741,6 +741,20 @@
       "img": "https://images.pokemontcg.io/ex6/74.png",
       "price": 5.6,
       "dateCollected": 1787839316416
+    },
+    "neo1-36": {
+      "cardId": "neo1-36",
+      "pokemonId": 44,
+      "pokemonName": "Gloom",
+      "name": "Gloom",
+      "set": "Neo Genesis",
+      "setId": "neo1",
+      "series": "Neo",
+      "number": "36",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/neo1/36.png",
+      "price": 2.02,
+      "dateCollected": 1787839363464
     }
   }
 }
