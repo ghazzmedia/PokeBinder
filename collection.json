@@ -489,6 +489,20 @@
       "img": "https://images.pokemontcg.io/swsh12pt5gg/GG23.png",
       "price": 2.63,
       "dateCollected": 1787837788330
+    },
+    "sv3pt5-99": {
+      "cardId": "sv3pt5-99",
+      "pokemonId": 99,
+      "pokemonName": "Kingler",
+      "name": "Kingler",
+      "set": "151",
+      "setId": "sv3pt5",
+      "series": "Scarlet & Violet",
+      "number": "99",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv3pt5/99.png",
+      "price": 0.06,
+      "dateCollected": 1787837866725
     }
   }
 }
