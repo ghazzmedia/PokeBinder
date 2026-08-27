@@ -643,6 +643,20 @@
       "img": "https://images.pokemontcg.io/base6/70.png",
       "price": 1.6,
       "dateCollected": 1787838944094
+    },
+    "base1-29": {
+      "cardId": "base1-29",
+      "pokemonId": 93,
+      "pokemonName": "Haunter",
+      "name": "Haunter",
+      "set": "Base",
+      "setId": "base1",
+      "series": "Base",
+      "number": "29",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/base1/29.png",
+      "price": 43.22,
+      "dateCollected": 1787838974950
     }
   }
 }
