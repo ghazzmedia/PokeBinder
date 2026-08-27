@@ -923,6 +923,20 @@
       "img": "https://images.pokemontcg.io/ex10/78.png",
       "price": 0.35,
       "dateCollected": 1787840639079
+    },
+    "neo4-85": {
+      "cardId": "neo4-85",
+      "pokemonId": 158,
+      "pokemonName": "Totodile",
+      "name": "Totodile",
+      "set": "Neo Destiny",
+      "setId": "neo4",
+      "series": "Neo",
+      "number": "85",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/neo4/85.png",
+      "price": 2.22,
+      "dateCollected": 1787840725871
     }
   }
 }
