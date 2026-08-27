@@ -979,6 +979,20 @@
       "img": "https://images.pokemontcg.io/ex10/35.png",
       "price": 1.02,
       "dateCollected": 1787842246803
+    },
+    "ecard1-54": {
+      "cardId": "ecard1-54",
+      "pokemonId": 154,
+      "pokemonName": "Meganium",
+      "name": "Meganium",
+      "set": "Expedition Base Set",
+      "setId": "ecard1",
+      "series": "E-Card",
+      "number": "54",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/ecard1/54.png",
+      "price": 6.34,
+      "dateCollected": 1787842293411
     }
   }
 }
