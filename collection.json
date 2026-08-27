@@ -881,6 +881,20 @@
       "img": "https://images.pokemontcg.io/ex6/35.png",
       "price": 1.49,
       "dateCollected": 1787840498157
+    },
+    "ex6-36": {
+      "cardId": "ex6-36",
+      "pokemonId": 14,
+      "pokemonName": "Kakuna",
+      "name": "Kakuna",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "36",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/ex6/36.png",
+      "price": 1.03,
+      "dateCollected": 1787840556358
     }
   }
 }
