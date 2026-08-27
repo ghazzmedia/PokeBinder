@@ -783,6 +783,20 @@
       "img": "https://images.pokemontcg.io/ex6/77.png",
       "price": 0.43,
       "dateCollected": 1787839435734
+    },
+    "ex6-85": {
+      "cardId": "ex6-85",
+      "pokemonId": 100,
+      "pokemonName": "Voltorb",
+      "name": "Voltorb",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "85",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex6/85.png",
+      "price": 1.89,
+      "dateCollected": 1787839520849
     }
   }
 }
