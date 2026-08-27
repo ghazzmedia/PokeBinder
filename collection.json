@@ -1077,6 +1077,20 @@
       "img": "https://images.pokemontcg.io/ex2/64.png",
       "price": 0.29,
       "dateCollected": 1787842780898
+    },
+    "si1-1": {
+      "cardId": "si1-1",
+      "pokemonId": 151,
+      "pokemonName": "Mew",
+      "name": "Mew",
+      "set": "Southern Islands",
+      "setId": "si1",
+      "series": "Other",
+      "number": "1",
+      "rarity": "",
+      "img": "https://images.pokemontcg.io/si1/1.png",
+      "price": 325.87,
+      "dateCollected": 1787868437215
     }
   }
 }
