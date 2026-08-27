@@ -853,6 +853,20 @@
       "img": "https://images.pokemontcg.io/ex13/67.png",
       "price": 0.51,
       "dateCollected": 1787840370216
+    },
+    "base2-61": {
+      "cardId": "base2-61",
+      "pokemonId": 111,
+      "pokemonName": "Rhyhorn",
+      "name": "Rhyhorn",
+      "set": "Jungle",
+      "setId": "base2",
+      "series": "Base",
+      "number": "61",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base2/61.png",
+      "price": 0.86,
+      "dateCollected": 1787840417208
     }
   }
 }
