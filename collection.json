@@ -531,6 +531,20 @@
       "img": "https://images.pokemontcg.io/ex6/55.png",
       "price": 1.28,
       "dateCollected": 1787838400128
+    },
+    "base1-60": {
+      "cardId": "base1-60",
+      "pokemonId": 77,
+      "pokemonName": "Ponyta",
+      "name": "Ponyta",
+      "set": "Base",
+      "setId": "base1",
+      "series": "Base",
+      "number": "60",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base1/60.png",
+      "price": 11.91,
+      "dateCollected": 1787838434117
     }
   }
 }
