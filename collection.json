@@ -671,6 +671,20 @@
       "img": "https://images.pokemontcg.io/neo1/68.png",
       "price": 0.56,
       "dateCollected": 1787839048886
+    },
+    "base1-69": {
+      "cardId": "base1-69",
+      "pokemonId": 13,
+      "pokemonName": "Weedle",
+      "name": "Weedle",
+      "set": "Base",
+      "setId": "base1",
+      "series": "Base",
+      "number": "69",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base1/69.png",
+      "price": 1.23,
+      "dateCollected": 1787839131154
     }
   }
 }
