@@ -475,6 +475,20 @@
       "img": "https://images.pokemontcg.io/sv3pt5/73.png",
       "price": 0.05,
       "dateCollected": 1787837682106
+    },
+    "swsh12pt5gg-GG23": {
+      "cardId": "swsh12pt5gg-GG23",
+      "pokemonId": 206,
+      "pokemonName": "Dunsparce",
+      "name": "Dunsparce",
+      "set": "Crown Zenith Galarian Gallery",
+      "setId": "swsh12pt5gg",
+      "series": "Sword & Shield",
+      "number": "GG23",
+      "rarity": "Trainer Gallery Rare Holo",
+      "img": "https://images.pokemontcg.io/swsh12pt5gg/GG23.png",
+      "price": 2.63,
+      "dateCollected": 1787837788330
     }
   }
 }
