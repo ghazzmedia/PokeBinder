@@ -629,6 +629,20 @@
       "img": "https://images.pokemontcg.io/ex6/72.png",
       "price": 0.58,
       "dateCollected": 1787838900649
+    },
+    "base6-70": {
+      "cardId": "base6-70",
+      "pokemonId": 4,
+      "pokemonName": "Charmander",
+      "name": "Charmander",
+      "set": "Legendary Collection",
+      "setId": "base6",
+      "series": "Other",
+      "number": "70",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base6/70.png",
+      "price": 1.6,
+      "dateCollected": 1787838944094
     }
   }
 }
