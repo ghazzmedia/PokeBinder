@@ -895,6 +895,20 @@
       "img": "https://images.pokemontcg.io/ex6/36.png",
       "price": 1.03,
       "dateCollected": 1787840556358
+    },
+    "ex13-73": {
+      "cardId": "ex13-73",
+      "pokemonId": 43,
+      "pokemonName": "Oddish",
+      "name": "Oddish δ",
+      "set": "Holon Phantoms",
+      "setId": "ex13",
+      "series": "EX",
+      "number": "73",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex13/73.png",
+      "price": 0.48,
+      "dateCollected": 1787840569913
     }
   }
 }
