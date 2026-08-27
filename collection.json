@@ -1035,6 +1035,20 @@
       "img": "https://images.pokemontcg.io/ecard3/89.png",
       "price": 1.79,
       "dateCollected": 1787842541380
+    },
+    "mcd19-5": {
+      "cardId": "mcd19-5",
+      "pokemonId": 131,
+      "pokemonName": "Lapras",
+      "name": "Lapras",
+      "set": "McDonald's Collection 2019",
+      "setId": "mcd19",
+      "series": "Other",
+      "number": "5",
+      "rarity": "",
+      "img": "https://images.pokemontcg.io/mcd19/5.png",
+      "price": 4.98,
+      "dateCollected": 1787842639841
     }
   }
 }
