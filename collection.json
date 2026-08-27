@@ -461,6 +461,20 @@
       "img": "https://images.pokemontcg.io/sv10/209.png",
       "price": 7.29,
       "dateCollected": 1787835978315
+    },
+    "sv3pt5-73": {
+      "cardId": "sv3pt5-73",
+      "pokemonId": 73,
+      "pokemonName": "Tentacruel",
+      "name": "Tentacruel",
+      "set": "151",
+      "setId": "sv3pt5",
+      "series": "Scarlet & Violet",
+      "number": "73",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/sv3pt5/73.png",
+      "price": 0.05,
+      "dateCollected": 1787837682106
     }
   }
 }
