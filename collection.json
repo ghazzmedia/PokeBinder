@@ -1007,6 +1007,20 @@
       "img": "https://images.pokemontcg.io/neo3/35.png",
       "price": 2.04,
       "dateCollected": 1787842364610
+    },
+    "base1-34": {
+      "cardId": "base1-34",
+      "pokemonId": 67,
+      "pokemonName": "Machoke",
+      "name": "Machoke",
+      "set": "Base",
+      "setId": "base1",
+      "series": "Base",
+      "number": "34",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/base1/34.png",
+      "price": 1.57,
+      "dateCollected": 1787842431337
     }
   }
 }
