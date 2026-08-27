@@ -839,6 +839,20 @@
       "img": "https://images.pokemontcg.io/base1/56.png",
       "price": 1.2,
       "dateCollected": 1787840324326
+    },
+    "ex13-67": {
+      "cardId": "ex13-67",
+      "pokemonId": 140,
+      "pokemonName": "Kabuto",
+      "name": "Kabuto δ",
+      "set": "Holon Phantoms",
+      "setId": "ex13",
+      "series": "EX",
+      "number": "67",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex13/67.png",
+      "price": 0.51,
+      "dateCollected": 1787840370216
     }
   }
 }
