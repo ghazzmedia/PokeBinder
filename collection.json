@@ -825,6 +825,20 @@
       "img": "https://images.pokemontcg.io/sm1/21.png",
       "price": 0.15,
       "dateCollected": 1787840261781
+    },
+    "base1-56": {
+      "cardId": "base1-56",
+      "pokemonId": 95,
+      "pokemonName": "Onix",
+      "name": "Onix",
+      "set": "Base",
+      "setId": "base1",
+      "series": "Base",
+      "number": "56",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base1/56.png",
+      "price": 1.2,
+      "dateCollected": 1787840324326
     }
   }
 }
