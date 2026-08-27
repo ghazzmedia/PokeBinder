@@ -713,6 +713,20 @@
       "img": "https://images.pokemontcg.io/ex11/46.png",
       "price": 1.13,
       "dateCollected": 1787839214641
+    },
+    "ex6-1": {
+      "cardId": "ex6-1",
+      "pokemonId": 15,
+      "pokemonName": "Beedrill",
+      "name": "Beedrill",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "1",
+      "rarity": "Rare Holo",
+      "img": "https://images.pokemontcg.io/ex6/1.png",
+      "price": 3.56,
+      "dateCollected": 1787839233420
     }
   }
 }
