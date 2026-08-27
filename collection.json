@@ -615,6 +615,20 @@
       "img": "https://images.pokemontcg.io/neo3/47.png",
       "price": 0.71,
       "dateCollected": 1787838860607
+    },
+    "ex6-72": {
+      "cardId": "ex6-72",
+      "pokemonId": 46,
+      "pokemonName": "Paras",
+      "name": "Paras",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "72",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex6/72.png",
+      "price": 0.58,
+      "dateCollected": 1787838900649
     }
   }
 }
