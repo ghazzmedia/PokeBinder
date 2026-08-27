@@ -545,6 +545,20 @@
       "img": "https://images.pokemontcg.io/base1/60.png",
       "price": 11.91,
       "dateCollected": 1787838434117
+    },
+    "ex11-63": {
+      "cardId": "ex11-63",
+      "pokemonId": 132,
+      "pokemonName": "Ditto",
+      "name": "Ditto",
+      "set": "Delta Species",
+      "setId": "ex11",
+      "series": "EX",
+      "number": "63",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex11/63.png",
+      "price": 14.06,
+      "dateCollected": 1787838460948
     }
   }
 }
