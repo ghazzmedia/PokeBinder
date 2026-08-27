@@ -573,6 +573,20 @@
       "img": "https://images.pokemontcg.io/base1/66.png",
       "price": 9.63,
       "dateCollected": 1787838563957
+    },
+    "pl1-29": {
+      "cardId": "pl1-29",
+      "pokemonId": 55,
+      "pokemonName": "Golduck",
+      "name": "Golduck",
+      "set": "Platinum",
+      "setId": "pl1",
+      "series": "Platinum",
+      "number": "29",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/pl1/29.png",
+      "price": 0.74,
+      "dateCollected": 1787838699308
     }
   }
 }
