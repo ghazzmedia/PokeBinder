@@ -755,6 +755,20 @@
       "img": "https://images.pokemontcg.io/neo1/36.png",
       "price": 2.02,
       "dateCollected": 1787839363464
+    },
+    "ex6-27": {
+      "cardId": "ex6-27",
+      "pokemonId": 82,
+      "pokemonName": "Magneton",
+      "name": "Magneton",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "27",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/ex6/27.png",
+      "price": 1.05,
+      "dateCollected": 1787839388941
     }
   }
 }
