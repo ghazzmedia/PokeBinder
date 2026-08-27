@@ -937,6 +937,20 @@
       "img": "https://images.pokemontcg.io/neo4/85.png",
       "price": 2.22,
       "dateCollected": 1787840725871
+    },
+    "ex10-38": {
+      "cardId": "ex10-38",
+      "pokemonId": 159,
+      "pokemonName": "Croconaw",
+      "name": "Croconaw",
+      "set": "Unseen Forces",
+      "setId": "ex10",
+      "series": "EX",
+      "number": "38",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/ex10/38.png",
+      "price": 0.81,
+      "dateCollected": 1787840784130
     }
   }
 }
