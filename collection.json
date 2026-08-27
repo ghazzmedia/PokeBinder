@@ -1021,6 +1021,20 @@
       "img": "https://images.pokemontcg.io/base1/34.png",
       "price": 1.57,
       "dateCollected": 1787842431337
+    },
+    "ecard3-89": {
+      "cardId": "ecard3-89",
+      "pokemonId": 20,
+      "pokemonName": "Raticate",
+      "name": "Raticate",
+      "set": "Skyridge",
+      "setId": "ecard3",
+      "series": "E-Card",
+      "number": "89",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ecard3/89.png",
+      "price": 1.79,
+      "dateCollected": 1787842541380
     }
   }
 }
