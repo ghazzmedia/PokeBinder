@@ -867,6 +867,20 @@
       "img": "https://images.pokemontcg.io/base2/61.png",
       "price": 0.86,
       "dateCollected": 1787840417208
+    },
+    "ex6-35": {
+      "cardId": "ex6-35",
+      "pokemonId": 2,
+      "pokemonName": "Ivysaur",
+      "name": "Ivysaur",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "35",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/ex6/35.png",
+      "price": 1.49,
+      "dateCollected": 1787840498157
     }
   }
 }
