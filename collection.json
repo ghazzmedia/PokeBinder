@@ -993,6 +993,20 @@
       "img": "https://images.pokemontcg.io/ecard1/54.png",
       "price": 6.34,
       "dateCollected": 1787842293411
+    },
+    "neo3-35": {
+      "cardId": "neo3-35",
+      "pokemonId": 47,
+      "pokemonName": "Parasect",
+      "name": "Parasect",
+      "set": "Neo Revelation",
+      "setId": "neo3",
+      "series": "Neo",
+      "number": "35",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/neo3/35.png",
+      "price": 2.04,
+      "dateCollected": 1787842364610
     }
   }
 }
