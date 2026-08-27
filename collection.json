@@ -447,6 +447,20 @@
       "img": "https://images.pokemontcg.io/sv8pt5/60.png",
       "price": 6.83,
       "dateCollected": 1780953114208
+    },
+    "sv10-209": {
+      "cardId": "sv10-209",
+      "pokemonId": 250,
+      "pokemonName": "Ho-Oh",
+      "name": "Ethan's Ho-Oh ex",
+      "set": "Destined Rivals",
+      "setId": "sv10",
+      "series": "Scarlet & Violet",
+      "number": "209",
+      "rarity": "Ultra Rare",
+      "img": "https://images.pokemontcg.io/sv10/209.png",
+      "price": 7.29,
+      "dateCollected": 1787835978315
     }
   }
 }
