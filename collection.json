@@ -909,6 +909,20 @@
       "img": "https://images.pokemontcg.io/ex13/73.png",
       "price": 0.48,
       "dateCollected": 1787840569913
+    },
+    "ex10-78": {
+      "cardId": "ex10-78",
+      "pokemonId": 158,
+      "pokemonName": "Totodile",
+      "name": "Totodile",
+      "set": "Unseen Forces",
+      "setId": "ex10",
+      "series": "EX",
+      "number": "78",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex10/78.png",
+      "price": 0.35,
+      "dateCollected": 1787840639079
     }
   }
 }
