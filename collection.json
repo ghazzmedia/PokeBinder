@@ -1049,6 +1049,20 @@
       "img": "https://images.pokemontcg.io/mcd19/5.png",
       "price": 4.98,
       "dateCollected": 1787842639841
+    },
+    "neo4-42": {
+      "cardId": "neo4-42",
+      "pokemonId": 106,
+      "pokemonName": "Hitmonlee",
+      "name": "Hitmonlee",
+      "set": "Neo Destiny",
+      "setId": "neo4",
+      "series": "Neo",
+      "number": "42",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/neo4/42.png",
+      "price": 2.01,
+      "dateCollected": 1787842694435
     }
   }
 }
