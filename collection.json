@@ -503,6 +503,20 @@
       "img": "https://images.pokemontcg.io/sv3pt5/99.png",
       "price": 0.06,
       "dateCollected": 1787837866725
+    },
+    "ex9-72": {
+      "cardId": "ex9-72",
+      "pokemonId": 37,
+      "pokemonName": "Vulpix",
+      "name": "Vulpix",
+      "set": "Emerald",
+      "setId": "ex9",
+      "series": "EX",
+      "number": "72",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex9/72.png",
+      "price": 0.35,
+      "dateCollected": 1787838373599
     }
   }
 }
