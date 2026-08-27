@@ -685,6 +685,20 @@
       "img": "https://images.pokemontcg.io/base1/69.png",
       "price": 1.23,
       "dateCollected": 1787839131154
+    },
+    "ex6-86": {
+      "cardId": "ex6-86",
+      "pokemonId": 13,
+      "pokemonName": "Weedle",
+      "name": "Weedle",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "86",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex6/86.png",
+      "price": 0.42,
+      "dateCollected": 1787839183154
     }
   }
 }
