@@ -769,6 +769,20 @@
       "img": "https://images.pokemontcg.io/ex6/27.png",
       "price": 1.05,
       "dateCollected": 1787839388941
+    },
+    "ex6-77": {
+      "cardId": "ex6-77",
+      "pokemonId": 19,
+      "pokemonName": "Rattata",
+      "name": "Rattata",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "77",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex6/77.png",
+      "price": 0.43,
+      "dateCollected": 1787839435734
     }
   }
 }
