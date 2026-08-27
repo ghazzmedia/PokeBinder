@@ -587,6 +587,20 @@
       "img": "https://images.pokemontcg.io/pl1/29.png",
       "price": 0.74,
       "dateCollected": 1787838699308
+    },
+    "ex7-64": {
+      "cardId": "ex7-64",
+      "pokemonId": 165,
+      "pokemonName": "Ledyba",
+      "name": "Ledyba",
+      "set": "Team Rocket Returns",
+      "setId": "ex7",
+      "series": "EX",
+      "number": "64",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex7/64.png",
+      "price": 0.32,
+      "dateCollected": 1787838784132
     }
   }
 }
