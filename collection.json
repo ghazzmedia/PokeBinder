@@ -559,6 +559,20 @@
       "img": "https://images.pokemontcg.io/ex11/63.png",
       "price": 14.06,
       "dateCollected": 1787838460948
+    },
+    "base1-66": {
+      "cardId": "base1-66",
+      "pokemonId": 114,
+      "pokemonName": "Tangela",
+      "name": "Tangela",
+      "set": "Base",
+      "setId": "base1",
+      "series": "Base",
+      "number": "66",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base1/66.png",
+      "price": 9.63,
+      "dateCollected": 1787838563957
     }
   }
 }
