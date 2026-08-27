@@ -965,6 +965,20 @@
       "img": "https://images.pokemontcg.io/ex5/55.png",
       "price": 0.29,
       "dateCollected": 1787842217108
+    },
+    "ex10-35": {
+      "cardId": "ex10-35",
+      "pokemonId": 153,
+      "pokemonName": "Bayleef",
+      "name": "Bayleef",
+      "set": "Unseen Forces",
+      "setId": "ex10",
+      "series": "EX",
+      "number": "35",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/ex10/35.png",
+      "price": 1.02,
+      "dateCollected": 1787842246803
     }
   }
 }
