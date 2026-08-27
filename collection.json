@@ -1063,6 +1063,20 @@
       "img": "https://images.pokemontcg.io/neo4/42.png",
       "price": 2.01,
       "dateCollected": 1787842694435
+    },
+    "ex2-64": {
+      "cardId": "ex2-64",
+      "pokemonId": 23,
+      "pokemonName": "Ekans",
+      "name": "Ekans",
+      "set": "Sandstorm",
+      "setId": "ex2",
+      "series": "EX",
+      "number": "64",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex2/64.png",
+      "price": 0.29,
+      "dateCollected": 1787842780898
     }
   }
 }
