@@ -1119,6 +1119,20 @@
       "img": "https://images.scrydex.com/pokemon/me2pt5-152/small",
       "price": null,
       "dateCollected": 1787936167628
+    },
+    "ex6-78": {
+      "cardId": "ex6-78",
+      "pokemonId": 86,
+      "pokemonName": "Seel",
+      "name": "Seel",
+      "set": "FireRed & LeafGreen",
+      "setId": "ex6",
+      "series": "EX",
+      "number": "78",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex6/78.png",
+      "price": 0.3,
+      "dateCollected": 1787936315171
     }
   }
 }
