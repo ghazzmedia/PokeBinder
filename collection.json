@@ -1105,6 +1105,20 @@
       "img": "https://images.pokemontcg.io/sv3pt5/6.png",
       "price": 6.88,
       "dateCollected": 1787936124695
+    },
+    "me2pt5-152": {
+      "cardId": "me2pt5-152",
+      "pokemonId": 149,
+      "pokemonName": "Dragonite",
+      "name": "Mega Dragonite ex",
+      "set": "Ascended Heroes",
+      "setId": "me2pt5",
+      "series": "Mega Evolution",
+      "number": "152",
+      "rarity": "Double Rare",
+      "img": "https://images.scrydex.com/pokemon/me2pt5-152/small",
+      "price": null,
+      "dateCollected": 1787936167628
     }
   }
 }
