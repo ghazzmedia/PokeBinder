@@ -1091,6 +1091,20 @@
       "img": "https://images.pokemontcg.io/me2/97.png",
       "price": 4.86,
       "dateCollected": 1787935750827
+    },
+    "sv3pt5-6": {
+      "cardId": "sv3pt5-6",
+      "pokemonId": 6,
+      "pokemonName": "Charizard",
+      "name": "Charizard ex",
+      "set": "151",
+      "setId": "sv3pt5",
+      "series": "Scarlet & Violet",
+      "number": "6",
+      "rarity": "Double Rare",
+      "img": "https://images.pokemontcg.io/sv3pt5/6.png",
+      "price": 6.88,
+      "dateCollected": 1787936124695
     }
   }
 }
