@@ -1077,6 +1077,20 @@
       "img": "https://images.pokemontcg.io/ex2/64.png",
       "price": 0.29,
       "dateCollected": 1787842780898
+    },
+    "me2-97": {
+      "cardId": "me2-97",
+      "pokemonId": 87,
+      "pokemonName": "Dewgong",
+      "name": "Dewgong",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "97",
+      "rarity": "Illustration Rare",
+      "img": "https://images.pokemontcg.io/me2/97.png",
+      "price": 4.86,
+      "dateCollected": 1787935750827
     }
   }
 }
