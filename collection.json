@@ -1133,6 +1133,20 @@
       "img": "https://images.pokemontcg.io/ex6/78.png",
       "price": 0.3,
       "dateCollected": 1787936315171
+    },
+    "ex8-64": {
+      "cardId": "ex8-64",
+      "pokemonId": 129,
+      "pokemonName": "Magikarp",
+      "name": "Magikarp",
+      "set": "Deoxys",
+      "setId": "ex8",
+      "series": "EX",
+      "number": "64",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex8/64.png",
+      "price": 1.18,
+      "dateCollected": 1788248254908
     }
   }
 }
