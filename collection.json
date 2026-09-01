@@ -1217,6 +1217,20 @@
       "img": "https://images.pokemontcg.io/ex10/48.png",
       "price": 1.23,
       "dateCollected": 1788300640174
+    },
+    "ex13-19": {
+      "cardId": "ex13-19",
+      "pokemonId": 182,
+      "pokemonName": "Bellossom",
+      "name": "Bellossom δ",
+      "set": "Holon Phantoms",
+      "setId": "ex13",
+      "series": "EX",
+      "number": "19",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/ex13/19.png",
+      "price": 2.34,
+      "dateCollected": 1788300729204
     }
   }
 }
