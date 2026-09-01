@@ -1203,6 +1203,20 @@
       "img": "https://images.pokemontcg.io/base6/77.png",
       "price": 0.66,
       "dateCollected": 1788300576529
+    },
+    "ex10-48": {
+      "cardId": "ex10-48",
+      "pokemonId": 235,
+      "pokemonName": "Smeargle",
+      "name": "Smeargle",
+      "set": "Unseen Forces",
+      "setId": "ex10",
+      "series": "EX",
+      "number": "48",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/ex10/48.png",
+      "price": 1.23,
+      "dateCollected": 1788300640174
     }
   }
 }
