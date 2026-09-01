@@ -1245,6 +1245,20 @@
       "img": "https://images.pokemontcg.io/ex9/59.png",
       "price": 2.57,
       "dateCollected": 1788300798031
+    },
+    "sm8-133": {
+      "cardId": "sm8-133",
+      "pokemonId": 39,
+      "pokemonName": "Jigglypuff",
+      "name": "Jigglypuff",
+      "set": "Lost Thunder",
+      "setId": "sm8",
+      "series": "Sun & Moon",
+      "number": "133",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sm8/133.png",
+      "price": 0.17,
+      "dateCollected": 1788300912628
     }
   }
 }
