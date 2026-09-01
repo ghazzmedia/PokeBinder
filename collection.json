@@ -1231,6 +1231,20 @@
       "img": "https://images.pokemontcg.io/ex13/19.png",
       "price": 2.34,
       "dateCollected": 1788300729204
+    },
+    "ex9-59": {
+      "cardId": "ex9-59",
+      "pokemonId": 172,
+      "pokemonName": "Pichu",
+      "name": "Pichu",
+      "set": "Emerald",
+      "setId": "ex9",
+      "series": "EX",
+      "number": "59",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex9/59.png",
+      "price": 2.57,
+      "dateCollected": 1788300798031
     }
   }
 }
