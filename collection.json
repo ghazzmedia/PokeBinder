@@ -1175,6 +1175,20 @@
       "img": "https://images.pokemontcg.io/ex13/74.png",
       "price": 0.34,
       "dateCollected": 1788248433935
+    },
+    "ex2-19": {
+      "cardId": "ex2-19",
+      "pokemonId": 139,
+      "pokemonName": "Omastar",
+      "name": "Omastar",
+      "set": "Sandstorm",
+      "setId": "ex2",
+      "series": "EX",
+      "number": "19",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/ex2/19.png",
+      "price": 1.19,
+      "dateCollected": 1788248451123
     }
   }
 }
