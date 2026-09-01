@@ -1259,6 +1259,20 @@
       "img": "https://images.pokemontcg.io/sm8/133.png",
       "price": 0.17,
       "dateCollected": 1788300912628
+    },
+    "smp-SM145": {
+      "cardId": "smp-SM145",
+      "pokemonId": 145,
+      "pokemonName": "Zapdos",
+      "name": "Zapdos",
+      "set": "SM Black Star Promos",
+      "setId": "smp",
+      "series": "Sun & Moon",
+      "number": "SM145",
+      "rarity": "Promo",
+      "img": "https://images.pokemontcg.io/smp/SM145.png",
+      "price": 4.3,
+      "dateCollected": 1788300984419
     }
   }
 }
