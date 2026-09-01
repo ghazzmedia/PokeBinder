@@ -1161,6 +1161,20 @@
       "img": "https://images.pokemontcg.io/ex8/69.png",
       "price": 0.84,
       "dateCollected": 1788248352825
+    },
+    "ex13-74": {
+      "cardId": "ex13-74",
+      "pokemonId": 138,
+      "pokemonName": "Omanyte",
+      "name": "Omanyte δ",
+      "set": "Holon Phantoms",
+      "setId": "ex13",
+      "series": "EX",
+      "number": "74",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex13/74.png",
+      "price": 0.34,
+      "dateCollected": 1788248433935
     }
   }
 }
