@@ -1147,6 +1147,20 @@
       "img": "https://images.pokemontcg.io/ex8/64.png",
       "price": 1.18,
       "dateCollected": 1788248254908
+    },
+    "ex8-69": {
+      "cardId": "ex8-69",
+      "pokemonId": 231,
+      "pokemonName": "Phanpy",
+      "name": "Phanpy",
+      "set": "Deoxys",
+      "setId": "ex8",
+      "series": "EX",
+      "number": "69",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/ex8/69.png",
+      "price": 0.84,
+      "dateCollected": 1788248352825
     }
   }
 }
