@@ -1189,6 +1189,20 @@
       "img": "https://images.pokemontcg.io/ex2/19.png",
       "price": 1.19,
       "dateCollected": 1788248451123
+    },
+    "base6-77": {
+      "cardId": "base6-77",
+      "pokemonId": 74,
+      "pokemonName": "Geodude",
+      "name": "Geodude",
+      "set": "Legendary Collection",
+      "setId": "base6",
+      "series": "Other",
+      "number": "77",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/base6/77.png",
+      "price": 0.66,
+      "dateCollected": 1788300576529
     }
   }
 }
