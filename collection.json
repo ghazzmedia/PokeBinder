@@ -1427,6 +1427,20 @@
       "img": "https://images.scrydex.com/pokemon/me5-60/small",
       "price": null,
       "dateCollected": 1788632058599
+    },
+    "me5-30": {
+      "cardId": "me5-30",
+      "pokemonId": 80,
+      "pokemonName": "Slowbro",
+      "name": "Slowbro",
+      "set": "Pitch Black",
+      "setId": "me5",
+      "series": "Mega Evolution",
+      "number": "30",
+      "rarity": "Uncommon",
+      "img": "https://images.scrydex.com/pokemon/me5-30/small",
+      "price": null,
+      "dateCollected": 1788632405686
     }
   }
 }
