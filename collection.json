@@ -1469,6 +1469,20 @@
       "img": "https://images.pokemontcg.io/me2/38.png",
       "price": 0.04,
       "dateCollected": 1788632478364
+    },
+    "me2-49": {
+      "cardId": "me2-49",
+      "pokemonId": 207,
+      "pokemonName": "Gligar",
+      "name": "Gligar",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "49",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/me2/49.png",
+      "price": 0.04,
+      "dateCollected": 1788632541888
     }
   }
 }
