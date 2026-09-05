@@ -1455,6 +1455,20 @@
       "img": "https://images.pokemontcg.io/me2/37.png",
       "price": 0.08,
       "dateCollected": 1788632467651
+    },
+    "me2-38": {
+      "cardId": "me2-38",
+      "pokemonId": 210,
+      "pokemonName": "Granbull",
+      "name": "Granbull",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "38",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/me2/38.png",
+      "price": 0.04,
+      "dateCollected": 1788632478364
     }
   }
 }
