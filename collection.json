@@ -1371,6 +1371,20 @@
       "img": "https://images.scrydex.com/pokemon/me5-14/small",
       "price": null,
       "dateCollected": 1788631890762
+    },
+    "me4-18": {
+      "cardId": "me4-18",
+      "pokemonId": 225,
+      "pokemonName": "Delibird",
+      "name": "Delibird",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "18",
+      "rarity": "Uncommon",
+      "img": "https://images.scrydex.com/pokemon/me4-18/small",
+      "price": null,
+      "dateCollected": 1788631919329
     }
   }
 }
