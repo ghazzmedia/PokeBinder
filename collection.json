@@ -1693,6 +1693,20 @@
       "img": "https://images.scrydex.com/pokemon/me5-42/small",
       "price": null,
       "dateCollected": 1788643027460
+    },
+    "me2-77": {
+      "cardId": "me2-77",
+      "pokemonId": 40,
+      "pokemonName": "Wigglytuff",
+      "name": "Wigglytuff",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "77",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/me2/77.png",
+      "price": 0.13,
+      "dateCollected": 1788643068805
     }
   }
 }
