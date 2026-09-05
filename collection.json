@@ -1511,6 +1511,20 @@
       "img": "https://images.scrydex.com/pokemon/me3-63/small",
       "price": null,
       "dateCollected": 1788633500961
+    },
+    "me2-14": {
+      "cardId": "me2-14",
+      "pokemonId": 146,
+      "pokemonName": "Moltres",
+      "name": "Moltres",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "14",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/me2/14.png",
+      "price": 0.26,
+      "dateCollected": 1788633603526
     }
   }
 }
