@@ -1539,6 +1539,20 @@
       "img": "https://images.scrydex.com/pokemon/me3-30/small",
       "price": null,
       "dateCollected": 1788642122663
+    },
+    "me2pt5-83": {
+      "cardId": "me2pt5-83",
+      "pokemonId": 183,
+      "pokemonName": "Marill",
+      "name": "Marill",
+      "set": "Ascended Heroes",
+      "setId": "me2pt5",
+      "series": "Mega Evolution",
+      "number": "83",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me2pt5-83/small",
+      "price": null,
+      "dateCollected": 1788642199033
     }
   }
 }
