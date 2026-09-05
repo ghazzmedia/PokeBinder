@@ -1329,6 +1329,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-51/small",
       "price": null,
       "dateCollected": 1788631690484
+    },
+    "me4-9": {
+      "cardId": "me4-9",
+      "pokemonId": 38,
+      "pokemonName": "Ninetales",
+      "name": "Ninetales",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "9",
+      "rarity": "Uncommon",
+      "img": "https://images.scrydex.com/pokemon/me4-9/small",
+      "price": null,
+      "dateCollected": 1788631752237
     }
   }
 }
