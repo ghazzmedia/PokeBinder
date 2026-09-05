@@ -1385,6 +1385,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-18/small",
       "price": null,
       "dateCollected": 1788631919329
+    },
+    "me3-20": {
+      "cardId": "me3-20",
+      "pokemonId": 120,
+      "pokemonName": "Staryu",
+      "name": "Staryu",
+      "set": "Perfect Order",
+      "setId": "me3",
+      "series": "Mega Evolution",
+      "number": "20",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me3-20/small",
+      "price": null,
+      "dateCollected": 1788631977474
     }
   }
 }
