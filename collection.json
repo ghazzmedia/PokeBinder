@@ -1399,6 +1399,20 @@
       "img": "https://images.scrydex.com/pokemon/me3-20/small",
       "price": null,
       "dateCollected": 1788631977474
+    },
+    "sv10-142": {
+      "cardId": "sv10-142",
+      "pokemonId": 227,
+      "pokemonName": "Skarmory",
+      "name": "Steven's Skarmory",
+      "set": "Destined Rivals",
+      "setId": "sv10",
+      "series": "Scarlet & Violet",
+      "number": "142",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv10/142.png",
+      "price": 0.03,
+      "dateCollected": 1788632024124
     }
   }
 }
