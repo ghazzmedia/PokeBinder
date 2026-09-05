@@ -1343,6 +1343,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-9/small",
       "price": null,
       "dateCollected": 1788631752237
+    },
+    "me3-48": {
+      "cardId": "me3-48",
+      "pokemonId": 92,
+      "pokemonName": "Gastly",
+      "name": "Gastly",
+      "set": "Perfect Order",
+      "setId": "me3",
+      "series": "Mega Evolution",
+      "number": "48",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me3-48/small",
+      "price": null,
+      "dateCollected": 1788631826555
     }
   }
 }
