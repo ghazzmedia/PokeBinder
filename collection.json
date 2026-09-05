@@ -1553,6 +1553,20 @@
       "img": "https://images.scrydex.com/pokemon/me2pt5-83/small",
       "price": null,
       "dateCollected": 1788642199033
+    },
+    "me5-32": {
+      "cardId": "me5-32",
+      "pokemonId": 124,
+      "pokemonName": "Jynx",
+      "name": "Jynx",
+      "set": "Pitch Black",
+      "setId": "me5",
+      "series": "Mega Evolution",
+      "number": "32",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me5-32/small",
+      "price": null,
+      "dateCollected": 1788642259681
     }
   }
 }
