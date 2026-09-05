@@ -1665,6 +1665,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-45/small",
       "price": null,
       "dateCollected": 1788642916744
+    },
+    "me2-78": {
+      "cardId": "me2-78",
+      "pokemonId": 190,
+      "pokemonName": "Aipom",
+      "name": "Aipom",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "78",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/me2/78.png",
+      "price": 0.11,
+      "dateCollected": 1788642965785
     }
   }
 }
