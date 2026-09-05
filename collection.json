@@ -1651,6 +1651,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-27/small",
       "price": null,
       "dateCollected": 1788642882761
+    },
+    "me4-45": {
+      "cardId": "me4-45",
+      "pokemonId": 232,
+      "pokemonName": "Donphan",
+      "name": "Donphan",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "45",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me4-45/small",
+      "price": null,
+      "dateCollected": 1788642916744
     }
   }
 }
