@@ -1679,6 +1679,20 @@
       "img": "https://images.pokemontcg.io/me2/78.png",
       "price": 0.11,
       "dateCollected": 1788642965785
+    },
+    "me5-42": {
+      "cardId": "me5-42",
+      "pokemonId": 56,
+      "pokemonName": "Mankey",
+      "name": "Mankey",
+      "set": "Pitch Black",
+      "setId": "me5",
+      "series": "Mega Evolution",
+      "number": "42",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me5-42/small",
+      "price": null,
+      "dateCollected": 1788643027460
     }
   }
 }
