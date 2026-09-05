@@ -1357,6 +1357,20 @@
       "img": "https://images.scrydex.com/pokemon/me3-48/small",
       "price": null,
       "dateCollected": 1788631826555
+    },
+    "me5-14": {
+      "cardId": "me5-14",
+      "pokemonId": 119,
+      "pokemonName": "Seaking",
+      "name": "Seaking",
+      "set": "Pitch Black",
+      "setId": "me5",
+      "series": "Mega Evolution",
+      "number": "14",
+      "rarity": "Uncommon",
+      "img": "https://images.scrydex.com/pokemon/me5-14/small",
+      "price": null,
+      "dateCollected": 1788631890762
     }
   }
 }
