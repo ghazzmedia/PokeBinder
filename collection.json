@@ -1609,6 +1609,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-16/small",
       "price": null,
       "dateCollected": 1788642460626
+    },
+    "me4-49": {
+      "cardId": "me4-49",
+      "pokemonId": 41,
+      "pokemonName": "Zubat",
+      "name": "Zubat",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "49",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me4-49/small",
+      "price": null,
+      "dateCollected": 1788642597446
     }
   }
 }
