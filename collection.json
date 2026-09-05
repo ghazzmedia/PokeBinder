@@ -1637,6 +1637,20 @@
       "img": "https://images.pokemontcg.io/sv4/30.png",
       "price": 0.03,
       "dateCollected": 1788642788749
+    },
+    "me4-27": {
+      "cardId": "me4-27",
+      "pokemonId": 179,
+      "pokemonName": "Mareep",
+      "name": "Mareep",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "27",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me4-27/small",
+      "price": null,
+      "dateCollected": 1788642882761
     }
   }
 }
