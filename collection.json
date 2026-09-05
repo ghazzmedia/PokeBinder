@@ -1315,6 +1315,20 @@
       "img": "https://images.pokemontcg.io/me2/55.png",
       "price": 0.16,
       "dateCollected": 1788631656501
+    },
+    "me4-51": {
+      "cardId": "me4-51",
+      "pokemonId": 169,
+      "pokemonName": "Crobat",
+      "name": "Crobat",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "51",
+      "rarity": "Rare",
+      "img": "https://images.scrydex.com/pokemon/me4-51/small",
+      "price": null,
+      "dateCollected": 1788631690484
     }
   }
 }
