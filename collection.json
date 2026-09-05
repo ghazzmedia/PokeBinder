@@ -1413,6 +1413,20 @@
       "img": "https://images.pokemontcg.io/sv10/142.png",
       "price": 0.03,
       "dateCollected": 1788632024124
+    },
+    "me5-60": {
+      "cardId": "me5-60",
+      "pokemonId": 227,
+      "pokemonName": "Skarmory",
+      "name": "Skarmory",
+      "set": "Pitch Black",
+      "setId": "me5",
+      "series": "Mega Evolution",
+      "number": "60",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me5-60/small",
+      "price": null,
+      "dateCollected": 1788632058599
     }
   }
 }
