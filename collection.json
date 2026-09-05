@@ -1567,6 +1567,20 @@
       "img": "https://images.scrydex.com/pokemon/me5-32/small",
       "price": null,
       "dateCollected": 1788642259681
+    },
+    "me2-23": {
+      "cardId": "me2-23",
+      "pokemonId": 220,
+      "pokemonName": "Swinub",
+      "name": "Swinub",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "23",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/me2/23.png",
+      "price": 0.05,
+      "dateCollected": 1788642328848
     }
   }
 }
