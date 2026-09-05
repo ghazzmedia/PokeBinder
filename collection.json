@@ -1441,6 +1441,20 @@
       "img": "https://images.scrydex.com/pokemon/me5-30/small",
       "price": null,
       "dateCollected": 1788632405686
+    },
+    "me2-37": {
+      "cardId": "me2-37",
+      "pokemonId": 209,
+      "pokemonName": "Snubbull",
+      "name": "Snubbull",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "37",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/me2/37.png",
+      "price": 0.08,
+      "dateCollected": 1788632467651
     }
   }
 }
