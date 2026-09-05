@@ -1623,6 +1623,20 @@
       "img": "https://images.scrydex.com/pokemon/me4-49/small",
       "price": null,
       "dateCollected": 1788642597446
+    },
+    "sv4-30": {
+      "cardId": "sv4-30",
+      "pokemonId": 116,
+      "pokemonName": "Horsea",
+      "name": "Horsea",
+      "set": "Paradox Rift",
+      "setId": "sv4",
+      "series": "Scarlet & Violet",
+      "number": "30",
+      "rarity": "Common",
+      "img": "https://images.pokemontcg.io/sv4/30.png",
+      "price": 0.03,
+      "dateCollected": 1788642788749
     }
   }
 }
