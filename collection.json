@@ -1483,6 +1483,20 @@
       "img": "https://images.pokemontcg.io/me2/49.png",
       "price": 0.04,
       "dateCollected": 1788632541888
+    },
+    "me3-2": {
+      "cardId": "me3-2",
+      "pokemonId": 168,
+      "pokemonName": "Ariados",
+      "name": "Ariados",
+      "set": "Perfect Order",
+      "setId": "me3",
+      "series": "Mega Evolution",
+      "number": "2",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me3-2/small",
+      "price": null,
+      "dateCollected": 1788633436958
     }
   }
 }
