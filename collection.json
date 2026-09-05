@@ -1595,6 +1595,20 @@
       "img": "https://images.pokemontcg.io/me2/57.png",
       "price": 0.14,
       "dateCollected": 1788642399327
+    },
+    "me4-16": {
+      "cardId": "me4-16",
+      "pokemonId": 223,
+      "pokemonName": "Remoraid",
+      "name": "Remoraid",
+      "set": "Chaos Rising",
+      "setId": "me4",
+      "series": "Mega Evolution",
+      "number": "16",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me4-16/small",
+      "price": null,
+      "dateCollected": 1788642460626
     }
   }
 }
