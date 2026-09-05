@@ -1301,6 +1301,20 @@
       "img": "https://images.pokemontcg.io/me2/26.png",
       "price": 0.19,
       "dateCollected": 1788631595214
+    },
+    "me2-55": {
+      "cardId": "me2-55",
+      "pokemonId": 93,
+      "pokemonName": "Haunter",
+      "name": "Haunter",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "55",
+      "rarity": "Uncommon",
+      "img": "https://images.pokemontcg.io/me2/55.png",
+      "price": 0.16,
+      "dateCollected": 1788631656501
     }
   }
 }
