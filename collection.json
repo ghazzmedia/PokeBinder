@@ -1287,6 +1287,20 @@
       "img": "https://images.pokemontcg.io/sm7/1.png",
       "price": 0.16,
       "dateCollected": 1788301060355
+    },
+    "me2-26": {
+      "cardId": "me2-26",
+      "pokemonId": 245,
+      "pokemonName": "Suicune",
+      "name": "Suicune",
+      "set": "Phantasmal Flames",
+      "setId": "me2",
+      "series": "Mega Evolution",
+      "number": "26",
+      "rarity": "Rare",
+      "img": "https://images.pokemontcg.io/me2/26.png",
+      "price": 0.19,
+      "dateCollected": 1788631595214
     }
   }
 }
