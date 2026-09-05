@@ -1525,6 +1525,20 @@
       "img": "https://images.pokemontcg.io/me2/14.png",
       "price": 0.26,
       "dateCollected": 1788633603526
+    },
+    "me3-30": {
+      "cardId": "me3-30",
+      "pokemonId": 35,
+      "pokemonName": "Clefairy",
+      "name": "Clefairy",
+      "set": "Perfect Order",
+      "setId": "me3",
+      "series": "Mega Evolution",
+      "number": "30",
+      "rarity": "Common",
+      "img": "https://images.scrydex.com/pokemon/me3-30/small",
+      "price": null,
+      "dateCollected": 1788642122663
     }
   }
 }
